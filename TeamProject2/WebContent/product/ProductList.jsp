@@ -31,10 +31,10 @@
     
 </head>
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+<!--     Page Preloder -->
+<!--     <div id="preloder"> -->
+<!--         <div class="loader"></div> -->
+<!--     </div> -->
 	
 	<!-- 헤더 -->
     <%@include file="../inc/header.jsp" %>
@@ -226,8 +226,8 @@
                                             <h5><%= pb.getP_name() %></h5>
                                         </a>
                                         <div class="product-price">
-                                            $<%=pb.getP_saleprice() %>
-                                            <span>$<%=pb.getP_price() %></span>
+                                            &#8361;<%=pb.getP_saleprice() %>
+                                            <span>&#8361;<%=pb.getP_price() %></span>
                                         </div>
                                     </div>
                                 </div>
@@ -245,20 +245,20 @@
 		//이전
 		if(startBlock > pageBlock){
 			%>
-			<a href="./ProductList.p?pageNum=<%=startBlock - pageBlock %>&odb=<%=odb%>"> [이전]</a>
+			<a href="./ProductList.p?caregory=<%=category %>&pageNum=<%=startBlock - pageBlock %>&odb=<%=odb%>"> [이전]</a>
 			<%
 		}
 		
 		//페이지숫자
 		for(int i=startBlock;i<= endBlock; i++){
 			%>
-			<a href="./ProductList.p?pageNum=<%=i%>&odb=<%=odb%>">[<%=i %>]</a>
+			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=i%>&odb=<%=odb%>">[<%=i %>]</a>
 			<%			
 		}
 		//다음
 		if(endBlock < pageCount){
 		%>
-		<a href="./ProductList.p?pageNum=<%= startBlock + pageBlock%>&odb=<%=odb%>"> [다음]</a>
+		<a href="./ProductList.p?category=<%=category %>&pageNum=<%= startBlock + pageBlock%>&odb=<%=odb%>"> [다음]</a>
 		<%
 		}
 		
@@ -272,40 +272,6 @@
         </div>
     </section>
     <!-- Product Shop Section End -->
-
-    <!-- Partner Logo Section Begin -->
-    <div class="partner-logo">
-        <div class="container">
-            <div class="logo-carousel owl-carousel">
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="./img/logo-carousel/logo-1.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="./img/logo-carousel/logo-2.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="./img/logo-carousel/logo-3.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="./img/logo-carousel/logo-4.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="./img/logo-carousel/logo-5.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Partner Logo Section End -->
  
     <!-- 푸터 -->
     <%@include file="../inc/footer.jsp" %>

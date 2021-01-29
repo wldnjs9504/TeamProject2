@@ -54,11 +54,11 @@
                         <h2>로그인</h2>
                         <form action="#">
                             <div class="group-input">
-                                <label for="username">Username or email address *</label>
+                                <label for="username">아이디 *</label>
                                 <input type="text" id="username">
                             </div>
                             <div class="group-input">
-                                <label for="pass">Password *</label>
+                                <label for="pass">비밀번호 *</label>
                                 <input type="text" id="pass">
                             </div>
                             <div class="group-input gi-check">
