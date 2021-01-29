@@ -30,7 +30,7 @@
 
 <body>
 	<!-- 헤더 -->
-    <%@include file="../inc/header.jsp" %>
+    <%@include file="/inc/header.jsp" %>
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -54,18 +54,29 @@ List productList = (List)request.getAttribute("productList");
     <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+            	<div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+                    <div class="filter-widget">
+                        <ul class="filter-catagories">
+                        	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
+                    		<li> <a href="#"> 회원 관리</a></li>
+                     		<li class="check-menu"> <a href="./ProductList.ap"> 상품 관리</a></li>
+                     		<li> <a href="#"> 주문 관리</a></li>
+                        </ul>                    	
+                    </div>
+                </div>            
+                <div class="col-lg-9 order-1 order-lg-2">
                     <div class="cart-table">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>번호</th>
-                                    <th>카테고리</th>
+                                    <th class="p-num">번호</th>
+                                    <!-- <th>카테고리</th> -->
                                     <th>이미지</th>
                                     <th class="p-name">상품명</th>
                                     <th>단가</th>
-                                    <th>수량</th>
-                                    <th>수정/삭제</th>
+                                    <th class="p-count">수량</th>
+                                    <!-- <th>수정/삭제</th> -->
+                                    <th> </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,8 +123,8 @@ List productList = (List)request.getAttribute("productList");
 	   							}
 	   						   %>
                                 <tr>
-                                	<td class="cart-title">
-                                        <h5><%= pb.getP_num() %></h5>
+                                	<td class="p-num">
+                                        <%= pb.getP_num() %>
                                     </td>
                                     <%
                                     String result = "";
@@ -132,20 +143,29 @@ List productList = (List)request.getAttribute("productList");
                                     	
                                     }
                                     %>
-                                    <td class="cart-title">
-                                        <h5><%= result %></h5>
+ 									<%--     
+                                    <td class="p-cate">
+                                        <%= result %>
                                     </td>
+                                     --%>
                                     <td class="cart-pic first-row"><img src="./upload/<%=pb.getImg_main() %>"  alt=""></td>
                                     <td class="cart-title">
-                                        <h5><%= pb.getP_name() %></h5>
+                                    	<div class="p-cate"><%= result %><br></div>
+                                        <%= pb.getP_name() %>
                                     </td>
                                     
                                     <td class="p-price"><%= sb %>원</td>
-                                	<td class="cart-title">
-                                        <h5><%= sb1 %></h5>
+                                	<td class="p-count">
+                                        <%= sb1 %>
                                     </td>
-                                    <td><a href="./ProductModify.ap?p_num=<%=pb.getP_num()%>">수정</a>
-    								/<a href="./ProductDeleteAction.ap?p_num=<%=pb.getP_num()%>">삭제</a></td></tr>	   
+                                    <td>
+                                    	<input type="button" class="site-btn update" value="변경" onclick="location.href='./ProductModify.ap?p_num=<%=pb.getP_num()%>';"><br>
+                                    	<input type="button" class="site-btn update" value="삭제" onclick="location.href='./ProductDeleteAction.ap?p_num=<%=pb.getP_num()%>';">
+                                    
+<%--                                     <a href="./ProductModify.ap?p_num=<%=pb.getP_num()%>">수정</a> --%>
+<%--     								/<a href="./ProductDeleteAction.ap?p_num=<%=pb.getP_num()%>">삭제</a> --%>
+    								</td>
+    							</tr>	   
                                 <%
    								}
                                 %>
@@ -177,7 +197,7 @@ List productList = (List)request.getAttribute("productList");
     <!-- Shopping Cart Section End -->
 
 	<!-- 푸터 -->
-    <%@include file="../inc/footer.jsp" %>
+    <%@include file="/inc/footer.jsp" %>
 </body>
 
 </html>

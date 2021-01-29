@@ -200,6 +200,7 @@ ol {
 	cursor: pointer;
 }
 
+
 /* Preloder */
 
 #preloder {
@@ -2684,6 +2685,10 @@ ol {
 	border: 1px solid #ebebeb;
 }
 
+.cart-table tr:nth-child(2n) {
+	background-color: #fbf8f2;
+}
+
 .cart-table table tr th {
 	font-size: 16px;
 	color: #252525;
@@ -2694,21 +2699,44 @@ ol {
 	text-transform: uppercase;
 }
 
+.cart-table table .p-num {
+	width: 50px;
+	text-align: center;
+	vertical-align: middle;
+}
+/* 
+.cart-table table .p-cate {
+	width:100px;
+	text-align: center;	
+}
+ */
+ 
+.cart-table table .p-cate {
+	color: #5584b1;
+	font-weight: bold;
+	margin: 0.5em 0;
+} 
+
 .cart-table table tr th.p-name {
 	text-align: left;
+	width: 40%;
 }
 
+.cart-table table .p-count {
+	width: 40px;
+}
 .cart-table table tr td {
 	text-align: center;
-	padding-bottom: 34px;
+/* 	vertical-align: middle; */
+	padding: 10px 0;
 }
-
+/* 
 .cart-table table tr td.first-row {
 	padding-top: 30px;
 }
-
+ */
 .cart-table table tr td.cart-pic {
-	width: 21%;
+	width: 20%;
 }
 
 .cart-table table tr td.cart-title {
@@ -2725,7 +2753,7 @@ ol {
 
 .cart-table table tr td.p-price,
 .cart-table table tr td.total-price {
-	color: #5584b1;
+	color: #254e7b;
 	font-size: 16px;
 	font-weight: 700;
 }
@@ -2787,6 +2815,16 @@ ol {
 
 .cart-table table tr td.close-td i {
 	cursor: pointer;
+}
+
+.cart-table .update {
+	float: right;
+	width: 60px;
+	margin: 3px;
+	padding: 10px;
+	vertical-align: middle;
+	border-radius: 15%;
+/* 	background-color: #85c1e5; */
 }
 
 .cart-buttons {

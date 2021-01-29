@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -38,8 +38,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <a href="./index.jsp"><i class="fa fa-home"></i> Home</a>
-                        <a href="./ProductList.ap">관리자 상품 리스트</a>
-                        <span>상품 수정</span>
+                        <a href="./ProductList.ap">상품 관리</a>
+                        <span>상품 변경</span>
                     </div>
                 </div>
             </div>
@@ -54,13 +54,60 @@
     <div class="register-login-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 offset-lg-3">
-                    <div class="register-form">
-                        <h2>상품 수정 등록</h2>
+            	<div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+                    <div class="filter-widget">
+                        <ul class="filter-catagories">
+                        	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
+                    		<li> <a href="#"> 회원 관리</a></li>
+                     		<li class="check-menu"> <a href="./ProductList.ap"> 상품 관리</a></li>
+                     		<li> <a href="#"> 주문 관리</a></li>
+                        </ul>                    	
+                    </div>
+                </div>
+                <div class="col-lg-9 order-1 order-lg-2">
+                    <div class="register-product-form">
+                        <h2>상품 변경 등록</h2>
                         <form action="./ProductModifyAction.ap" method="post">
                         	
                         	<input type="hidden" value="<%= pb.getP_num() %>" name="p_num">
-                        		
+	                 		<table>
+	                 		  <tr>
+	                 		    <th><label for="category">카테고리</label></th>
+	                 		    <td>
+	                        	  <select name="category"  id="category">
+	                        		<option value="1" <%if(pb.getCategory()==1){%>selected<%}%>>피로/간</option>
+	                        		<option value="2" <%if(pb.getCategory()==2){%>selected<%}%>>수면/스트레스</option>
+	                        		<option value="3" <%if(pb.getCategory()==3){%>selected<%}%>>피부</option>
+	                        		<option value="4" <%if(pb.getCategory()==4){%>selected<%}%>>눈</option>
+	                        		<option value="5" <%if(pb.getCategory()==5){%>selected<%}%>>두뇌활동</option>
+	                        		<option value="6" <%if(pb.getCategory()==6){%>selected<%}%>>심장/혈관/혈당</option>
+								  </select>                		    
+	                 		    </td>
+	                 		    <th><label for="p_name">상품명</label></th>
+	                 		    <td colspan="3"><input type="text" id="p_name" name="p_name" value="<%=pb.getP_name() %>"></td>
+	                 		  </tr>
+	                 		  <tr>
+	                 		    <th><label for="p_price">가격</label></th>
+	                 		    <td><input type="number" id="p_price" name="p_price" value="<%= pb.getP_price() %>" min=0></td>
+	                 		    <th><label for="p_saleprice">할인가</label></th>
+	                 		    <td><input type="number" id="p_saleprice" name="p_saleprice" value="<%= pb.getP_saleprice() %>" min=0></td>
+	                 		    <th><label for="p_count">수량</label></th>
+	                 		    <td><input type="number" id="p_count" name="p_count" value="<%= pb.getP_count() %>" min=0></td>
+	                 		  </tr>
+	                 		  <tr>
+	                 		    <th><label for="img_main">메인 이미지</label></th>
+	                 		    <td colspan="5"><input type="file" id="img_main" name="img_main" value="<%=pb.getImg_main()%>"></td>
+	                 		  </tr>
+	                 		  <tr>
+	                 		    <th><label for="img_content">서브 이미지</label></th>
+	                 		    <td colspan="5"><input type="file" id="img_content" name="img_content" value="<%=pb.getImg_content()%>"></td>
+	                 		  </tr>
+	                 		</table>    
+	                 		<div class="check-btn">
+	                 			<input class="site-btn" type="submit" value="변경하기">
+	                 			<input class="site-btn" type="reset" value="취소" onclick="history.back();">
+	                 		</div>    
+<%-- 	                 		                      		
                         	<div class="group-input">
                         		<label for="category">카테고리</label>
                         		<select name="category"  id="category">
@@ -90,6 +137,7 @@
                             </div>
                             <button type="submit" class="site-btn register-btn">상품수정</button>
                             <button type="reset" class="site-btn register-btn">다시수정</button>
+                             --%>
                         </form>
                     </div>
                 </div>

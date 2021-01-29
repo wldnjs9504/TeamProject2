@@ -16,19 +16,19 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
 	<!-- 헤더 -->
-    <%@include file="../inc/header.jsp" %>
+    <%@include file="/inc/header.jsp" %>
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -37,8 +37,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">관리자 상품 리스트</a>
-                        <span>상품 추가</span>
+                        <a href="./shop.html">상품 관리</a>
+                        <span>상품 등록</span>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                         <ul class="filter-catagories">
                         	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
                     		<li> <a href="#"> 회원 관리</a></li>
-                     		<li class="check-menu"> <a href="#"> 상품 관리</a></li>
+                     		<li class="check-menu"> <a href="./ProductList.ap"> 상품 관리</a></li>
                      		<li> <a href="#"> 주문 관리</a></li>
                         </ul>                    	
                     </div>
@@ -111,7 +111,7 @@
     
 
     <!-- 푸터 -->
-    <%@include file="../inc/footer.jsp" %>
+    <%@include file="/inc/footer.jsp" %>
 </body>
 
 </html>
