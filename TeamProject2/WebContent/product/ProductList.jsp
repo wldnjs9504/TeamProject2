@@ -31,10 +31,10 @@
     
 </head>
 <body>
-<!--     Page Preloder -->
-<!--     <div id="preloder"> -->
-<!--         <div class="loader"></div> -->
-<!--     </div> -->
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
 	
 	<!-- 헤더 -->
     <%@include file="../inc/header.jsp" %>
@@ -47,6 +47,11 @@
                     <div class="breadcrumb-text">
                         <a href="./index.jsp"><i class="fa fa-home"></i> Home</a>
                         <% 
+                        request.setCharacterEncoding("UTF-8");
+                    	
+                    	//검색어 정보를 저장
+                    	
+                        
                         int category =Integer.parseInt(request.getParameter("category"));
                         
                         //수정  -> 54~66 span 글씨색깔 좀더 진한 회색
@@ -152,13 +157,31 @@
                                     		%><option value="readcount">조회순</option><%
                                     	}%>
                                         
-                                        
-                                        
-                                        
                                     	</select>
-                                   <!--  <select class="p-show">
-                                        <option value="">Show:</option>
-                                    </select> -->
+                                    
+                                    <!-- search  -->	
+                                   <%
+                               	
+	                               	
+	                               	
+	                               	
+                                   %>
+                                   
+                                   <!--  <div id="table_search">-> get은 맞음 . 버튼클릭시 뭐로가는지 확인
+									  <form action="./ProductList.p?category= < %= category %> " method="get" name="searFr">
+										<input type="text" name="search" class="input_box" value="< %=search%>">
+										<input type="submit" value="검색"	class="btn">
+									  </form>
+									</div>  -->
+									 <!-- search  -->	
+									
+                                  <!--  <  class="p-show">
+                                    </select> 
+                                    
+                                     -->
+                                    
+                                    
+                                    
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-5 text-right">
@@ -181,9 +204,18 @@
 	            			
 	            		});  */
 	                	
-	                	
+	                    //alert(selectedValue);
 	                	console.log(selectedValue);
-	                	location.href="./ProductList.p?category="+<%=category%>+"&odb="+selectedValue;
+	            		<%
+	            		if(search == null || search.equals("")){
+	            			%>
+	            			location.href="./ProductList.p?category="+<%=category%>+"&odb="+selectedValue;
+           				<%}else{
+	            			%>
+	            			location.href="./ProductList.p?category="+<%=category%>+"&search="+<%=search%>+"&odb="+selectedValue;
+            			<%}
+	            		%>
+	                	
 	                	
 	                }
                 
@@ -214,7 +246,6 @@
                                     </div>
                                     <div class="pi-text">
                                         <div class="catagory-name">
-                                        <!-- 수정 :  div class="catagory-name" 안에 내용 좀더 잘보이는 회색으로 -->
                                         <% if(pb.getCategory() == 1){%>피로/간<% }%>
                                         <% if(pb.getCategory() == 2){%>수면/스트레스<% }%>
                                         <% if(pb.getCategory() == 3){%>피부<% }%>
@@ -226,8 +257,8 @@
                                             <h5><%= pb.getP_name() %></h5>
                                         </a>
                                         <div class="product-price">
-                                            &#8361;<%=pb.getP_saleprice() %>
-                                            <span>&#8361;<%=pb.getP_price() %></span>
+                                            <%=pb.getP_saleprice() %>&#8361; 
+                                            <span><%=pb.getP_price() %>&#8361; </span>
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +276,7 @@
 		//이전
 		if(startBlock > pageBlock){
 			%>
-			<a href="./ProductList.p?caregory=<%=category %>&pageNum=<%=startBlock - pageBlock %>&odb=<%=odb%>"> [이전]</a>
+			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=startBlock - pageBlock %>&odb=<%=odb%>"> [이전]</a>
 			<%
 		}
 		
@@ -272,6 +303,40 @@
         </div>
     </section>
     <!-- Product Shop Section End -->
+
+    <!-- Partner Logo Section Begin -->
+    <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="./img/logo-carousel/logo-1.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="./img/logo-carousel/logo-2.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="./img/logo-carousel/logo-3.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="./img/logo-carousel/logo-4.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="./img/logo-carousel/logo-5.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Partner Logo Section End -->
  
     <!-- 푸터 -->
     <%@include file="../inc/footer.jsp" %>

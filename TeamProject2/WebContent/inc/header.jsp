@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-request.setCharacterEncoding("UTF-8");
-String id = (String)session.getAttribute("id");
+	request.setCharacterEncoding("UTF-8");
+	String id = (String)session.getAttribute("id");
 %>
 <header class="header-section">
 	<div class="header-top">
@@ -36,11 +36,15 @@ String id = (String)session.getAttribute("id");
 						</a>
 					</div>
 				</div>
+				
+				<!-- 검색창  -->
 				<div class="col-lg-7 col-md-7">
-					<form action="<%=request.getContextPath() %>/board/board.jsp" method="post">
+					<form action="<%=request.getContextPath() %>/ProductList.p?category=0/board/board.jsp" method="get">
 						<%@include file="search.jsp" %>
 					</form>
 				</div>
+				<!-- 검색창  -->
+				
 				<div class="col-lg-3 text-right col-md-3">
 					<ul class="nav-right">
 						<li class="heart-icon">

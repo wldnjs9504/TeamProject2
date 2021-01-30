@@ -17,21 +17,36 @@ public class ProductListAction implements Action{
 		 * ArrayList<String> ImageList = new ArrayList<String>(); Cookie[] cookieArray =
 		 * request.getCookies();
 		 */
+		
+		//정렬
+		request.setCharacterEncoding("UTF-8");
+		
 		String odb = request.getParameter("odb");
 		if(odb == null) {
 			odb = "all";
 		}
-		System.out.println("odb:");
-		System.out.println( odb);
 		
+		//검색어
+		String search = request.getParameter("search");
+		if(search == null) {
+			search = "";
+		}
+		System.out.println("search : " + search);
+		
+		//head에 버튼별로 category 지정 다 되어있음
 		int category = Integer.parseInt(request.getParameter("category"));
-		System.out.println( category);
 		
 		
 		ProductDAO pdao = new ProductDAO();
+		
+		//총 제품 수량
 		int count = pdao.getProductListCount();
 		System.out.println("M : 총 " + count +"개");
-		//페이징처리 --------------
+		
+		
+		//---------------------------------------------------
+		//---------------------------------------------------
+		//페이징처리 -------------------------------------------
 		//현 페이지 위치
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
@@ -49,11 +64,13 @@ public class ProductListAction implements Action{
 				
 		
 		
-		ArrayList<ProductBean> productList = pdao.getProductList(odb,startPage, pageSize, category);
+		ArrayList<ProductBean> productList = pdao.getProductList(odb, startPage, pageSize, category, search);
 		request.setAttribute("productList", productList);
 		System.out.println("productList size : " + productList.size());
 		
-		//페이징처리-------------------------
+		//---------------------------------------------------
+		//---------------------------------------------------
+		//페이징처리 -------------------------------------------
 		//하단부
 		
 		int pageCount = count / pageSize + (count % pageSize == 0? 0:1) ;
@@ -78,8 +95,9 @@ public class ProductListAction implements Action{
 		request.setAttribute("pageBlock", pageBlock); //페이지 블럭의 수
 		request.setAttribute("startBlock", startBlock); //블럭 시작페이지
 		request.setAttribute("endBlock", endBlock); //블럭 끝페이지
-		request.setAttribute("odb", odb); //블럭 끝페이지
+		request.setAttribute("odb", odb); //정렬
 		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("search", search);
 		
 		
 		
