@@ -1,3 +1,4 @@
+<%@page import="net.product.db.ProductDAO"%>
 <%@page import="net.product.db.ProductBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -94,6 +95,9 @@
 				// getMemberList() 메서드 호출 
 				// -> 가변길이 배열 ArrayList (컬렉션)
 				ArrayList productList = (ArrayList)request.getAttribute("productList");
+				
+				// getStarAvg(int num)
+				
 				
 				System.out.println("@"+productList);
 				ProductBean pb = new ProductBean();
@@ -228,6 +232,12 @@
                     	for(int i=0; i<productList.size(); i++){
         					pb = (ProductBean)productList.get(i);
         					pbimg = pb.getImg_main();
+        					
+        					//별점평균 구하기
+        					int p_num = pb.getP_num();
+        					ProductDAO pdao = new ProductDAO();
+        					int star_avg = pdao.getStarAvg(p_num);
+        					
         				%>
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
@@ -253,6 +263,14 @@
                                         <% if(pb.getCategory() == 5){%>두뇌활동<% }%>
                                         <% if(pb.getCategory() == 6){%>심장/혈관/혈당<% }%>
                                         </div>
+                                        <%//별점표시
+                                        if(star_avg == 0){%>☆☆☆☆☆<%
+                                        }else if(0 < star_avg && star_avg <= 1){ %>☆☆☆☆★<%
+                                        }else if(1 < star_avg && star_avg <= 2){ %>☆☆☆★★<%
+                                        }else if(2 < star_avg && star_avg <= 3){ %>☆☆★★★<%
+                                        }else if(3 < star_avg && star_avg <= 4){ %>☆★★★★<%
+                                        }else if(4 < star_avg && star_avg <= 5){ %>★★★★★<%                                        
+                                        } %>
                                         <a href="#">
                                             <h5><%= pb.getP_name() %></h5>
                                         </a>
@@ -276,7 +294,10 @@
 		//이전
 		if(startBlock > pageBlock){
 			%>
-			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=startBlock - pageBlock %>&odb=<%=odb%>"> [이전]</a>
+			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=1 %>&odb=<%=odb%>"> << </a>
+			&nbsp;&nbsp;
+			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=startBlock - 1 %>&odb=<%=odb%>"> < </a>
+			&nbsp;
 			<%
 		}
 		
@@ -288,8 +309,10 @@
 		}
 		//다음
 		if(endBlock < pageCount){
-		%>
-		<a href="./ProductList.p?category=<%=category %>&pageNum=<%= startBlock + pageBlock%>&odb=<%=odb%>"> [다음]</a>
+		%>&nbsp;
+		<a href="./ProductList.p?category=<%=category %>&pageNum=<%= startBlock + pageBlock%>&odb=<%=odb%>"> > </a>
+		&nbsp;&nbsp;
+		<a href="./ProductList.p?category=<%=category %>&pageNum=<%= pageCount%>&odb=<%=odb%>"> >> </a>
 		<%
 		}
 		

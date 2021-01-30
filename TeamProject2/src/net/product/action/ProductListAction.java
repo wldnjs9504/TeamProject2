@@ -54,7 +54,7 @@ public class ProductListAction implements Action{
 		}
 		
 		//한페이지에 보여줄 글 갯수
-				int pageSize = 6;
+				int pageSize = 6;//6
 				
 				//시작행 계산
 				int currentPage = Integer.parseInt(pageNum);
@@ -68,6 +68,7 @@ public class ProductListAction implements Action{
 		request.setAttribute("productList", productList);
 		System.out.println("productList size : " + productList.size());
 		
+		
 		//---------------------------------------------------
 		//---------------------------------------------------
 		//페이징처리 -------------------------------------------
@@ -76,7 +77,7 @@ public class ProductListAction implements Action{
 		int pageCount = count / pageSize + (count % pageSize == 0? 0:1) ;
 		
 		//한 화면에 보여질 페이지 블럭수
-		int pageBlock = 5;
+		int pageBlock = 5;//5
 		
 		//블럭 시작페이지번호
 		int startBlock = ((currentPage -1)/pageBlock)* pageBlock + 1 ;
