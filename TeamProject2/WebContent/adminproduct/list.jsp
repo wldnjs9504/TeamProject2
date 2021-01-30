@@ -30,7 +30,7 @@
 
 <body>
 	<!-- 헤더 -->
-    <%@include file="/inc/header.jsp" %>
+    <%@include file="../inc/header.jsp" %>
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -173,6 +173,7 @@ List productList = (List)request.getAttribute("productList");
                         </table>
                     </div>
                     <div class="row">
+						<!--                     
                         <div class="col-lg-4">
                             <div class="cart-buttons">
                                 <a href="#" class="primary-btn continue-shop"><h6>* 주의사항</h6></a>
@@ -183,6 +184,7 @@ List productList = (List)request.getAttribute("productList");
                                 
                             </div>
                         </div>
+                         -->
                         <div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
                                

@@ -67,7 +67,7 @@
                 <div class="col-lg-9 order-1 order-lg-2">
                     <div class="register-product-form">
                         <h2>상품 변경 등록</h2>
-                        <form action="./ProductModifyAction.ap" method="post">
+                        <form action="./ProductModifyAction.ap" method="post" enctype="multipart/form-data">
                         	
                         	<input type="hidden" value="<%= pb.getP_num() %>" name="p_num">
 	                 		<table>
@@ -102,7 +102,10 @@
 	                 		    <th><label for="img_content">서브 이미지</label></th>
 	                 		    <td colspan="5"><input type="file" id="img_content" name="img_content" value="<%=pb.getImg_content()%>"></td>
 	                 		  </tr>
-	                 		</table>    
+	                 		</table>
+                            <div class="cart-buttons">
+                                <a href="#" class="primary-btn up-cart"><span>*수정 시 이미지 파일을 다시 업로드 해 주십시오.</span></a>
+                            </div>
 	                 		<div class="check-btn">
 	                 			<input class="site-btn" type="submit" value="변경하기">
 	                 			<input class="site-btn" type="reset" value="취소" onclick="history.back();">
