@@ -12,13 +12,14 @@ public class ProductBean {
 	private String img_content;
 	private int price_count;
 	private int readcount;
-	private int star_avg;
+	private double star_avg;
 	
 	
-	public int getStar_avg() {
+
+	public double getStar_avg() {
 		return star_avg;
 	}
-	public void setStar_avg(int star_avg) {
+	public void setStar_avg(double star_avg) {
 		this.star_avg = star_avg;
 	}
 	public int getReadcount() {

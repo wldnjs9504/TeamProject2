@@ -236,7 +236,7 @@
         					//별점평균 구하기
         					int p_num = pb.getP_num();
         					ProductDAO pdao = new ProductDAO();
-        					int star_avg = pdao.getStarAvg(p_num);
+        					double star_avg = pdao.getStarAvg(p_num);
         					
         				%>
                             <div class="col-lg-4 col-sm-6">
@@ -265,12 +265,19 @@
                                         </div>
                                         <%//별점표시
                                         if(star_avg == 0){%>☆☆☆☆☆<%
-                                        }else if(0 < star_avg && star_avg <= 1){ %>☆☆☆☆★<%
-                                        }else if(1 < star_avg && star_avg <= 2){ %>☆☆☆★★<%
-                                        }else if(2 < star_avg && star_avg <= 3){ %>☆☆★★★<%
-                                        }else if(3 < star_avg && star_avg <= 4){ %>☆★★★★<%
-                                        }else if(4 < star_avg && star_avg <= 5){ %>★★★★★<%                                        
+                                        }else if(0 < star_avg && star_avg < 0.5){ %>☆☆☆☆☆<% 
+                                        }else if(0.5 <= star_avg && star_avg < 1){ %>☆☆☆☆★<% //수정 0.5
+                                        }else if(1 <= star_avg && star_avg < 1.5){ %>☆☆☆☆★<% 
+                                        }else if(1.5 <= star_avg && star_avg < 2){ %>☆☆☆★★<% //1.5 
+                                        }else if(2 <= star_avg && star_avg < 2.5){ %>☆☆☆★★<%
+                                        }else if(2.5 <= star_avg && star_avg < 3){ %>☆☆★★★<% //2.5
+                                        }else if(3 <= star_avg && star_avg < 3.5){ %>☆☆★★★<%
+                                        }else if(3.5 <= star_avg && star_avg < 4){ %>☆★★★★<% //3.5
+                                        }else if(4 <= star_avg && star_avg < 4.5){ %>☆★★★★<% 
+                                        }else if(4.5 <= star_avg && star_avg < 5){ %>★★★★★<%  //4.5                                      
+                                        }else if(star_avg == 5){ %>★★★★★<%                                        
                                         } %>
+                                        System.out.println(star_avg);
                                         <a href="#">
                                             <h5><%= pb.getP_name() %></h5>
                                         </a>
@@ -303,9 +310,11 @@
 		
 		//페이지숫자
 		for(int i=startBlock;i<= endBlock; i++){
-			%>
+			if(pageNum.equals(i+"")){%>
+			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=i%>&odb=<%=odb%>" >[<%=i %>]</a> <!--수정 : 선택된 블럭 색변경 요청  -->
+			  <%}else{%>
 			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=i%>&odb=<%=odb%>">[<%=i %>]</a>
-			<%			
+			<%}			
 		}
 		//다음
 		if(endBlock < pageCount){
