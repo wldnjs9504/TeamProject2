@@ -7,12 +7,12 @@
 <html>
 
 <head>
+    <title>Fashi | Template</title>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
     <meta name="keywords" content="Fashi, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fashi | Template</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -39,8 +39,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./index.jsp"><i class="fa fa-home"></i> Home</a>
-                        <span>관리자 주문 리스트</span>
-                    </div>
+                        <span>주문 관리</span>
+                    </div>                
                 </div>
             </div>
         </div>
@@ -55,17 +55,28 @@ List list = (List)request.getAttribute("list");
     <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+                    <div class="filter-widget">
+                        <ul class="filter-catagories">
+                        	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
+                    		<li> <a href="#"> 회원 관리</a></li>
+                     		<li> <a href="./ProductList.ap"> 상품 관리</a></li>
+                     		<li class="check-menu"> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
+                        </ul>                    	
+                    </div>
+                </div> 
+
+                <div class="col-lg-10 order-1 order-lg-2">
                     <div class="cart-table">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>주문번호</th>
-                                    <th>아이디</th>
-                                    <th>이름</th>
-                                    <th>주문일시</th>
-                                    <th>주문상태</th>
-                                    <th>수정/삭제</th>
+                                    <th class="b-num">주문번호</th>
+                                    <th class="id">아이디</th>
+                                    <th class="name">이름</th>
+                                    <th class="date">주문일시</th>
+                                    <th class="active">주문상태</th>
+                                    <th class="button2"> </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,17 +86,17 @@ List list = (List)request.getAttribute("list");
 	   							orderBean ob=(orderBean)list.get(i);
 	   						   %>
                                 <tr>
-                                	<td class="cart-title">
-                                        <h5><%= ob.getB_num() %></h5>
+                                	<td class="b-num">
+                                        <%= ob.getB_num() %>
                                     </td>
-                                    <td class="cart-title">
-                                        <h5><%= ob.getId() %></h5>
+                                    <td class="id">
+                                        <%= ob.getId() %>
                                     </td>
-                                    <td class="cart-title">
-                                        <h5><%= ob.getO_name()%></h5>
+                                    <td class="name">
+                                        <%= ob.getO_name()%>
                                     </td>
-                                    <td class="cart-title">
-                                        <h5><%= ob.getB_date()%></h5>
+                                    <td class="date">
+                                        <%= ob.getB_date()%>
                                     </td>
                                     <%
                                     String result= "";
@@ -99,16 +110,23 @@ List list = (List)request.getAttribute("list");
                                     	result = "배송완료";
                                     }                                    
                                     %>
-                                    <td class="cart-title">
-                                        <h5><%= result %></h5>
+                                    <td class="active">
+                                        <%= result %>
                                     </td>
-                                    <td><a href="./AdminOrderDetail.ao?b_num=<%=ob.getB_num()%>&p_num=<%=ob.getP_num()  %> ">수정</a>
-    								/<a href="./AdminOrderDeleteAction.ao?b_num=<%=ob.getB_num()%>" >삭제</a></td></tr>	   
+                                    <td class="button2">
+    								    <input type="button" class="site-btn update" value="변경" onclick="location.href='./AdminOrderDetail.ao?b_num=<%=ob.getB_num()%>&p_num=<%=ob.getP_num()%>';">
+                                    	<input type="button" class="site-btn update" value="삭제" onclick="location.href='./AdminOrderDeleteAction.ao?b_num=<%=ob.getB_num()%>';">
+    								
+<%--                                     <a href="./AdminOrderDetail.ao?b_num=<%=ob.getB_num()%>&p_num=<%=ob.getP_num()  %> ">수정</a> --%>
+<%--     								/<a href="./AdminOrderDeleteAction.ao?b_num=<%=ob.getB_num()%>" >삭제</a> --%>
+    								</td>
+    							</tr>	   
                                 <%
    								}
                                 %>
                             </tbody>
                         </table>
+					</div>
                 </div>
             </div>
         </div>

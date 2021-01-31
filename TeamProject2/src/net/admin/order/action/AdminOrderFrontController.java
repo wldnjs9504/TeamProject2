@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
 public class AdminOrderFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, 
@@ -24,7 +25,6 @@ public class AdminOrderFrontController extends HttpServlet{
 		//媛��긽二쇱냼 泥섎━
 		Action action = null;
 		ActionForward forward = null;
-		
 		if(command.equals("/AdminOrderList.ao")) {
 			//AdminOrderListAction 
 			action = new AdminOrderList();
@@ -58,7 +58,11 @@ public class AdminOrderFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}else if(command.equals("/AdminMenu.ao")){
+			forward=new ActionForward();
+			forward.setPath("./adminorder/adminmenu.jsp");
+			forward.setRedirect(false);
+		}	
 		
 		//�럹�씠吏� �씠�룞
 		if(forward != null) {
