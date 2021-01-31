@@ -108,14 +108,6 @@ orderBean ob=(orderBean)list.get(0);
                                 <input type="text" id="d_address2" class="street-first" value="<%=ob.getD_address2()  %>" name="d_address2" readonly>
                             </div>
                             <div class="col-lg-12">
-                                <label for="point">포인트</label>
-                                <input type="text" id="point" value="<%=ob.getPoint()  %>" name="point" readonly>
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="d_cost">배송비</label>
-                                <input type="text" id="d_cost" value="<%=ob.getD_cost()  %>" name="d_cost" readonly>
-                            </div>
-                            <div class="col-lg-12">
                                 <label for="d_message">배송시 요청 사항</label>
                                 <input type="text" id="d_message" value="<%=ob.getD_message()  %>" name="d_message" readonly>
                             </div>
@@ -140,7 +132,7 @@ orderBean ob=(orderBean)list.get(0);
                     ProductBean pb=(ProductBean)list.get(1);
                     String price = Integer.toString(pb.getP_saleprice());
 					StringBuffer sb = new StringBuffer(price);
-					String count = Integer.toString(pb.getP_count());
+					String count = Integer.toString(ob.getB_count());
 					StringBuffer sb1 = new StringBuffer(count);
 					String price2 = Integer.toString(pb.getP_price());
 					StringBuffer sb2 = new StringBuffer(price2);
@@ -186,8 +178,8 @@ orderBean ob=(orderBean)list.get(0);
                                     <li class="fw-normal">가격 <span><%= sb2 %></span></li>
                                     <li class="fw-normal">할인된 가격 <span><%= sb %></span></li>
                                     <li class="fw-normal">수량 <span><%= sb1 %></span></li>
-                                    <li class="fw-normal">사용된 포인트 <span><%= sb3 %>원</span></li>
-                                    <li class="fw-normal">배송비 <span><%= sb4 %>원</span></li>
+                                    <li class="fw-normal">사용된 포인트 <span>-<%= sb3 %>원</span></li>
+                                    <li class="fw-normal">배송비 <span>-<%= sb4 %>원</span></li>
                                     <li class="total-price">최종금액 <span><%= sb5%>원</span></li>
                                 </ul>
                                 <div class="order-btn">

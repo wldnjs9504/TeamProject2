@@ -1,3 +1,4 @@
+<%@page import="net.admin.order.db.orderBean"%>
 <%@page import="java.util.List"%>
 <%@page import="net.admin.product.db.ProductBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,12 +7,12 @@
 <html>
 
 <head>
-    <title>Fashi | Template</title>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
     <meta name="keywords" content="Fashi, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fashi | Template</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -30,7 +31,7 @@
 
 <body>
 	<!-- 헤더 -->
-    <%@include file="../inc/header.jsp" %>
+    <%@include file="/inc/header.jsp" %>
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -39,7 +40,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./index.jsp"><i class="fa fa-home"></i> Home</a>
-                        <span>상품 관리</span>
+                        <span>관리자 리스트</span>
                     </div>
                 </div>
             </div>
@@ -54,17 +55,17 @@ List productList = (List)request.getAttribute("productList");
     <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
-            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+            	<div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
                     <div class="filter-widget">
                         <ul class="filter-catagories">
                         	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
-                    		<li> <a href="#"> 회원 관리</a></li>
+                    		<li> <a href="#"> 회원 관리 </a></li>
                      		<li class="check-menu"> <a href="./ProductList.ap"> 상품 관리</a></li>
-                     		<li> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
+                     		<li> <a href="#"> 주문 관리</a></li>
                         </ul>                    	
                     </div>
                 </div>            
-                <div class="col-lg-10 order-1 order-lg-2">
+                <div class="col-lg-9 order-1 order-lg-2">
                     <div class="cart-table">
                         <table>
                             <thead>
@@ -73,18 +74,18 @@ List productList = (List)request.getAttribute("productList");
                                     <!-- <th>카테고리</th> -->
                                     <th>이미지</th>
                                     <th class="p-name">상품명</th>
-                                    <th>단가</th>
-                                    <th class="p-count">수량</th>
+                                    <th>가격</th>
+                                    <th class="p-count">재고</th>
                                     <!-- <th>수정/삭제</th> -->
-                                    <th class="button"> </th>
+                                    <th> </th>
                                 </tr>
                             </thead>
                             <tbody>
                             
                                <%
    								for(int i=0;i<productList.size();i++){
-	   							ProductBean pb=(ProductBean)productList.get(i);
-	   							
+   								ProductBean pb = (ProductBean)productList.get(i);
+   									
 	   							String price = Integer.toString(pb.getP_saleprice());
 	   							StringBuffer sb = new StringBuffer(price);
 	   							String count = Integer.toString(pb.getP_count());
@@ -148,7 +149,19 @@ List productList = (List)request.getAttribute("productList");
                                         <%= result %>
                                     </td>
                                      --%>
-                                    <td class="cart-pic first-row"><img src="./upload/<%=pb.getImg_main() %>"  alt=""></td>
+                                     
+                                     
+                                    <td class="cart-pic first-row">
+                                    
+                                    <%if(pb.getP_count()==0){ %>
+                                    <img src="./upload/1.jfif" alt="">
+                                    <%}else{ %>
+                                    
+                                    <img src="./upload/<%=pb.getImg_main() %>" alt="">
+                                    <%} %>
+                                    
+                                    </td>
+                                    
                                     <td class="cart-title">
                                     	<div class="p-cate"><%= result %><br></div>
                                         <%= pb.getP_name() %>
@@ -173,7 +186,6 @@ List productList = (List)request.getAttribute("productList");
                         </table>
                     </div>
                     <div class="row">
-						<!--                     
                         <div class="col-lg-4">
                             <div class="cart-buttons">
                                 <a href="#" class="primary-btn continue-shop"><h6>* 주의사항</h6></a>
@@ -184,7 +196,6 @@ List productList = (List)request.getAttribute("productList");
                                 
                             </div>
                         </div>
-                         -->
                         <div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
                                

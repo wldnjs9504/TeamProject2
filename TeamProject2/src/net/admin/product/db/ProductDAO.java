@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import net.admin.order.db.orderBean;
+
 public class ProductDAO {
 
 	// DB에 관련된 모든 처리를 하는 객체
@@ -84,7 +86,7 @@ public class ProductDAO {
 				System.out.println("insert완료");
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("insert실패");
+				System.out.println("inset실패");
 			} finally {
 				closeDB();
 			}
@@ -99,7 +101,7 @@ public class ProductDAO {
 			try {
 				con = getCon();
 				
-				sql = "select * from product order by p_num desc";
+				sql = "select p1.category, p1.img_content, p1.img_main, p1.p_count-sum(coalesce(p2.b_count,0)) as p_count, p1.p_name, p1.p_price, p1.p_saleprice, p1.price_count, p1.readcount, p1.p_num from product p1 left join p_order p2 on p1.p_num = p2.p_num group by p1.p_num order by p1.p_num desc";
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				
@@ -133,16 +135,14 @@ public class ProductDAO {
 			
 			try {
 				con = getCon();
-				sql = "update product set category=?, p_name=?, p_price=?, p_saleprice=?, p_count=?, img_main=?, img_content=? where p_num=?";
+				sql = "update product set category=?, p_name=?, p_price=?, p_saleprice=?, p_count=? where p_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, pb.getCategory());
 				pstmt.setString(2, pb.getP_name());
 				pstmt.setInt(3, pb.getP_price());
 				pstmt.setInt(4, pb.getP_saleprice());
 				pstmt.setInt(5, pb.getP_count());
-				pstmt.setString(6, pb.getImg_main());
-				pstmt.setString(7, pb.getImg_content());
-				pstmt.setInt(8, pb.getP_num());
+				pstmt.setInt(6, pb.getP_num());
 				
 				pstmt.executeUpdate();
 				System.out.println("수정성공");
