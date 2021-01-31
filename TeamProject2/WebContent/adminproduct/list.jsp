@@ -67,6 +67,7 @@ List productList = (List)request.getAttribute("productList");
                 </div>            
                 <div class="col-lg-9 order-1 order-lg-2">
                     <div class="cart-table">
+						<input type="button" class="site-btn add" value="상품 등록" onclick="location.href='./ProductAdd.ap';">
                         <table>
                             <thead>
                                 <tr>
@@ -152,21 +153,18 @@ List productList = (List)request.getAttribute("productList");
                                      
                                      
                                     <td class="cart-pic first-row">
-                                    
                                     <%if(pb.getP_count()==0){ %>
                                     <img src="./upload/1.jfif" alt="">
                                     <%}else{ %>
                                     
                                     <img src="./upload/<%=pb.getImg_main() %>" alt="">
                                     <%} %>
-                                    
                                     </td>
                                     
                                     <td class="cart-title">
                                     	<div class="p-cate"><%= result %><br></div>
                                         <%= pb.getP_name() %>
                                     </td>
-                                    
                                     <td class="p-price"><%= sb %>원</td>
                                 	<td class="p-count">
                                         <%= sb1 %>
@@ -196,12 +194,15 @@ List productList = (List)request.getAttribute("productList");
                                 
                             </div>
                         </div>
+						<!--                          
+>>>>>>> branch 'master' of https://github.com/wldnjs9504/TeamProject2.git
                         <div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
                                
                                 <a href="./ProductAdd.ap" class="proceed-btn">상 품 등 록</a>
                             </div>
                         </div>
+                         -->
                     </div>
                 </div>
             </div>
