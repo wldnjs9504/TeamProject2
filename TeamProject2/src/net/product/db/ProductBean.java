@@ -13,9 +13,16 @@ public class ProductBean {
 	private int price_count;
 	private int readcount;
 	private double star_avg;
+	private int review_count;
 	
 	
 
+	public int getReview_count() {
+		return review_count;
+	}
+	public void setReview_count(int review_count) {
+		this.review_count = review_count;
+	}
 	public double getStar_avg() {
 		return star_avg;
 	}

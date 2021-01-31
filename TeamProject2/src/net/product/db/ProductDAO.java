@@ -227,5 +227,36 @@ public class ProductDAO {
 		return result;
 	}
 	// getStarAvg()
+	
+	// getReviewCount(int num)
+	public int getReviewCount(int num) {
+	int result = 0;
+
+	try {
+		con = getCon();
+		sql = "select count(r.r_star) 'review_count', p.p_num "
+			+ "from review r right outer join "
+			+ "(select * from product where p_num = ?) p "
+			+ "on r.p_num = p.p_num "
+			+ "group by p.p_num";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			result = rs.getInt("review_count");
+			System.out.println("review_count : " + result);
+		}else {
+			result = 0;
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		closeDB();
+	}
+
+	return result;
+}
+	
+	// getReviewCount(int num)
 
 }

@@ -55,7 +55,6 @@
                         
                         int category =Integer.parseInt(request.getParameter("category"));
                         
-                        //수정  -> 54~66 span 글씨색깔 좀더 진한 회색
                         if(category == 0){%>
                     		<span>전체</span>
                     	<%}if(category == 1){%>
@@ -237,6 +236,9 @@
         					int p_num = pb.getP_num();
         					ProductDAO pdao = new ProductDAO();
         					double star_avg = pdao.getStarAvg(p_num);
+        					int readcount = pb.getReadcount();
+        					int review_count = pdao.getReviewCount(p_num);
+        					
         					
         				%>
                             <div class="col-lg-4 col-sm-6">
@@ -264,22 +266,21 @@
                                         <% if(pb.getCategory() == 6){%>심장/혈관/혈당<% }%>
                                         </div>
                                         <%//별점표시
-                                        if(star_avg == 0){%>☆☆☆☆☆<%
-                                        }else if(0 < star_avg && star_avg < 0.5){ %>☆☆☆☆☆<% 
-                                        }else if(0.5 <= star_avg && star_avg < 1){ %>☆☆☆☆★<% //수정 0.5
-                                        }else if(1 <= star_avg && star_avg < 1.5){ %>☆☆☆☆★<% 
-                                        }else if(1.5 <= star_avg && star_avg < 2){ %>☆☆☆★★<% //1.5 
-                                        }else if(2 <= star_avg && star_avg < 2.5){ %>☆☆☆★★<%
-                                        }else if(2.5 <= star_avg && star_avg < 3){ %>☆☆★★★<% //2.5
-                                        }else if(3 <= star_avg && star_avg < 3.5){ %>☆☆★★★<%
-                                        }else if(3.5 <= star_avg && star_avg < 4){ %>☆★★★★<% //3.5
-                                        }else if(4 <= star_avg && star_avg < 4.5){ %>☆★★★★<% 
-                                        }else if(4.5 <= star_avg && star_avg < 5){ %>★★★★★<%  //4.5                                      
-                                        }else if(star_avg == 5){ %>★★★★★<%                                        
+                                        if(star_avg == 0){%>☆☆☆☆☆ ( 0점 / <%= review_count %> 명) <%
+                                        }else if(0 < star_avg && star_avg < 0.5){ %>☆☆☆☆☆ ( <%=star_avg%>점 / <%= review_count %>명) <%  
+                                        }else if(0.5 <= star_avg && star_avg < 1){ %>☆☆☆☆★ ( <%=star_avg%>점 / <%= review_count %>명) <% //수정 0.5
+                                        }else if(1 <= star_avg && star_avg < 1.5){ %>☆☆☆☆★ ( <%=star_avg%>점 / <%= review_count %>명) <% 
+                                        }else if(1.5 <= star_avg && star_avg < 2){ %>☆☆☆★★ ( <%=star_avg%>점 / <%= review_count %>명) <% //1.5 
+                                        }else if(2 <= star_avg && star_avg < 2.5){ %>☆☆☆★★ ( <%=star_avg%>점 / <%= review_count %>명) <%
+                                        }else if(2.5 <= star_avg && star_avg < 3){ %>☆☆★★★ ( <%=star_avg%>점 / <%= review_count %>명) <% //2.5
+                                        }else if(3 <= star_avg && star_avg < 3.5){ %>☆☆★★★ ( <%=star_avg%>점 / <%= review_count %>명) <%
+                                        }else if(3.5 <= star_avg && star_avg < 4){ %>☆★★★★ ( <%=star_avg%>점 / <%= review_count %>명) <% //3.5
+                                        }else if(4 <= star_avg && star_avg < 4.5){ %>☆★★★★ ( <%=star_avg%>점 / <%= review_count %>명) <% 
+                                        }else if(4.5 <= star_avg && star_avg < 5){ %>★★★★★ ( <%=star_avg%>점 / <%= review_count %>명) <%  //4.5                                      
+                                        }else if(star_avg == 5){ %>★★★★★ ( <%=star_avg%>점 / <%= review_count %>명) <%                                        
                                         } %>
-                                        System.out.println(star_avg);
                                         <a href="#">
-                                            <h5><%= pb.getP_name() %></h5>
+                                            <h5><%= pb.getP_name() %> [조회수 : <%=readcount %> ]</h5><!-- 디자인 수정 필요 -->
                                         </a>
                                         <div class="product-price">
                                             <%=pb.getP_saleprice() %>&#8361; 
