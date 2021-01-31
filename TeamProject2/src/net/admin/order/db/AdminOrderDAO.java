@@ -215,6 +215,8 @@ public class AdminOrderDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
 		
 		return list;

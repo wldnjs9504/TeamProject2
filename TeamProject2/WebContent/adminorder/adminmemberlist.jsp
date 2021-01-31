@@ -69,6 +69,7 @@ List list = (List)request.getAttribute("list");
 
                 <div class="col-lg-10 order-1 order-lg-2">
                     <div class="cart-table">
+                              <a href="#" class="primary-btn continue-shop"><h5>총 회원 수 : <%= list.size() %>명 </h5></a>
                         <table>
                             <thead>
                                 <tr>
