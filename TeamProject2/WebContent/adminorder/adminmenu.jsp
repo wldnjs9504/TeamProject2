@@ -61,7 +61,7 @@
                 <div class="col-lg-9 order-1 order-lg-2">
                     <div class="row">
                         <div class="col-lg-6 col-sm-6">
-						<a href="#"><img alt="회원관리" src="upload/member.png">
+						<a href="./AdminMember.ao"><img alt="회원관리" src="upload/member.png">
 						<input type="button" class="site-btn update" value="회원 관리">
 						</a>
                         </div>

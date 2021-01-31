@@ -190,4 +190,35 @@ public class AdminOrderDAO {
 	}
 	//deleteOrder(b_num)
 	
+	//adao.getMemberList()
+	public List getMemberList() {
+		List list = new ArrayList();
+		
+		try {
+			con = getCon();
+			sql = "select m.id, p.o_name as pass, m.email, m.adress1, m.adress2, grade, count(coalesce(b_num,0)) as postcode, sum(coalesce(p.point,0)) as point, sum(coalesce(p1.p_saleprice,0)*coalesce(p.b_count,0)-coalesce(p.d_cost,0)-coalesce(p.point,0)) as totalprice from member m left join p_order p on m.id = p.id left join product p1 on p.p_num = p1.p_num group by m.id";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MemberBean mb = new MemberBean();
+				mb.setAdress1(rs.getString("adress1"));
+				mb.setAdress2(rs.getString("adress2"));
+				mb.setEmail(rs.getString("email"));
+				mb.setGrade(rs.getInt("grade"));
+				mb.setId(rs.getString("id"));
+				mb.setPass(rs.getString("pass"));
+				mb.setPoint(rs.getInt("point"));
+				mb.setPostcode(rs.getInt("postcode"));
+				mb.setTotalprice(rs.getInt("totalprice"));
+				list.add(mb);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	//adao.getMemberList()
+	
 }
