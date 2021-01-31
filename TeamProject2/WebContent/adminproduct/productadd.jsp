@@ -36,8 +36,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">상품 관리</a>
+                        <a href="./index.jsp"><i class="fa fa-home"></i> Home</a>
+                        <a href="./ProductList.ap">상품 관리</a>
                         <span>상품 등록</span>
                     </div>
                 </div>
@@ -50,17 +50,17 @@
     <div class="register-login-section spad">
         <div class="container">
             <div class="row">
-            	<div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
                     <div class="filter-widget">
                         <ul class="filter-catagories">
                         	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
                     		<li> <a href="#"> 회원 관리</a></li>
                      		<li class="check-menu"> <a href="./ProductList.ap"> 상품 관리</a></li>
-                     		<li> <a href="#"> 주문 관리</a></li>
+                     		<li> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
                         </ul>                    	
                     </div>
                 </div>
-                <div class="col-lg-9 order-1 order-lg-2">
+                <div class="col-lg-10 order-1 order-lg-2">
                     <div class="register-product-form">
                         <h2>상품 등록</h2>
                         <form action="./ProductAddAction.ap" method="post" enctype="multipart/form-data">
@@ -99,7 +99,7 @@
 	                 		</table>    
 	                 		<div class="check-btn">
 	                 			<input class="site-btn" type="submit" value="상품 등록">
-	                 			<input class="site-btn" type="reset" value="다시 등록">
+	                 			<input class="site-btn" type="reset" value="취소" onclick="history.back();">
 	                 		</div>   
                         </form>
                     </div>

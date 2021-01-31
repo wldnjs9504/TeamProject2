@@ -2725,6 +2725,20 @@ ol {
 .cart-table table .p-count {
 	width: 40px;
 }
+
+.cart-table table .button, 
+.cart-table table .b-num{
+	width: 100px;
+}
+
+.cart-table table .date,
+.cart-table table .active {
+	width: 120px;
+}
+
+.cart-table table .button2 {
+	width: 150px;
+}
 .cart-table table tr td {
 	text-align: center;
 /* 	vertical-align: middle; */
@@ -2818,7 +2832,7 @@ ol {
 }
 
 .cart-table .update {
-	float: right;
+/* 	float: right; */
 	width: 60px;
 	margin: 3px;
 	padding: 10px;
@@ -3130,6 +3144,7 @@ ol {
 }
 
 .checkout-form .place-order .order-total .order-btn .place-btn {
+	margin: 0 10px;
 	padding: 13px 40px 11px;
 	background: #000000;
 	border-color: #000000;
