@@ -61,23 +61,23 @@
                 <div class="col-lg-9 order-1 order-lg-2">
                     <div class="row">
                         <div class="col-lg-6 col-sm-6">
-						<a href="#"><img alt="회원관리" src="img/blog/blog-1.jpg">
-							<h2>회원 관리</h2>
+						<a href="#"><img alt="회원관리" src="upload/member.png">
+						<input type="button" class="site-btn update" value="회원 관리">
 						</a>
                         </div>
                         <div class="col-lg-6 col-sm-6">
-						<a href="./ProductList.ap"><img alt="상품관리" src="img/blog/blog-1.jpg">
-							<h2>상품 관리</h2>
+						<a href="./ProductList.ap"><img alt="상품관리" src="upload/product.png">
+                        <input type="button" class="site-btn update" value="상품 관리">
 						</a>
                         </div>
                         <div class="col-lg-6 col-sm-6">
-						<a href="./AdminOrderList.ao"><img alt="주문관리" src="img/blog/blog-1.jpg">
-							<h2>주문 관리</h2>
+						<a href="./AdminOrderList.ao"><img alt="주문관리" src="upload/product.png">
+						<input type="button" class="site-btn update" value="주문 관리">
 						</a>
                         </div>
                         <div class="col-lg-6 col-sm-6">
-						<a href="#"><img alt="QnA관리" src="img/blog/blog-1.jpg">
-							<h2>QnA 관리</h2>
+						<a href="#"><img alt="QnA관리" src="upload/product.png">
+						<input type="button" class="site-btn update" value="QnA 관리">
 						</a>
                         </div>
                     </div>
