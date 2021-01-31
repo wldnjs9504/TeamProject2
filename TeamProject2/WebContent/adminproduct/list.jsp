@@ -66,6 +66,10 @@ List productList = (List)request.getAttribute("productList");
                 </div>            
                 <div class="col-lg-10 order-1 order-lg-2">
                     <div class="cart-table">
+                        <div class="col-lg-4 offset-lg-10">
+<!--                                 <a href="./ProductAdd.ap" class="proceed-btn">상 품 등 록</a> -->
+                        </div> 
+							<input type="button" class="site-btn add" value="상품 등록" onclick="location.href='./ProductAdd.ap';">
                         <table>
                             <thead>
                                 <tr>
@@ -185,12 +189,14 @@ List productList = (List)request.getAttribute("productList");
                             </div>
                         </div>
                          -->
+						<!--                          
                         <div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
                                
                                 <a href="./ProductAdd.ap" class="proceed-btn">상 품 등 록</a>
                             </div>
                         </div>
+                         -->
                     </div>
                 </div>
             </div>

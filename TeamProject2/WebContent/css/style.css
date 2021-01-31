@@ -2831,6 +2831,16 @@ ol {
 	cursor: pointer;
 }
 
+.cart-table .add {
+	float: right;
+	padding: 10px;
+	margin-bottom: 10px;
+	vertical-align: middle;
+	border-radius: 5px;
+	font-size: 18px;
+
+}
+
 .cart-table .update {
 /* 	float: right; */
 	width: 60px;

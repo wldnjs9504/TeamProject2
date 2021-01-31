@@ -39,8 +39,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./index.jsp"><i class="fa fa-home"></i> Home</a>
-                        <span>관리자</span>
-                        <a href="./AdminOrderList.ao">주문 관리</a>
+                        <span>주문 관리</span>
                     </div>                
                 </div>
             </div>
