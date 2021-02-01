@@ -5,7 +5,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Fashi | Template</title>
     <meta charset="UTF-8">
@@ -55,13 +54,14 @@ List list = (List)request.getAttribute("list");
     <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
-            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 products-sidebar-filter">
                     <div class="filter-widget">
                         <ul class="filter-catagories">
                         	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
-                    		<li> <a href="#"> 회원 관리</a></li>
+                    		<li> <a href="./AdminMember.ao"> 회원 관리</a></li>
                      		<li> <a href="./ProductList.ap"> 상품 관리</a></li>
                      		<li class="check-menu"> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
+                     		<li> <a href="#"> QnA 관리</a></li>
                         </ul>                    	
                     </div>
                 </div> 

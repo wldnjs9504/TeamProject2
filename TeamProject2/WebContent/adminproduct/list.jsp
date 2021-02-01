@@ -5,7 +5,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
@@ -40,7 +39,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./index.jsp"><i class="fa fa-home"></i> Home</a>
-                        <span>관리자 리스트</span>
+                        <span>상품 관리</span>
                     </div>
                 </div>
             </div>
@@ -55,17 +54,18 @@ List productList = (List)request.getAttribute("productList");
     <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
-            	<div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 products-sidebar-filter">
                     <div class="filter-widget">
                         <ul class="filter-catagories">
                         	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
-                    		<li> <a href="#"> 회원 관리 </a></li>
+                    		<li> <a href="./AdminMember.ao"> 회원 관리 </a></li>
                      		<li class="check-menu"> <a href="./ProductList.ap"> 상품 관리</a></li>
-                     		<li> <a href="#"> 주문 관리</a></li>
+                     		<li> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
+                     		<li> <a href="#"> QnA 관리</a></li>
                         </ul>                    	
                     </div>
                 </div>            
-                <div class="col-lg-9 order-1 order-lg-2">
+                <div class="col-lg-10 order-1 order-lg-2">
                     <div class="cart-table">
 						<input type="button" class="site-btn add" value="상품 등록" onclick="location.href='./ProductAdd.ap';">
                         <table>
@@ -183,6 +183,7 @@ List productList = (List)request.getAttribute("productList");
                             </tbody>
                         </table>
                     </div>
+                    <!-- 
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
@@ -194,7 +195,7 @@ List productList = (List)request.getAttribute("productList");
                                 
                             </div>
                         </div>
-						<!--                          
+						                         
 >>>>>>> branch 'master' of https://github.com/wldnjs9504/TeamProject2.git
                         <div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
@@ -202,8 +203,9 @@ List productList = (List)request.getAttribute("productList");
                                 <a href="./ProductAdd.ap" class="proceed-btn">상 품 등 록</a>
                             </div>
                         </div>
-                         -->
+                        
                     </div>
+                     -->
                 </div>
             </div>
         </div>
@@ -213,5 +215,4 @@ List productList = (List)request.getAttribute("productList");
 	<!-- 푸터 -->
     <%@include file="/inc/footer.jsp" %>
 </body>
-
 </html>
