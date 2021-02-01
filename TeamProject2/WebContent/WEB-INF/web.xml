@@ -10,6 +10,18 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 
+	<!-- 멤버 -->
+	<servlet>
+     	<servlet-name>MemberController</servlet-name>
+     	<servlet-class>net.member.action.MemberController</servlet-class>  
+  	</servlet>
+  
+  	<servlet-mapping>
+     	<servlet-name>MemberController</servlet-name>
+     	<url-pattern>*.me</url-pattern>
+  	</servlet-mapping>
+	<!-- 멤버 -->
+
 	<!-- 상품등록 -->
 	<servlet>
 		<servlet-name>AdminProductFrontController</servlet-name>
