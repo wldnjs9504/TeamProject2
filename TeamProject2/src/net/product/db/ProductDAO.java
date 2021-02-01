@@ -214,7 +214,6 @@ public class ProductDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				result = rs.getDouble("star_avg");
-				System.out.println("result : " + result);
 			}else {
 				result = 0;
 			}
@@ -244,7 +243,6 @@ public class ProductDAO {
 		rs = pstmt.executeQuery();
 		if(rs.next()) {
 			result = rs.getInt("review_count");
-			System.out.println("review_count : " + result);
 		}else {
 			result = 0;
 		}

@@ -30,6 +30,9 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+.star-rating { width:205px ;}
+.star-rating,.star-rating span { display:inline-block; height:39.5px; overflow:hidden; background:url("../img/star.png")no-repeat; }
+.star-rating span{ background-position:left bottom; line-height:0; vertical-align:top !important; }
 
 html,
 body {
@@ -4501,3 +4504,6 @@ ol {
 		padding-right: 15px;
 	}
 }
+
+
+

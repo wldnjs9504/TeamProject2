@@ -213,7 +213,7 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-half"></i>
                                     <span>(5)</span>
                                 </div>
                                 <div class="pd-desc">

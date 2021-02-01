@@ -51,6 +51,8 @@ public class ProductFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/Prouct.p")) {
+			System.out.println("C: /Prouct.p호출 ->p_num 넘겨 DB가져오기->페이지이동");
+			
 			action = new ProductDetailAction();
 			
 			try {
