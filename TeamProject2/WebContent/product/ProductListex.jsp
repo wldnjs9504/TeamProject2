@@ -84,11 +84,6 @@
             <div class="row">
                 
                 
-                
-                
-                
-                
-                
                 <%
 					// 로그인 제어 : 로그인이 되어있는 상태, 관리자만 볼 수 있음
 			
@@ -126,21 +121,8 @@
 				System.out.println("@@@@@@@@@@@@category = " + category);
 				
 				%>
-            <c:forEach items="${requestScope.productList}" var="item">
-            <c:set var="pi" value="${pageScope.item }" />
-            
-             <!-- 별점 변수 생성 -->
-            <c:set var="p_num" value="${pi.p_num }"></c:set>
-            <% int p_num = (int)pageContext.getAttribute("p_num");
-             	ProductDAO pdao = new ProductDAO();
-				double star_avg = pdao.getStarAvg(p_num); 
-				pageContext.setAttribute("star_avg", star_avg); %>
-			<c:set var="star_avg" value="${pageScope.star_avg }"/>
-			
-			  <!-- 조회수 변수 설정  -->
-          	 <% int review_count =  pdao.getReviewCount(p_num); 
-              	pageContext.setAttribute("review_count", review_count); %>
-             <c:set var="review_count" value="${pageScope.review_count }"/>
+                
+          
                 
                 
                 <div class="col-lg-12 order-1 order-lg-2">
@@ -151,8 +133,8 @@
                                     	<select class="sorting" id="orderBy" onchange="getSelectValue();">
                                     	<%
                                     	/* String odb = request.getParameter("odb"); */
-	
                                     	String odb = (String)request.getAttribute("odb");
+                                    	
                                     	if(odb.equals("num_desc")){%>
                                         	<option value="num_desc" selected="selected">최근등록순</option>
                                     	<%}else{
@@ -212,7 +194,6 @@
                             </div>
                         </div>
                     </div>
-                    </div>
                     
                 <script type="text/javascript">
                 
@@ -247,14 +228,23 @@
                     
                     <div class="product-list">
                         <div class="row">
-                        
-                        <!-- 제품리스트 목록  -->
-                      
-                        
-                        	<div class="col-lg-4 col-sm-6">
+                        <%
+                    	for(int i=0; i<productList.size(); i++){
+        					pb = (ProductBean)productList.get(i);
+        					pbimg = pb.getImg_main();
+        					
+        					//별점평균 구하기
+        					int p_num = pb.getP_num();
+        					ProductDAO pdao = new ProductDAO();
+        					double star_avg = pdao.getStarAvg(p_num);
+        					int readcount = pb.getReadcount();
+        					int review_count = pdao.getReviewCount(p_num);
+        					
+        				%>
+                            <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="./img/products/${pi.img_main}" alt="" width="">
+                                        <img src="./img/products/<%=pbimg%>" alt="" width="">
                                         <!--270 * 330  -->
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
@@ -267,125 +257,127 @@
                                         </ul>
                                     </div>
                                     <div class="pi-text">
-                                    <!-- 카테고리 분류  -->
                                         <div class="catagory-name">
-                                        <c:if test="${pi.category == 1 }">피로/간</c:if>
-                                        <c:if test="${pi.category == 2 }">수면/스트레스</c:if>
-                                        <c:if test="${pi.category == 3 }">피부</c:if>
-                                        <c:if test="${pi.category == 4 }">눈</c:if>
-                                        <c:if test="${pi.category == 5 }">두뇌활동</c:if>
-                                        <c:if test="${pi.category == 6 }">심장/혈관/혈당</c:if>
+                                        <% if(pb.getCategory() == 1){%>피로/간<% }%>
+                                        <% if(pb.getCategory() == 2){%>수면/스트레스<% }%>
+                                        <% if(pb.getCategory() == 3){%>피부<% }%>
+                                        <% if(pb.getCategory() == 4){%>눈<% }%>
+                                        <% if(pb.getCategory() == 5){%>두뇌활동<% }%>
+                                        <% if(pb.getCategory() == 6){%>심장/혈관/혈당<% }%>
                                         </div>
                                         <div class="product-details">
                                          <div class="pd-rating">
-                                         
-                                        
-	                     					
-                     					<c:choose>
-                     						<c:when test="${0 <= star_avg && star_avg < 0.5}">
-                     						<i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${0.5 <= star_avg && star_avg < 1}">
-                     						<i class="fa fa-star-half"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${1 <= star_avg && star_avg < 1.5}">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${1.5 <= star_avg && star_avg < 2}">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-half"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${2 <= star_avg && star_avg < 2.5}">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${2.5 <= star_avg && star_avg < 3}">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-half"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${3 <= star_avg && star_avg < 3.5}">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${3.5 <= star_avg && star_avg < 4 }">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-half"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${4 <= star_avg && star_avg < 4.5 }">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${4.5 <= star_avg && star_avg < 5}">
-                     						 <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-half"></i>
-                     						</c:when>
-                     						<c:when test="${star_avg == 5}">
-                     						 <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-                     						</c:when>
-                     					</c:choose>
-                                        <span>(${review_count})</span><!-- 조회수  -->
+                                        <%//별점표시
+                                        if(star_avg == 0){%>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+	                                	  <%
+                                        }else if(0 < star_avg && star_avg < 0.5){ %>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+	                                	 <%  
+                                        }else if(0.5 <= star_avg && star_avg < 1){ %>
+                                         <i class="fa fa-star-half"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+	                                	  <% //수정 0.5
+                                        }else if(1 <= star_avg && star_avg < 1.5){ %>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+	                                	  <% 
+                                        }else if(1.5 <= star_avg && star_avg < 2){ %>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star-half">
+                                         </i><i class="fa fa-star-o">
+                                         </i><i class="fa fa-star-o">
+                                         </i><i class="fa fa-star-o"></i>
+	                                	  <% //1.5 
+                                        }else if(2 <= star_avg && star_avg < 2.5){ %>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+	                                	  <%
+                                        }else if(2.5 <= star_avg && star_avg < 3){ %>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star-half"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+	                                	  <% //2.5
+                                        }else if(3 <= star_avg && star_avg < 3.5){ %>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star-o"></i>
+                                         <i class="fa fa-star-o"></i>
+	                                	  <%
+                                        }else if(3.5 <= star_avg && star_avg < 4){ %>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star-half"></i>
+                                         <i class="fa fa-star-o"></i>
+	                                	  <% //3.5
+                                        }else if(4 <= star_avg && star_avg < 4.5){ %>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star-o"></i>
+	                                	  <% 
+                                        }else if(4.5 <= star_avg && star_avg < 5){ %>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star-half"></i>
+	                                	  <%  //4.5                                      
+                                        }else if(star_avg == 5){ %>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+                                         <i class="fa fa-star"></i>
+	                                	 <% } %>  
+                                        <span>(<%= review_count %>)</span>
                                         </div>
                                         </div>
                                         
-                                        <a href="./Product.p?num=${p_num }">
-                                            <h5>${pi.p_name} 
-                                             <%-- [조회수 : <%=readcount %> ] --%></h5>
+                                        <a href="./Product.p?num=<%=p_num%>">
+                                            <h5><%= pb.getP_name() %> <%-- [조회수 : <%=readcount %> ] --%></h5><!-- 디자인 수정 필요 -->
                                         </a>
                                         <div class="product-price" >
                                         
                                         
-                                        	<fmt:formatNumber value="${pi.p_saleprice}" pattern="#,###" />원
+                                        	<fmt:formatNumber value="${pb.getP_saleprice}" pattern="#,###" />
                                         	
-                                            <span><fmt:formatNumber value="${pi.p_price}" pattern="#,###" />원</span>
+                                            <%=pb.getP_saleprice() %>원 
+                                            <span><%=pb.getP_price() %>원 </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </c:forEach>
+                            
+                            <%
+                            }
+                            %>
                         </div>
                     </div>
-                    
-                    
                     <div class="loading-more">
-                    
-    <%String odb = (String)request.getAttribute("odb");
+                    <%
 	//페이징 처리 (하단부)
 	if(count != 0){
 		//이전
