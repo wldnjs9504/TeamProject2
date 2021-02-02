@@ -126,21 +126,8 @@
 				System.out.println("@@@@@@@@@@@@category = " + category);
 				
 				%>
-            <c:forEach items="${requestScope.productList}" var="item">
-            <c:set var="pi" value="${pageScope.item }" />
             
-             <!-- 별점 변수 생성 -->
-            <c:set var="p_num" value="${pi.p_num }"></c:set>
-            <% int p_num = (int)pageContext.getAttribute("p_num");
-             	ProductDAO pdao = new ProductDAO();
-				double star_avg = pdao.getStarAvg(p_num); 
-				pageContext.setAttribute("star_avg", star_avg); %>
-			<c:set var="star_avg" value="${pageScope.star_avg }"/>
-			
-			  <!-- 조회수 변수 설정  -->
-          	 <% int review_count =  pdao.getReviewCount(p_num); 
-              	pageContext.setAttribute("review_count", review_count); %>
-             <c:set var="review_count" value="${pageScope.review_count }"/>
+            
                 
                 
                 <div class="col-lg-12 order-1 order-lg-2">
@@ -212,7 +199,7 @@
                             </div>
                         </div>
                     </div>
-                    </div>
+                    
                     
                 <script type="text/javascript">
                 
@@ -247,10 +234,23 @@
                     
                     <div class="product-list">
                         <div class="row">
-                        
+                        	<c:forEach items="${requestScope.productList}" var="item">
                         <!-- 제품리스트 목록  -->
-                      
-                        
+                      <c:set var="pi" value="${pageScope.item }" />
+            
+				             <!-- 별점 변수 생성 -->
+				            <c:set var="p_num" value="${pi.p_num }"></c:set>
+				            <% int p_num = (int)pageContext.getAttribute("p_num");
+				             	ProductDAO pdao = new ProductDAO();
+								double star_avg = pdao.getStarAvg(p_num); 
+								pageContext.setAttribute("star_avg", star_avg); %>
+							<c:set var="star_avg" value="${pageScope.star_avg }"/>
+							
+							  <!-- 조회수 변수 설정  -->
+				          	 <% int review_count =  pdao.getReviewCount(p_num); 
+				              	pageContext.setAttribute("review_count", review_count); %>
+				             <c:set var="review_count" value="${pageScope.review_count }"/>
+				                        
                         	<div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
@@ -378,14 +378,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </c:forEach>
+                       	 </c:forEach>
                         </div>
                     </div>
                     
                     
                     <div class="loading-more">
                     
-    <%String odb = (String)request.getAttribute("odb");
+    <%
 	//페이징 처리 (하단부)
 	if(count != 0){
 		//이전
@@ -418,11 +418,10 @@
 	}
 	
 	%>
-                    
+                     </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     <!-- Product Shop Section End -->
  
