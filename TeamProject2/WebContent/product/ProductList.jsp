@@ -278,93 +278,13 @@
                                         </div>
                                         <div class="product-details">
                                          <div class="pd-rating">
-                                         
-                                        
-	                     					
-                     					<c:choose>
-                     						<c:when test="${0 <= star_avg && star_avg < 0.5}">
-                     						<i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${0.5 <= star_avg && star_avg < 1}">
-                     						<i class="fa fa-star-half"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${1 <= star_avg && star_avg < 1.5}">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${1.5 <= star_avg && star_avg < 2}">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-half"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${2 <= star_avg && star_avg < 2.5}">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${2.5 <= star_avg && star_avg < 3}">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-half"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${3 <= star_avg && star_avg < 3.5}">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-o"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${3.5 <= star_avg && star_avg < 4 }">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-half"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${4 <= star_avg && star_avg < 4.5 }">
-                     						<i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-o"></i>
-                     						</c:when>
-                     						<c:when test="${4.5 <= star_avg && star_avg < 5}">
-                     						 <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star-half"></i>
-                     						</c:when>
-                     						<c:when test="${star_avg == 5}">
-                     						 <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-	                                         <i class="fa fa-star"></i>
-                     						</c:when>
-                     					</c:choose>
+                                         <!-- 평균 별점 -->
+                                         <%@include file="./star_avg.jsp" %>
                                         <span>(${review_count})</span><!-- 조회수  -->
                                         </div>
                                         </div>
                                         
-                                        <a href="./Product.p?num=${p_num }">
+                                        <a href="./Product.p?p_num=${p_num }">
                                             <h5>${pi.p_name} 
                                              <%-- [조회수 : <%=readcount %> ] --%></h5>
                                         </a>

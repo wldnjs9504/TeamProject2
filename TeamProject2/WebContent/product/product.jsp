@@ -28,6 +28,22 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+
+	<c:set value="${requestScope.pb }" var="pb"/>
+	<c:set value="${requestScope.star_avg }" var="star_avg" />
+	<c:set value="${requestScope.review_count }" var="review_count"/>
+	
+
+
+
+
+
+
+
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -37,28 +53,33 @@
     <!-- Header Section Begin -->
     <%@include file="../inc/header.jsp" %>
     <!-- Header End -->
-
-    <!-- Breadcrumb Section Begin -->
+	
+    <!-- 카테고리 분류 -->
     <div class="breacrumb-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
-                        <a href="./home.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">Shop</a>
-                        <span>Detail</span>
+                        <a href="./index.jsp"><i class="fa fa-home"></i> Home</a>
+                        <c:if test="${pb.category == 1}"><a href="./ProductList.p?category=1">피로/간</a></c:if>
+                        <c:if test="${pb.category == 2}"><a href="./ProductList.p?category=2">수면/스트레스</a></c:if>
+                        <c:if test="${pb.category == 3}"><a href="./ProductList.p?category=3">피부</a></c:if>
+                        <c:if test="${pb.category == 4}"><a href="./ProductList.p?category=4">눈</a></c:if>
+                        <c:if test="${pb.category == 5}"><a href="./ProductList.p?category=5">두뇌활동</a></c:if>
+                        <c:if test="${pb.category == 6}"><a href="./ProductList.p?category=6">심장/혈관/혈당</a></c:if>
+                    	<span>상세보기</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Breadcrumb Section Begin -->
+    <!-- 카테고리 분류 -->
 
     <!-- Product Shop Section Begin -->
     <section class="product-shop spad page-details">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
+                <!-- <div class="col-lg-3">
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-catagories">
@@ -180,9 +201,13 @@
                             <a href="#">Backpack</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                
+                
                 <div class="col-lg-9">
                     <div class="row">
+                    
+                    	<!-- 사진이미지 -->
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
                                 <img class="product-big-img" src="img/product-single/product-1.jpg" alt="">
@@ -190,7 +215,7 @@
                                     <i class="fa fa-search-plus"></i>
                                 </div>
                             </div>
-                            <div class="product-thumbs">
+                            <div class="product-thumbs">     <!--사진 넣은 후 img/${pb.img_main} 이렇게 바꾸기  -->
                                 <div class="product-thumbs-track ps-slider owl-carousel">
                                     <div class="pt active" data-imgbigurl="img/product-single/product-1.jpg"><img
                                             src="img/product-single/product-1.jpg" alt=""></div>
@@ -203,27 +228,35 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- 사진이미지 -->
+                        
+                        <!--상세정보  -->
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
-                                    <span>oranges</span>
-                                    <h3>Pure Pineapple</h3>
+                              	<!-- 카테고리 -->
+                                    <span>${pb.category }</span> 
+                                    <h3>${pb.p_name }</h3> 
                                     <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                 </div>
+                                <!-- 평균 별점  -->
                                 <div class="pd-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half"></i>
-                                    <span>(5)</span>
+                                	<%@include file="./star_avg.jsp" %>
+                                    <span>(${review_count})</span>
                                 </div>
+                                
+                                <!-- 설명  -->
                                 <div class="pd-desc">
                                     <p>Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor
                                         sit amet, consectetur adipisicing elit, sed do mod tempor</p>
-                                    <h4>$495.00 <span>629.99</span></h4>
+                                    
+                                 <!-- 가격  -->
+                                    <h4><fmt:formatNumber value="${pb.p_saleprice}" pattern="#,###" />원 
+                                    <span><fmt:formatNumber value="${pb.p_price}" pattern="#,###" />원</span></h4>
                                 </div>
-                                <div class="pd-color">
+                                
+                                <!-- 색상 사이즈 -->
+                                <!-- <div class="pd-color">
                                     <h6>Color</h6>
                                     <div class="pd-color-choose">
                                         <div class="cc-item">
@@ -257,7 +290,9 @@
                                         <input type="radio" id="xl-size">
                                         <label for="xl-size">xs</label>
                                     </div>
-                                </div>
+                                </div> -->
+                                
+                                
                                 <div class="quantity">
                                     <div class="pro-qty">
                                         <input type="text" value="1">
@@ -265,9 +300,17 @@
                                     <a href="#" class="primary-btn pd-cart">Add To Cart</a>
                                 </div>
                                 <ul class="pd-tags">
-                                    <li><span>CATEGORIES</span>: More Accessories, Wallets & Cases</li>
-                                    <li><span>TAGS</span>: Clothing, T-shirt, Woman</li>
+                                    <li><span>CATEGORIES</span>
+                                     <c:if test="${pb.category == 1}" >: 피로/간</c:if>
+                                     <c:if test="${pb.category == 2}" >: 수면/스트레스</c:if>
+                                     <c:if test="${pb.category == 3}" >: 피부</c:if>
+                                     <c:if test="${pb.category == 4}" >: 눈</c:if>
+                                     <c:if test="${pb.category == 5}" >: 두뇌활동</c:if>
+                                     <c:if test="${pb.category == 6}" >: 심장/혈관/혈당</c:if></li>
+                                    <!-- <li><span>TAGS</span>: Clothing, T-shirt, Woman</li> -->
                                 </ul>
+                                
+                                
                                 <div class="pd-share">
                                     <div class="p-code">Sku : 00012</div>
                                     <div class="pd-social">
@@ -276,11 +319,13 @@
                                         <a href="#"><i class="ti-linkedin"></i></a>
                                     </div>
                                 </div>
+                                
+                                
                             </div>
                         </div>
                     </div>
                     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-                    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+                    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@  1  @@@@@@@@@@@@@@@@@@@-->
                     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
                     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
                     
@@ -298,12 +343,16 @@
                                 </li>
                             </ul>
                         </div>
+                        
+                        <!-- DESCRIPTION -->
                         <div class="tab-item-content">
                             <div class="tab-content">
                                 <div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
                                     <div class="product-content">
                                         <div class="row">
                                             <div class="col-lg-7">
+                                            
+                                            <!--<img src="img/${pb.img_content}" alt=""> -->
                                                 <h5>Introduction</h5>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                                                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -316,6 +365,7 @@
                                                     aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
                                             </div>
                                             <div class="col-lg-5">
+                                            	<!-- <img src="img/${pb.img_main}" alt=""> -->
                                                 <img src="img/product-single/tab-desc.jpg" alt="">
                                             </div>
                                         </div>
@@ -323,30 +373,26 @@
                                 </div>
                                 
                                 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@@  2  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
                                 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->                               
                                 
-                                
+                                <!-- SPECIFICATIONS -->
                                 <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                     <div class="specification-table">
                                         <table>
                                             <tr>
-                                                <td class="p-catagory">Customer Rating</td>
+                                                <td class="p-catagory">별점</td>
                                                 <td>
                                                     <div class="pd-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <span>(5)</span>
+                                                        <%@include file="./star_avg.jsp" %>
+                                                        <span>(${review_count })</span>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Price</td>
+                                                <td class="p-catagory">가격</td>
                                                 <td>
-                                                    <div class="p-price">$495.00</div>
+                                                    <div class="p-price"><fmt:formatNumber value="${pb.p_saleprice}" pattern="#,###" />원</div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -356,36 +402,21 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Availability</td>
+                                                <td class="p-catagory">재고</td>
                                                 <td>
-                                                    <div class="p-stock">22 in stock</div>
+                                                    <div class="p-stock">${pb.p_count} in stock</div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="p-catagory">Weight</td>
-                                                <td>
-                                                    <div class="p-weight">1,3kg</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Size</td>
-                                                <td>
-                                                    <div class="p-size">Xxl</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Color</td>
-                                                <td><span class="cs-color"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Sku</td>
-                                                <td>
-                                                    <div class="p-code">00012</div>
-                                                </td>
-                                            </tr>
+                                            
                                         </table>
                                     </div>
                                 </div>
+                                
+                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@ 3  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  --> 
+                                
+                                <!-- Customer Reviews (02)   -->
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="customer-review-option">
                                         <h4>2 Comments</h4>
@@ -460,6 +491,10 @@
         </div>
     </section>
     <!-- Product Shop Section End -->
+
+
+
+
 
     <!-- Related Products Section End -->
     <div class="related-products spad">
@@ -546,7 +581,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <!-- <div class="col-lg-3 col-sm-6">
                     <div class="product-item">
                         <div class="pi-pic">
                             <img src="img/products/women-4.jpg" alt="">
@@ -569,7 +604,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

@@ -256,5 +256,41 @@ public class ProductDAO {
 }
 	
 	// getReviewCount(int num)
+	
+	//getProduct(p_num)
+	public ProductBean getProduct(int p_num) {
+		
+		ProductBean pb = new ProductBean();
+		
+		try {
+			con = getCon();
+			sql = "select * from product where p_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, p_num);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {//제품있음
+				pb.setCategory(rs.getInt("category"));
+				pb.setImg_content(rs.getString("img_content"));
+				pb.setImg_main(rs.getString("img_main"));
+				pb.setP_count(rs.getInt("p_count"));
+				pb.setP_name(rs.getString("p_name"));
+				pb.setP_num(rs.getInt("p_num"));
+				pb.setP_price(rs.getInt("p_price"));
+				pb.setP_saleprice(rs.getInt("p_saleprice"));
+				pb.setPrice_count(rs.getInt("price_count"));
+				pb.setReadcount(rs.getInt("readcount"));
+			}
+			System.out.println("DAO : ProductBean 저장완료!");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeDB();
+		}
+		
+		return pb;
+	}
+	//getProduct(p_num)
 
 }
