@@ -54,18 +54,18 @@
 					<div class="filter-widget">
 						<ul class="filter-catagories">
 							<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
-							<li><a href="<%=request.getContextPath() %>/MemberInfo.me">내 정보 보기</a></li>
-							<li><a href="<%=request.getContextPath() %>/passCheck.me">내 정보 변경</a></li>
+							<li><a href="./MemberInfo.me">내 정보 보기</a></li>
+							<li><a href="./passCheck.me">내 정보 변경</a></li>
 							<li><a href="#"> 주문 이력</a></li>
 							<li><a href="#"> 내 포인트 현황</a></li>
 							<li><a href="#"> 나의 리뷰</a></li>
 							<li><a href="#"> 고객센터</a></li>
-							<li class="check-menu"><a href="<%=request.getContextPath() %>/MemberDelete.me"> 회원탈퇴</a></li>
+							<li class="check-menu"><a href="./MemberDelete.me"> 회원탈퇴</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-9 order-1 order-lg-2">
-					<div>
+					<div class="pass-check-form">
 						<h2>회원탈퇴</h2>
 						<%
 					    String idc = (String) session.getAttribute("id");
@@ -79,7 +79,7 @@
 						<form action="./MemberDeleteAction.me" method="post"
 							onsubmit="return checkForm();">
 							<input type="hidden" name="id" value="<%=id%>">
-							<textarea rows="20" cols="30">
+							<textarea readonly rows="20" cols="30">
  이 약관에서 사용하는 용어의 정의는 다음과 같습니다.
 - '회원'이라 함은 이 약관에 동의하고 회원가입을 한 자로서, 회사가 제공하는 서비스를 이용할 수 있는 이용자를 말합니다.
 - '이용자ID'라 함은 회원의 식별 및 서비스 이용을 위하여 회원의 신청에 따라 회사가 회원별로 부여하는 고유한 문자와 숫자의 조합을 말합니다.
@@ -88,10 +88,17 @@
 회원은 회사에 언제든지 회원 탈퇴를 요청할 수 있으며 회사는 요청을 받은 즉시 해당 회원의 회원 탈퇴를 위한 절차를 밟아 개인정보취급방침에 따라 회원 등록을 말소합니다.
 회사의 모든 서비스에서 이용중인 서비스의 기간이 남아있는 회원이 탈퇴 요청하였을 경우 회원탈퇴로 인한 서비스의 중지 또는 피해는 회원탈퇴 이용자에게 있습니다.
        						</textarea>
-							<br> <input type="checkbox" id="agree">네, 동의합니다 <br>
-							<input type="password" name="pass" id="pass" placeholder="비밀번호를 입력하세요">
-							 <input type="submit" value="탈퇴하기"> 
-							 <input type="reset" value="취소">
+							<br> 
+							<input type="checkbox" id="agree">네, 동의합니다 <br>
+							<input type="password" name="pass" id="pass" class="delete" placeholder="비밀번호를 입력하세요">
+							<div class="check-btn">
+								<input class="site-btn" type="submit" value="탈퇴">
+		                 		<input class="site-btn" type="reset" value="취소" onclick="history.back();">
+							</div>
+							<!-- 				
+							<input type="submit" value="탈퇴하기"> 
+							<input type="reset" value="취소">
+							-->
 						</form>
 					</div>
 				</div>

@@ -108,6 +108,7 @@
                         	    <td><a href="#">포인트</a></td>
                         	  </tr>
                         	  <tr>
+                        	  	<!-- 등급은 일반회원/관리자 차이를 두기 위해 넣은 것이므로 삭제해야 됩니다 -->
                         	    <th>등급</th>
                         	    <td><input type="text" name="grade" id="grade" value="<%=mb.getGrade()%>" readonly></td>
                         	  </tr>

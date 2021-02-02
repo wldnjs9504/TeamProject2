@@ -65,7 +65,7 @@
 					</div>
 				</div>
 				<div class="col-lg-9 order-1 order-lg-2">
-					<div>
+					<div class="login-form">
 					
 						<h2>비밀번호 재확인</h2>
 						
@@ -83,22 +83,28 @@
 						}
 						%>
 						
-						<p>본인확인을 위해 한번 더 비밀번호를 입력해 주세요.</p>
 						<form action="./passCheckAction.me" method="post">
-					
-						<table>
-						<tr>
-							<td>아이디</td>
-							<td><%=id %></td>
-						</tr>
-						<tr>
-							<td>비밀번호</td>
-							<td><input type="password" name="pass" id="pass" placeholder="비밀번호 입력"></td>
-						</tr>
-						</table>
-						<input type="submit" value="확인">
-						<input type="reset" value="취소">
-					
+							<div class="pass-check-form">
+								<p>본인확인을 위해 한번 더 비밀번호를 입력해 주세요.</p>
+								<table>
+									<tr>
+										<td>아이디</td>
+										<td><input type="text" id="username" name="id" value="<%=id %>" readonly></td>
+									</tr>
+									<tr>
+										<td>비밀번호</td>
+										<td><input type="password" name="pass" id="pass" placeholder="비밀번호 입력"></td>
+									</tr>
+								</table>
+								<div class="check-btn">
+									<input class="site-btn" type="submit" value="확인">
+		                 			<input class="site-btn" type="reset" value="취소" onclick="history.back();">
+								</div>
+								<!-- 
+								<input type="submit" value="확인">
+								<input type="reset" value="취소">
+								 -->
+							</div>
 						</form>
 						
 					</div>

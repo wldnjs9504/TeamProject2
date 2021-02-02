@@ -54,87 +54,7 @@
                         <h2>회원가입</h2>
                         
                         
-<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript">
 
-var pass_Check = false;
-var email_Check = false;
-
-//우편번호 api
-function execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var fullAddr = ''; // 최종 주소 변수
-            var extraAddr = ''; // 조합형 주소 변수
-
-            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                fullAddr = data.roadAddress;
-
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                fullAddr = data.jibunAddress;
-            }
-
-            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-            if(data.userSelectedType === 'R'){
-                //법정동명이 있을 경우 추가한다.
-                if(data.bname !== ''){
-                    extraAddr += data.bname;
-                }
-                // 건물명이 있을 경우 추가한다.
-                if(data.buildingName !== ''){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-            }
-
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
-            document.getElementById('address1').value = fullAddr;
-
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById('address2').focus();
-        }
-    }).open();
-}
-
-
-function sendEmail() {
-	var width = 430;
-	var height = 200;
-	var winL = (screen.width - width) / 2;
-	var winT = (screen.height - height) / 2;
-	var property = "width=" + width + "," + "height=" + height + "," 
-					+ "left=" + winL + "," + "top=" + winT + " menubar=no";
-	
-	email_Check = false;
-	window.open("mail.jsp?to=" + email.value, "인증 페이지", property);
-}
-
-function checkPass() {
-	if($("#pass").val() != "") {
-		if($("#pass").val() != $("#pass2").val()) {
-			$("#passCheck").css("color", "red");
-			$("#passCheck").text("비밀번호가 다릅니다.");
-			pass_Check = false;
-		} else {
-			$("#passCheck").css("color", "green");
-			$("#passCheck").text("비밀번호가 동일합니다.");
-			pass_Check = true;
-		}
-	} else {
-		$("#passCheck").html("&nbsp;");
-	}
-}
-
-
-</script>
                      
                      
                         
@@ -155,7 +75,7 @@ function checkPass() {
                             <div class="group-input">
                                 <label for="email">이메일 *</label>
                                 <input type="email" id="email" name="email">
-                                <button class="site-btn" onclick="sendEmail();">인증요청</button>      
+                                <button class="site-btn post" onclick="sendEmail();">인증요청</button>      
                                 <span id="emailCheck" class="check_status">&nbsp;</span>
                             </div>                            
                             <div class="group-input">
