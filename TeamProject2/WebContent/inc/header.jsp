@@ -11,16 +11,16 @@
 				<a href="./AdminMenu.ao" class="login-panel"><i class="fa fa-user"></i>관리자 메뉴</a>
 				<!-- model2 링크로 변경할 것 -->
 			<%if(id == null || id.isEmpty()) { %>
-				<a href="<%=request.getContextPath() %>/member/join.jsp" class="login-panel"><i class="fa fa-user"></i>Join</a>
-				<a href="<%=request.getContextPath() %>/member/login.jsp" class="login-panel"><i class="fa fa-user"></i>Login</a>
+				<a href="<%=request.getContextPath() %>/Join.me" class="login-panel"><i class="fa fa-user"></i>Join</a>
+				<a href="<%=request.getContextPath() %>/Login.me" class="login-panel"><i class="fa fa-user"></i>Login</a>
 			<%}else if(id.equals("admin")){	%>
-				<a href="<%=request.getContextPath() %>/member/logout.jsp" class="login-panel"><i class="fa fa-user"></i>Logout</a>
+				<a href="<%=request.getContextPath() %>/Logout.me" class="login-panel"><i class="fa fa-user"></i>Logout</a>
 				<!-- id 클릭시 관리자 페이지로 이동. jsp 페이지명 변경될 수 있음 -->
 				<a href="<%=request.getContextPath() %>/admin/admin.jsp" class="login-panel">관리자</a>님 환영합니다.
 			<%}else{ %>
-				<a href="<%=request.getContextPath() %>/member/logout.jsp" class="login-panel"><i class="fa fa-user"></i>Logout</a>
+				<a href="<%=request.getContextPath() %>/Logout.me" class="login-panel"><i class="fa fa-user"></i>Logout</a>
 				<!-- id 클릭시 회원정보 페이지로 이동 -->			
-				<a href="<%=request.getContextPath() %>/member/info.jsp" class="login-panel">id</a>님 환영합니다.
+				<a href="<%=request.getContextPath() %>/MemberInfo.me" class="login-panel"><%=id %></a>님 환영합니다.
 			<%} %>
 			</div>
 		</div>

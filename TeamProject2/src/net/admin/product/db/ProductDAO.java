@@ -135,14 +135,16 @@ public class ProductDAO {
 			
 			try {
 				con = getCon();
-				sql = "update product set category=?, p_name=?, p_price=?, p_saleprice=?, p_count=? where p_num=?";
+				sql = "update product set category=?, p_name=?, p_price=?, p_saleprice=?, p_count=?, img_main=?, img_content=? where p_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, pb.getCategory());
 				pstmt.setString(2, pb.getP_name());
 				pstmt.setInt(3, pb.getP_price());
 				pstmt.setInt(4, pb.getP_saleprice());
 				pstmt.setInt(5, pb.getP_count());
-				pstmt.setInt(6, pb.getP_num());
+				pstmt.setString(6, pb.getImg_main());
+				pstmt.setString(7, pb.getImg_content());
+				pstmt.setInt(8, pb.getP_num());
 				
 				pstmt.executeUpdate();
 				System.out.println("수정성공");

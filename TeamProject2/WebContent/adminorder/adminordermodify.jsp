@@ -58,7 +58,7 @@ orderBean ob=(orderBean)list.get(0);
             <form action="./AdminOrderModifyAction.ao" method="post" class="checkout-form">
                 <div class="row">
 					<!--                 
-	            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+	            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 products-sidebar-filter">
 	                    <div class="filter-widget">
 	                        <ul class="filter-catagories">
 	                        	해당 페이지의 메뉴에만 class="check-menu" 적용
@@ -196,5 +196,4 @@ orderBean ob=(orderBean)list.get(0);
 	<!-- 푸터 -->
     <%@include file="../inc/footer.jsp" %>
 </body>
-
 </html>

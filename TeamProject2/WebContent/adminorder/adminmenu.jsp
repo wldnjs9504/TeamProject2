@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<html lang="zxx">
-
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
@@ -35,7 +35,6 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>Blog</span>
                     </div>
                 </div>
             </div>
@@ -47,11 +46,11 @@
     <section class="blog-section spad">
         <div class="container">
             <div class="row">
-            	<div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 products-sidebar-filter">
                     <div class="filter-widget">
                         <ul class="filter-catagories">
                         	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
-                    		<li> <a href="#"> 회원 관리</a></li>
+                    		<li> <a href="./AdminMember.ao"> 회원 관리</a></li>
                      		<li> <a href="./ProductList.ap"> 상품 관리</a></li>
                      		<li> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
                      		<li> <a href="#"> QnA 관리</a></li>
@@ -60,26 +59,22 @@
                 </div>   
                 <div class="col-lg-9 order-1 order-lg-2">
                     <div class="row">
-                        <div class="col-lg-6 col-sm-6">
-						<a href="#"><img alt="회원관리" src="upload/member.png">
-						<input type="button" class="site-btn update" value="회원 관리">
-						</a>
-                        </div>
-                        <div class="col-lg-6 col-sm-6">
-						<a href="./ProductList.ap"><img alt="상품관리" src="upload/product.png">
-                        <input type="button" class="site-btn update" value="상품 관리">
-						</a>
-                        </div>
-                        <div class="col-lg-6 col-sm-6">
-						<a href="./AdminOrderList.ao"><img alt="주문관리" src="upload/product.png">
-						<input type="button" class="site-btn update" value="주문 관리">
-						</a>
-                        </div>
-                        <div class="col-lg-6 col-sm-6">
-						<a href="#"><img alt="QnA관리" src="upload/product.png">
-						<input type="button" class="site-btn update" value="QnA 관리">
-						</a>
-                        </div>
+	                        <div class="col-lg-6 col-sm-6 admin-menu">
+	                        	<h3>회원 관리</h3>
+								<a href="./AdminMember.ao"><img alt="회원관리" src="img/pic_member.png"></a>
+	                        </div>
+	                        <div class="col-lg-6 col-sm-6 admin-menu">
+	                        	<h3>상품 관리</h3>
+								<a href="./ProductList.ap"><img alt="상품관리" src="img/pic_medicine.png"></a>
+	                        </div>
+	                        <div class="col-lg-6 col-sm-6 admin-menu">
+	                        	<h3>주문 관리</h3>
+								<a href="./AdminOrderList.ao"><img alt="주문관리" src="img/pic_product.png"></a>
+	                        </div>
+	                        <div class="col-lg-6 col-sm-6 admin-menu">
+	                        	<h3>QnA 관리</h3>
+								<a href="#"><img alt="QnA관리" src="img/pic_qna.png"></a>
+	                        </div>
                     </div>
                 </div>
             </div>
@@ -87,8 +82,7 @@
     </section>
     <!-- Blog Section End -->
 
-    <!-- Partner Logo Section Begin -->
-  
-<%@include file="../inc/footer.jsp" %>
-
+    <!-- 푸터 -->
+    <%@include file="../inc/footer.jsp" %>
+</body>
 </html>

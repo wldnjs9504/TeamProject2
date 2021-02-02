@@ -1,3 +1,4 @@
+<%@page import="net.admin.order.db.MemberBean"%>
 <%@page import="net.order.db.orderBean"%>
 <%@page import="java.util.List"%>
 <%@page import="net.admin.product.db.ProductBean"%>
@@ -5,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Fashi | Template</title>
     <meta charset="UTF-8">
@@ -38,7 +40,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./index.jsp"><i class="fa fa-home"></i> Home</a>
-                        <span>주문 관리</span>
+                        <span>회원 관리</span>
                     </div>                
                 </div>
             </div>
@@ -58,9 +60,9 @@ List list = (List)request.getAttribute("list");
                     <div class="filter-widget">
                         <ul class="filter-catagories">
                         	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
-                    		<li> <a href="./AdminMember.ao"> 회원 관리</a></li>
+                    		<li class="check-menu"> <a href="./AdminMember.ao"> 회원 관리</a></li>
                      		<li> <a href="./ProductList.ap"> 상품 관리</a></li>
-                     		<li class="check-menu"> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
+                     		<li> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
                      		<li> <a href="#"> QnA 관리</a></li>
                         </ul>                    	
                     </div>
@@ -68,14 +70,18 @@ List list = (List)request.getAttribute("list");
 
                 <div class="col-lg-10 order-1 order-lg-2">
                     <div class="cart-table">
+                    	<div class="member-count">
+                    		<h5>총 회원 수 : <%= list.size() %>명 </h5>
+                    	</div>
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="b-num">주문번호</th>
                                     <th class="id">아이디</th>
                                     <th class="name">이름</th>
-                                    <th class="date">주문일시</th>
-                                    <th class="active">주문상태</th>
+                                    <th class="email">이메일</th>
+                                    <th class="buy">누적 구매수</th>
+                                    <th class="point">누적 포인트</th>
+                                    <th class="price">누적 구매액</th>
                                     <th class="button2"> </th>
                                 </tr>
                             </thead>
@@ -83,39 +89,71 @@ List list = (List)request.getAttribute("list");
                             
                                <%
    								for(int i=0;i<list.size();i++){
-	   							orderBean ob=(orderBean)list.get(i);
+	   							MemberBean mb=(MemberBean)list.get(i);
+	   							
+	   							String price = Integer.toString(mb.getTotalprice());
+	   							StringBuffer sb = new StringBuffer(price);
+	   							String point = Integer.toString(mb.getPoint());
+	   							StringBuffer sb1 = new StringBuffer(point);
+	   							
+	   							if(price.length()==4){
+	                                sb.insert(1,',');
+		   							}else if(price.length()==5){
+		   							sb.insert(2,',');	
+		   							}else if(price.length()==6){
+		   							sb.insert(3,',');	
+		   							}else if(price.length()==7){
+		   							sb.insert(1,',');	
+		   							sb.insert(4,',');	
+		   							}else if(price.length()==8){
+		   							sb.insert(5,',');
+		   							sb.insert(2,',');
+		   							}else if(price.length()==9){
+		   							sb.insert(6,',');
+		   							sb.insert(3,',');
+		   							}
+		   							if(point.length()==4){
+	                                sb1.insert(1,',');
+		   							}else if(point.length()==5){
+		   							sb1.insert(2,',');	
+		   							}else if(point.length()==6){
+		   							sb1.insert(3,',');	
+		   							}else if(point.length()==7){
+		   							sb1.insert(1,',');	
+		   							sb1.insert(4,',');	
+		   							}else if(point.length()==8){
+		   							sb1.insert(5,',');
+		   							sb1.insert(2,',');
+		   							}else if(point.length()==9){
+		   							sb1.insert(6,',');
+		   							sb1.insert(3,',');
+		   							}
 	   						   %>
                                 <tr>
-                                	<td class="b-num">
-                                        <%= ob.getB_num() %>
+                                	<td class="id">
+                                        <%= mb.getId() %>
                                     </td>
-                                    <td class="id">
-                                        <%= ob.getId() %>
+                                    <td class="pass">
+                                        <%= mb.getPass() %>
                                     </td>
-                                    <td class="name">
-                                        <%= ob.getO_name()%>
+                                    <td class="email">
+                                        <%= mb.getEmail() %>
                                     </td>
-                                    <td class="date">
-                                        <%= ob.getB_date()%>
+                                    <td class="buy">
+                                        <%= mb.getPostcode()%>
                                     </td>
-                                    <%
-                                    String result= "";
-                                    if(ob.getD_result()==0){
-                                    	result = "주문완료";
-                                    }else if(ob.getD_result()==1){
-                                    	result = "결제완료";
-                                    }else if(ob.getD_result()==2){
-                                    	result = "배송준비";
-                                    }else if(ob.getD_result()==3){
-                                    	result = "배송완료";
-                                    }                                    
-                                    %>
-                                    <td class="active">
-                                        <%= result %>
+                                    
+                                    <td class="point">
+                                        <%= sb1 %>
                                     </td>
+                                    
+                                    <td class="price">
+                                        <%= sb %>
+                                    </td>
+                                    
+                                    
                                     <td class="button2">
-    								    <input type="button" class="site-btn update" value="변경" onclick="location.href='./AdminOrderDetail.ao?b_num=<%=ob.getB_num()%>&p_num=<%=ob.getP_num()%>';">
-                                    	<input type="button" class="site-btn update" value="삭제" onclick="location.href='./AdminOrderDeleteAction.ao?b_num=<%=ob.getB_num()%>';">
+                                    	<input type="button" class="site-btn update" value="강퇴">
     								
 <%--                                     <a href="./AdminOrderDetail.ao?b_num=<%=ob.getB_num()%>&p_num=<%=ob.getP_num()  %> ">수정</a> --%>
 <%--     								/<a href="./AdminOrderDeleteAction.ao?b_num=<%=ob.getB_num()%>" >삭제</a> --%>

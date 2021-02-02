@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>Fashi | Template</title>
+	<title>로그인</title>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
     <meta name="keywords" content="Fashi, unica, creative, html">
@@ -16,15 +16,15 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
 	<!-- 헤더 -->
@@ -52,14 +52,14 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="login-form">
                         <h2>로그인</h2>
-                        <form action="#">
+                        <form action="./MemberLoginAction.me" method="post">
                             <div class="group-input">
                                 <label for="username">아이디 *</label>
-                                <input type="text" id="username">
+                                <input type="text" id="username" name="id">
                             </div>
                             <div class="group-input">
                                 <label for="pass">비밀번호 *</label>
-                                <input type="text" id="pass">
+                                <input type="password" id="pass" name="pass">
                             </div>
                             <div class="group-input gi-check">
                                 <div class="gi-more">
@@ -74,7 +74,7 @@
                             <button type="submit" class="site-btn login-btn">Sign In</button>
                         </form>
                         <div class="switch-login">
-                            <a href="<%=request.getContextPath() %>/member/join.jsp" class="or-login">Or Create An Account</a>
+                            <a href="<%=request.getContextPath() %>/Join.me" class="or-login">Or Create An Account</a>
                         </div>
                     </div>
                 </div>

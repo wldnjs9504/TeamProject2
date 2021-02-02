@@ -2682,6 +2682,11 @@ ol {
 	margin-bottom: 40px;
 }
 
+.cart-table .member-count h5{
+	float: right;
+	margin: 15px;
+}
+
 .cart-table table {
 	width: 100%;
 	min-width: 480px;
@@ -2700,6 +2705,18 @@ ol {
 	text-align: center;
 	padding: 18px 0 19px;
 	text-transform: uppercase;
+}
+
+.cart-table table .id {
+	width: 120px;
+}
+.cart-table table .name {
+	width: 90px;
+}
+.cart-table table .buy,
+.cart-table table .point,
+.cart-table table .price {
+	width: 100px;
 }
 
 .cart-table table .p-num {
@@ -2841,7 +2858,6 @@ ol {
 	vertical-align: middle;
 	border-radius: 5px;
 	font-size: 18px;
-
 }
 
 .cart-table .update {
@@ -3170,6 +3186,17 @@ ol {
 .blog-section {
 	padding-top: 80px;
 	padding-bottom: 80px;
+}
+
+.blog-section .admin-menu {
+	margin-bottom: 50px;
+}
+
+.blog-section h3 {
+	color: #254e7b;
+	text-align: center;
+	margin-bottom: 20px;
+	font-weight: bold;
 }
 
 .blog-section .loading-more {
@@ -4244,11 +4271,15 @@ ol {
 		padding-right: 30px;
 	}
 	.blog-sidebar,
-	.produts-sidebar-filter {
+	.products-sidebar-filter {
 		padding-top: 50px;
 	}
 	.checkout-content input {
 		margin-top: 50px;
+	}
+	
+	.products-sidebar-filter{
+		display: none;
 	}
 }
 
@@ -4366,6 +4397,7 @@ ol {
 	.cart-table table tr th {
 		font-size: 12px;
 	}
+	
 	.hero-items .single-hero-items {
 		padding: 110px 25px 80px;
 		height: auto;
@@ -4415,11 +4447,15 @@ ol {
 		padding-left: 0;
 	}
 	.blog-sidebar,
-	.produts-sidebar-filter {
+	.products-sidebar-filter {
 		padding-top: 50px;
 	}
 	.checkout-content input {
 		margin-top: 50px;
+	}
+	
+	.products-sidebar-filter{
+		display: none;
 	}
 }
 
@@ -4502,6 +4538,10 @@ ol {
 	.benefit-items .single-benefit {
 		padding-left: 15px;
 		padding-right: 15px;
+	}
+	
+	.products-sidebar-filter{
+		display: none;
 	}
 }
 

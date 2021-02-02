@@ -59,10 +59,19 @@ public class AdminOrderFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}else if(command.equals("/AdminMenu.ao")){
-			forward=new ActionForward();
+			forward = new ActionForward();
 			forward.setPath("./adminorder/adminmenu.jsp");
 			forward.setRedirect(false);
-		}	
+		}else if(command.equals("/AdminMember.ao")) {
+			action = new AdminMemberAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		//�럹�씠吏� �씠�룞
 		if(forward != null) {
