@@ -49,7 +49,19 @@
 <%
 //request.setAttribute("ProductList", productList);
 List productList = (List)request.getAttribute("productList");
+ProductBean pb = (ProductBean)productList.get(0);
 %>
+<script type="text/javascript">
+function removeCheck() {
+
+	 if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+		 location.href="./ProductDeleteAction.ap?p_num=<%=pb.getP_num()%>";
+	 }else{   //취소
+	     return false;
+	 }
+}
+</script>
+
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
         <div class="container">
@@ -85,7 +97,7 @@ List productList = (List)request.getAttribute("productList");
                             
                                <%
    								for(int i=0;i<productList.size();i++){
-   								ProductBean pb = (ProductBean)productList.get(i);
+   								pb = (ProductBean)productList.get(i);
    									
 	   							String price = Integer.toString(pb.getP_saleprice());
 	   							StringBuffer sb = new StringBuffer(price);
@@ -171,7 +183,7 @@ List productList = (List)request.getAttribute("productList");
                                     </td>
                                     <td>
                                     	<input type="button" class="site-btn update" value="변경" onclick="location.href='./ProductModify.ap?p_num=<%=pb.getP_num()%>';"><br>
-                                    	<input type="button" class="site-btn update" value="삭제" onclick="location.href='./ProductDeleteAction.ap?p_num=<%=pb.getP_num()%>';">
+                                    	<input type="button" class="site-btn update" value="삭제" onclick="removeCheck()">
                                     
 <%--                                     <a href="./ProductModify.ap?p_num=<%=pb.getP_num()%>">수정</a> --%>
 <%--     								/<a href="./ProductDeleteAction.ap?p_num=<%=pb.getP_num()%>">삭제</a> --%>

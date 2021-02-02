@@ -51,7 +51,24 @@
 <%
 //request.setAttribute("ProductList", productList);
 List list = (List)request.getAttribute("list");
+MemberBean mb=(MemberBean)list.get(0);
 %>
+<script type="text/javascript">
+function removeCheck() {
+
+	 if (confirm("정말 강제 탈퇴시키겠습니까?") == true){    //확인
+		 if(<%= mb.getId().equals("admin") %>){
+			 alert("관리자 계정은 탈퇴할 수 없습니다.");
+			 return false;
+		 }else{
+			 
+		 }
+	 }else{   //취소
+	     return false;
+	 }
+}
+</script>
+
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
         <div class="container">
@@ -77,7 +94,6 @@ List list = (List)request.getAttribute("list");
                             <thead>
                                 <tr>
                                     <th class="id">아이디</th>
-                                    <th class="name">이름</th>
                                     <th class="email">이메일</th>
                                     <th class="buy">누적 구매수</th>
                                     <th class="point">누적 포인트</th>
@@ -89,7 +105,7 @@ List list = (List)request.getAttribute("list");
                             
                                <%
    								for(int i=0;i<list.size();i++){
-	   							MemberBean mb=(MemberBean)list.get(i);
+	   							mb=(MemberBean)list.get(i);
 	   							
 	   							String price = Integer.toString(mb.getTotalprice());
 	   							StringBuffer sb = new StringBuffer(price);
@@ -131,10 +147,9 @@ List list = (List)request.getAttribute("list");
 	   						   %>
                                 <tr>
                                 	<td class="id">
+                                        <a href="./AdminMemberOrder.ao?id=<%= mb.getId() %>">
                                         <%= mb.getId() %>
-                                    </td>
-                                    <td class="pass">
-                                        <%= mb.getPass() %>
+                                        </a>
                                     </td>
                                     <td class="email">
                                         <%= mb.getEmail() %>
@@ -148,12 +163,12 @@ List list = (List)request.getAttribute("list");
                                     </td>
                                     
                                     <td class="price">
-                                        <%= sb %>
+                                        <%= sb %>원
                                     </td>
                                     
                                     
                                     <td class="button2">
-                                    	<input type="button" class="site-btn update" value="강퇴">
+                                    	<input type="button" class="site-btn update" value="강퇴" onclick="removeCheck()">
     								
 <%--                                     <a href="./AdminOrderDetail.ao?b_num=<%=ob.getB_num()%>&p_num=<%=ob.getP_num()  %> ">수정</a> --%>
 <%--     								/<a href="./AdminOrderDeleteAction.ao?b_num=<%=ob.getB_num()%>" >삭제</a> --%>
