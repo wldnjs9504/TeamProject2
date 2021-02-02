@@ -8,8 +8,7 @@
 	<div class="header-top">
 		<div class="container">
 			<div class="ht-right">
-				<a href="./AdminOrderList.ao" class="login-panel"><i class="fa fa-user"></i>관리자 주문</a>
-				<a href="./ProductList.ap" class="login-panel"><i class="fa fa-user"></i>관리자 상품</a>
+				<a href="./AdminMenu.ao" class="login-panel"><i class="fa fa-user"></i>관리자 메뉴</a>
 				<!-- model2 링크로 변경할 것 -->
 			<%if(id == null || id.isEmpty()) { %>
 				<a href="<%=request.getContextPath() %>/Join.me" class="login-panel"><i class="fa fa-user"></i>Join</a>
