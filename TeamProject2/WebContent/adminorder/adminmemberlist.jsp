@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
-
 <body>
 	<!-- 헤더 -->
     <%@include file="../inc/header.jsp" %>
@@ -47,11 +46,20 @@
         </div>
     </div>
     <!-- Breadcrumb Section Begin -->
-    
 <%
 //request.setAttribute("ProductList", productList);
 List list = (List)request.getAttribute("list");
 MemberBean mb=(MemberBean)list.get(0);
+id = (String)session.getAttribute("id");
+if(id == null || id.isEmpty() || !id.equals("admin")) { 
+		%>
+		<!-- 로그인이 필요한 페이지의 경우 넣는 페이지 -->
+		<script>
+			alert("올바르지 않은 접속 방법입니다.");
+			location.href="./Login.me";
+		</script>
+		<%	
+}
 %>
 <script type="text/javascript">
 function removeCheck() {

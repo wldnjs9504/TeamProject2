@@ -50,6 +50,15 @@
 //request.setAttribute("ProductList", productList);
 List list = (List)request.getAttribute("list");
 orderBean ob=(orderBean)list.get(0);
+if(id == null || id.isEmpty() || !id.equals("admin")) { 
+	%>
+	<!-- 로그인이 필요한 페이지의 경우 넣는 페이지 -->
+	<script>
+		alert("올바르지 않은 접속 방법입니다.");
+		location.href="./Login.me";
+	</script>
+	<%	
+}
 %>
 
 <script type="text/javascript">

@@ -8,11 +8,11 @@
 	<div class="header-top">
 		<div class="container">
 			<div class="ht-right">
-				<a href="./AdminMenu.ao" class="login-panel"><i class="fa fa-user"></i>관리자 메뉴</a>
 			<%if(id == null || id.isEmpty()) { %>
 				<a href="./Join.me" class="login-panel"><i class="fa fa-user"></i>Join</a>
 				<a href="./Login.me" class="login-panel"><i class="fa fa-user"></i>Login</a>
 			<%}else if(id.equals("admin")){	%>
+				<a href="./AdminMenu.ao" class="login-panel"><i class="fa fa-user"></i>Admin</a>
 				<a href="./Logout.me" class="login-panel"><i class="fa fa-user"></i>Logout</a>
 				<!-- id 클릭시 관리자 페이지로 이동. jsp 페이지명 변경될 수 있음 -->
 				<a href="./AdminMenu.ao" class="login-panel">관리자님 환영합니다.</a>

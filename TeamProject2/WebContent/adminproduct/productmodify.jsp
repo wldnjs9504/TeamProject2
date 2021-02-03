@@ -48,6 +48,15 @@
 	<%
 	//request.setAttribute("ProductBean", pb);
 	ProductBean pb = (ProductBean)request.getAttribute("pb");
+	if(id == null || id.isEmpty() || !id.equals("admin")) { 
+		%>
+		<!-- 로그인이 필요한 페이지의 경우 넣는 페이지 -->
+		<script>
+			alert("올바르지 않은 접속 방법입니다.");
+			location.href="./Login.me";
+		</script>
+		<%	
+	}
 	%>
     <!-- Register Section Begin -->
     <div class="register-login-section spad">
