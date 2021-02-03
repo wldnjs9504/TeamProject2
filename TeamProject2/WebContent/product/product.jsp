@@ -37,20 +37,54 @@
 	<c:set value="${requestScope.review_count }" var="review_count"/>
 	
  <script type="text/javascript">
+ 	
+ 
                                 
 	function goCart(){
+	//var p_num = document.getElementById("p_num").value;
+	var p_num = ${pb.p_num};
 	var c_p_count = document.getElementById("c_p_count").value;
 	location.href="./ProductCartTest.p?c_p_count="+c_p_count.value;
 	}
 	
+	// 수량 - 클릭시
 	function countMinus(num){
+		//var p_saleprice = document.getElementById("p_saleprice").value;
+		var p_saleprice = ${pb.p_saleprice};
+		var c_p_count = Number(document.getElementById("c_p_count").value) + num;
 		
+		if(c_p_count<1){
+			count=1;
+			alert("최소 1개이상 구매할 수 있는 상품입니다.");
+			document.getElementById("c_p_count").value = 1;
+			
+		}
 		
+		document.getElementById("c_p_count").value = c_p_count;
+		document.getElementById("totalPrice").value = p_saleprice * c_p_count;
+		document.getElementById("totalPriceTxt").innerHTML = numberFormatWon( p_saleprice * c_p_count);
 	}
+	// 수량 + 클릭시
 	function countPlus(num){
+		//var p_saleprice = document.getElementById("p_saleprice").value;
+		var p_saleprice = ${pb.p_saleprice};
+		var c_p_count = Number(document.getElementById("c_p_count").value) + num;
 		
+		document.getElementById("c_p_count").value = c_p_count;
+		document.getElementById("totalPrice").value = p_saleprice * c_p_count;
+		document.getElementById("totalPriceTxt").innerHTML = numberFormatWon( p_saleprice * c_p_count);
 	}
+	// 숫자 포매팅
+	function numberFormatWon(data) {
 
+		   var str = data;
+		   if(typeof data == 'number') {
+		      str = str+'';
+		   }
+
+		   var n = (str.replace(/[^\d]+/g, '')).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+		   return n;
+		}
 
 </script>
 
@@ -68,6 +102,7 @@
 
     <!-- Header Section Begin -->
     <%@include file="../inc/header.jsp" %>
+    <input type="hidden" id="p_num" name="p_num" value="${pb.p_num }">
     <!-- Header End -->
 	
     <!-- 카테고리 분류 -->
@@ -220,7 +255,7 @@
                 </div> -->
                 
                 
-                <div class="col-lg-9">
+                <div class="col-lg-12">
                     <div class="row">
                     
                     	<!-- 사진이미지 -->
@@ -251,6 +286,7 @@
                             <div class="product-details">
                                 <div class="pd-title">
                               	<!-- 카테고리 -->
+                              	<!-- 제목 위 회색 숫자 같은데 지워도 되는지? -->
                                     <span>${pb.category }</span> 
                                     <h3>${pb.p_name }</h3> 
                                     <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
@@ -307,23 +343,48 @@
                                         <label for="xl-size">xs</label>
                                     </div>
                                 </div> -->
-                               
-                                
+                                <!-- 
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="135">
+                                    </div>
+                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                </div>                               
+                                 -->
                                 
                                 
                                 
                                 <div class="quantity">
                                    <!--  <div class="pro-qty"> -->
                                     <div class="">  
-                                    	<button class="dec qtybtn" onclick="countPlus(-1)"> - </button>
+                                    	<button class="dec qtybtn" onclick="countMinus(-1)"> - </button>
                                         <input type="text" value="1" id="c_p_count">
-                                        <button class="dec qtybtn" onclick="countMinus(+1)"> + </button>
+                                        <button class="dec qtybtn" onclick="countPlus(1)"> + </button>
                                     </div>
-                                   	<button class="primary-btn pd-cart" onclick="goCart();">Add To Cart</button>
+                                    
+                                    <br>
+                                   	<button class="primary-btn pd-cart" onclick="goCart();">장바구니</button>
+                                   	<button class="primary-btn pd-cart" onclick="goBuy();">바로구매</button>
                                    <!--  <a href="#" class="primary-btn pd-cart" onclick="goCart();">Add To Cart</a> -->
                                 </div>
                                 
+                                <!-- 총 금액 계산하기  -->
+                                <br>
+                                <!--  제품 기존가격(할인전)  -->
+                              	<!-- <input type="hidden" id="p_price" value="${pb.p_price }"> --> 
+                                <!-- 재고량 -->
+                                <!--<input type="hidden" id="p_count" value="${pb.p_count }">  -->
+                                <!-- <input type="hidden" id="p_saleprice" value="${pb.p_saleprice }"> -->
+                                <!-- 제품 개당판매 가격 -->
                                 
+                                <!--제품 총 금액 수량따라 변경될 것-->
+                                <input type="hidden" id="totalPrice" value="${pb.p_saleprice} }">
+                                
+                                <div  class="pd-desc">
+                                <span >상품금액 합계 :
+                                <span id="totalPriceTxt"><fmt:formatNumber pattern="#,###" >${pb.p_saleprice }</fmt:formatNumber></span> 원
+                                </span>
+                                </div> 
                                 
                                 
                                 
@@ -344,7 +405,7 @@
                                 
                                 
                                 <div class="pd-share">
-                                    <div class="p-code">Sku : 00012</div>
+                                    <!-- <div class="p-code">Sku : 00012</div> -->
                                     <div class="pd-social">
                                         <a href="#"><i class="ti-facebook"></i></a>
                                         <a href="#"><i class="ti-twitter-alt"></i></a>

@@ -2415,7 +2415,8 @@ ol {
 	font-weight: 700;
 	color: #b2b2b2;
 	text-transform: uppercase;
-	padding: 18px 61px;
+/* 	padding: 18px 61px; */
+	padding: 18px 129.5px;
 	position: relative;
 	border-top: 1px solid #ebebeb;
 	border-left: 1px solid #ebebeb;
@@ -4192,7 +4193,8 @@ ol {
 		padding: 14px 30px 10px;
 	}
 	.tab-item ul li a {
-		padding: 18px 39px;
+/* 		padding: 18px 39px; */
+		padding: 18px 94.5px;
 	}
 	.inner-header .advanced-search .input-group button {
 		right: -7px;
