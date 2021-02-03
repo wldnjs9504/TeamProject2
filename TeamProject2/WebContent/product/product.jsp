@@ -1,3 +1,4 @@
+<%@page import="net.cart.db.CartBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -28,24 +29,71 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
-<%
+	<%
 	request.setCharacterEncoding("UTF-8");
 %>
+
+
+
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <%@include file="../inc/header.jsp" %>
+    <input type="hidden" id="p_num" name="p_num" value="${pb.p_num }">
+    <!-- Header End -->
+	
+
 
 	<c:set value="${requestScope.pb }" var="pb"/>
 	<c:set value="${requestScope.star_avg }" var="star_avg" />
 	<c:set value="${requestScope.review_count }" var="review_count"/>
+	<c:set value="${pb.p_num }" var="p_num"/>
 	
  <script type="text/javascript">
- 	
- 
-                                
 	function goCart(){
 	//var p_num = document.getElementById("p_num").value;
 	var p_num = ${pb.p_num};
 	var c_p_count = document.getElementById("c_p_count").value;
-	location.href="./ProductCartTest.p?c_p_count="+c_p_count.value;
+	
+	
+		/* 장바구니로  */
+		var gocart = confirm("장바구니로 바로 가시겠습니까?");
+		if(gocart == true){//카트추가 주소로 보내기
+		location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;
+		}else{
+			<%
+			/* int c_p_count = (int)pageContext.getAttribute("c_p_count");//구매수량
+			System.out.println("c_p_count :" + c_p_count);
+			int p_num = (int)pageContext.getAttributesScope("p_num");//제품번호
+			System.out.println("p_num :" + p_num);
+			
+			
+			CartBean cb = new CartBean();
+			cb.setC_p_num(p_num);
+			cb.setC_p_count(c_p_count);
+			cb.setC_m_id(id); */
+			
+			//CartDAO 넣으면 넣기
+			//CartDAO cdao = new CartDAO();
+			//cdao.CartAdd(cb);
+			%>
+		}
 	}
+	
+	function goBuy(){
+		//var p_num = document.getElementById("p_num").value;
+		var p_num = ${pb.p_num};
+		var c_p_count = document.getElementById("c_p_count").value;
+		
+		//order 주소로 이동필요
+			location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;
+			
+		}
 	
 	// 수량 - 클릭시
 	function countMinus(num){
@@ -57,7 +105,6 @@
 			count=1;
 			alert("최소 1개이상 구매할 수 있는 상품입니다.");
 			document.getElementById("c_p_count").value = 1;
-			  /*  */
 		}
 		
 		document.getElementById("c_p_count").value = c_p_count;
@@ -90,20 +137,6 @@
 
 
 
-
-
-
-
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Header Section Begin -->
-    <%@include file="../inc/header.jsp" %>
-    <input type="hidden" id="p_num" name="p_num" value="${pb.p_num }">
-    <!-- Header End -->
 	
     <!-- 카테고리 분류 -->
     <div class="breacrumb-section">
@@ -360,15 +393,13 @@
                                         <input type="text" value="1" id="c_p_count">
                                         <button class="dec qtybtn" onclick="countPlus(1)"> + </button>
                                     </div>
-<<<<<<< HEAD
                                     
                                     <br>
                                    	<button class="primary-btn pd-cart" onclick="goCart();">장바구니</button>
                                    	<button class="primary-btn pd-cart" onclick="goBuy();">바로구매</button>
                                    <!--  <a href="#" class="primary-btn pd-cart" onclick="goCart();">Add To Cart</a> -->
-=======
-                                   	<button class="primary-btn pd-cart" onclick="goCart();">Add To Cart</button>
->>>>>>> branch 'master' of https://github.com/wldnjs9504/TeamProject2.git
+
+                                   	<!-- <button class="primary-btn pd-cart" onclick="goCart();">Add To Cart</button> -->
                                 </div>
                                 
                                 <!-- 총 금액 계산하기  -->
@@ -546,36 +577,22 @@
                                 <!-- SPECIFICATIONS -->
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="specification-table">
+                                    	<form action="./ProductQnaWriteAction.p?p_num=${pb.p_num} }" method="post">
                                         <table>
                                             <tr>
-                                                <td class="p-catagory">별점</td>
-                                                <td>
-                                                    <div class="pd-rating">
-                                                        <%@include file="./star_avg.jsp" %>
-                                                        <span>(${review_count })</span>
-                                                    </div>
+                                                <td class="p-catagory" colspan="4">
+                                                	제목 : <input type="text" name="subject" placeholder="제목을 입력하세요">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">가격</td>
-                                                <td>
-                                                    <div class="p-price"><fmt:formatNumber value="${pb.p_saleprice}" pattern="#,###" />원</div>
+                                                <td class="p-catagory" colspan="4">
+                                                    문의사항 : <input type="text"	name="content" placeholder="내용을 입력하세요.">
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="p-catagory">Add To Cart</td>
-                                                <td>
-                                                    <div class="cart-add">+ add to cart</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">재고</td>
-                                                <td>
-                                                    <div class="p-stock">${pb.p_count} in stock</div>
-                                                </td>
-                                            </tr>
-                                            
                                         </table>
+                                        	<br>
+                                            <input type="submit" value="문의하기">
+                                        </form>
                                     </div>
                                 </div>
                                 
@@ -680,7 +697,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <div class="product-item">
                         <div class="pi-pic">
                             <img src="img/products/women-4.jpg" alt="">
@@ -703,7 +720,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div> 
             </div>
         </div>
     </div>

@@ -67,6 +67,18 @@ public class ProductFrontController extends HttpServlet{
 			forward.setRedirect(false);
 			
 			
+			//제품디테일 페이지에서 QNA작성
+		}else if(command.equals("/ProductQnaWriteAction.p")) {
+			System.out.println("C: /ProductQnaWriteAction.p 호출");
+			
+			action = new ProductQnaWriteAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		

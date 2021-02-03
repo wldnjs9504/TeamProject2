@@ -1,0 +1,42 @@
+package net.product.action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.product.db.ProductQnaBean;
+import net.product.db.ProductQnaDAO;
+
+
+public class ProductQnaWriteAction implements Action{
+
+	@Override
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		int p_num = Integer.parseInt(request.getParameter("p_num"));
+		
+		//파라미터값 저장
+		ProductQnaBean pqb = new ProductQnaBean();
+		pqb.setId(id);
+		pqb.setP_num(p_num);
+		pqb.setSubject(request.getParameter("subject"));
+		pqb.setContent(request.getParameter("content"));
+		ProductQnaDAO pqdao = new ProductQnaDAO();
+		pqdao.insertQna(pqb);
+		
+		
+		
+		
+		
+		
+		
+		ActionForward forward = new ActionForward();
+		forward.setPath("./Product.p?p_num="+p_num+" }");
+		forward.setRedirect(true);
+		
+		return forward;
+	}
+}
