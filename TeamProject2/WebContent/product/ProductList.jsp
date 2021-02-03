@@ -195,6 +195,7 @@
                             </div>
                             <div class="col-lg-5 col-md-5 text-right">
                             <!-- 수정 : 아래 P내용 좀더 진하고 굵은 색? -->
+                            <!-- 카테고리별로 적용시키기 -->
                                 <p>Show &nbsp;<%= startPage %> ~ <%= endPage %> &nbsp; Of&nbsp; <%= count %> Product</p>
                             </div>
                         </div>

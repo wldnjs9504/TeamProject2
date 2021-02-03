@@ -220,7 +220,7 @@
                 </div> -->
                 
                 
-                <div class="col-lg-9">
+                <div class="col-lg-12">
                     <div class="row">
                     
                     	<!-- 사진이미지 -->
@@ -251,6 +251,7 @@
                             <div class="product-details">
                                 <div class="pd-title">
                               	<!-- 카테고리 -->
+                              	<!-- 제목 위 회색 숫자 같은데 지워도 되는지? -->
                                     <span>${pb.category }</span> 
                                     <h3>${pb.p_name }</h3> 
                                     <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
@@ -307,20 +308,24 @@
                                         <label for="xl-size">xs</label>
                                     </div>
                                 </div> -->
-                               
-                                
+                                <!-- 
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="135">
+                                    </div>
+                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                </div>                               
+                                 -->
                                 
                                 
                                 
                                 <div class="quantity">
-                                   <!--  <div class="pro-qty"> -->
                                     <div class="">  
                                     	<button class="dec qtybtn" onclick="countPlus(-1)"> - </button>
                                         <input type="text" value="1" id="c_p_count">
                                         <button class="dec qtybtn" onclick="countMinus(+1)"> + </button>
                                     </div>
                                    	<button class="primary-btn pd-cart" onclick="goCart();">Add To Cart</button>
-                                   <!--  <a href="#" class="primary-btn pd-cart" onclick="goCart();">Add To Cart</a> -->
                                 </div>
                                 
                                 
@@ -344,7 +349,7 @@
                                 
                                 
                                 <div class="pd-share">
-                                    <div class="p-code">Sku : 00012</div>
+                                    <!-- <div class="p-code">Sku : 00012</div> -->
                                     <div class="pd-social">
                                         <a href="#"><i class="ti-facebook"></i></a>
                                         <a href="#"><i class="ti-twitter-alt"></i></a>
