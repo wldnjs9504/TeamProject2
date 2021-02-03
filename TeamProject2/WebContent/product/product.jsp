@@ -36,7 +36,23 @@
 	<c:set value="${requestScope.star_avg }" var="star_avg" />
 	<c:set value="${requestScope.review_count }" var="review_count"/>
 	
+ <script type="text/javascript">
+                                
+	function goCart(){
+	var c_p_count = document.getElementById("c_p_count").value;
+	location.href="./ProductCartTest.p?c_p_count="+c_p_count.value;
+	}
+	
+	function countMinus(num){
+		
+		
+	}
+	function countPlus(num){
+		
+	}
 
+
+</script>
 
 
 
@@ -291,14 +307,30 @@
                                         <label for="xl-size">xs</label>
                                     </div>
                                 </div> -->
+                               
+                                
+                                
                                 
                                 
                                 <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
+                                   <!--  <div class="pro-qty"> -->
+                                    <div class="">  
+                                    	<button class="dec qtybtn" onclick="countPlus(-1)"> - </button>
+                                        <input type="text" value="1" id="c_p_count">
+                                        <button class="dec qtybtn" onclick="countMinus(+1)"> + </button>
                                     </div>
-                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                   	<button class="primary-btn pd-cart" onclick="goCart();">Add To Cart</button>
+                                   <!--  <a href="#" class="primary-btn pd-cart" onclick="goCart();">Add To Cart</a> -->
                                 </div>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 <ul class="pd-tags">
                                     <li><span>CATEGORIES</span>
                                      <c:if test="${pb.category == 1}" >: 피로/간</c:if>
@@ -336,10 +368,10 @@
                                     <a class="active" data-toggle="tab" href="#tab-1" role="tab">DESCRIPTION</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-2" role="tab">SPECIFICATIONS</a>
+                                    <a data-toggle="tab" href="#tab-2" role="tab">Customer Reviews (02)</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-3" role="tab">Customer Reviews (02)</a>
+                                    <a data-toggle="tab" href="#tab-3" role="tab">Q & A</a>
                                 </li>
                             </ul>
                         </div>
@@ -376,48 +408,8 @@
                                 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@  2  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
                                 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->                               
                                 
-                                <!-- SPECIFICATIONS -->
-                                <div class="tab-pane fade" id="tab-2" role="tabpanel">
-                                    <div class="specification-table">
-                                        <table>
-                                            <tr>
-                                                <td class="p-catagory">별점</td>
-                                                <td>
-                                                    <div class="pd-rating">
-                                                        <%@include file="./star_avg.jsp" %>
-                                                        <span>(${review_count })</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">가격</td>
-                                                <td>
-                                                    <div class="p-price"><fmt:formatNumber value="${pb.p_saleprice}" pattern="#,###" />원</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Add To Cart</td>
-                                                <td>
-                                                    <div class="cart-add">+ add to cart</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">재고</td>
-                                                <td>
-                                                    <div class="p-stock">${pb.p_count} in stock</div>
-                                                </td>
-                                            </tr>
-                                            
-                                        </table>
-                                    </div>
-                                </div>
-                                
-                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@ 3  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  --> 
-                                
                                 <!-- Customer Reviews (02)   -->
-                                <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                                <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                     <div class="customer-review-option">
                                         <h4>2 Comments</h4>
                                         <div class="comment-option">
@@ -483,6 +475,49 @@
                                         </div>
                                     </div>
                                 </div>
+                                 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@ 3  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  --> 
+                                
+                                <!-- SPECIFICATIONS -->
+                                <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                                    <div class="specification-table">
+                                        <table>
+                                            <tr>
+                                                <td class="p-catagory">별점</td>
+                                                <td>
+                                                    <div class="pd-rating">
+                                                        <%@include file="./star_avg.jsp" %>
+                                                        <span>(${review_count })</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-catagory">가격</td>
+                                                <td>
+                                                    <div class="p-price"><fmt:formatNumber value="${pb.p_saleprice}" pattern="#,###" />원</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-catagory">Add To Cart</td>
+                                                <td>
+                                                    <div class="cart-add">+ add to cart</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-catagory">재고</td>
+                                                <td>
+                                                    <div class="p-stock">${pb.p_count} in stock</div>
+                                                </td>
+                                            </tr>
+                                            
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                               
+                                
+                                
                             </div>
                         </div>
                     </div>

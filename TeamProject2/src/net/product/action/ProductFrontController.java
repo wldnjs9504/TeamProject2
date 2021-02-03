@@ -59,6 +59,14 @@ public class ProductFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		
+		}else if(command.equals("/ProductCartTest.p")) {
+			System.out.println("C: /ProductCartTest.p 호출");
+			forward = new ActionForward();
+			forward.setPath("./product/carttest.jsp");
+			forward.setRedirect(false);
+			
+			
 		}
 		
 		
