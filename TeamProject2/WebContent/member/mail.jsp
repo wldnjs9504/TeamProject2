@@ -51,8 +51,6 @@ if(check == 1) {
 		
 		if(authNum == code) {
 			alert("인증 성공!");
-			opener.emailCheck.innerHTML = "인증 완료";
-			opener.email_Check = true;
 			window.close();
 		} else {
 			alert("인증번호가 틀립니다. 다시 입력해 주세요.");

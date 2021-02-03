@@ -107,11 +107,7 @@
                         	    <!-- 링크 클릭시 포인트 조회 페이지로 이동 -->
                         	    <td><a href="#">포인트</a></td>
                         	  </tr>
-                        	  <tr>
-                        	  	<!-- 등급은 일반회원/관리자 차이를 두기 위해 넣은 것이므로 삭제해야 됩니다 -->
-                        	    <th>등급</th>
-                        	    <td><input type="text" name="grade" id="grade" value="<%=mb.getGrade()%>" readonly></td>
-                        	  </tr>
+                        	 
                         	  <tr>
                         	    <th>총금액</th>
                         	    <td><input type="text" name="totalprice" id="totalprice" value="<%=mb.getTotalprice()%>" readonly></td>

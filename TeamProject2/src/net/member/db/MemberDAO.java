@@ -55,7 +55,7 @@ public class MemberDAO {
 		try {
 			con = getCon();
 		 
-			sql = "insert into member values(?,?,?,?,?,?)";
+			sql = "insert into member(id,pass,email,postcode,address1,address2) values(?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, mb.getId());
@@ -282,11 +282,11 @@ public class MemberDAO {
 	}
 	
 	
-	//이메일 인증 메서드
+		//이메일 인증 메서드
 		public int sendEmail(String to, String authNum) {
 			String from = "rmedictest@naver.com";
 			String subject = "이메일 인증";
-			String content = "[" + authNum + "]";
+			String content = "[" + authNum + "] 입력해주세요";
 			
 			Properties p = new Properties(); // 정보를 담을 객체
 
