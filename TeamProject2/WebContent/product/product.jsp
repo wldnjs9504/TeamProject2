@@ -57,7 +57,7 @@
 			count=1;
 			alert("최소 1개이상 구매할 수 있는 상품입니다.");
 			document.getElementById("c_p_count").value = 1;
-			
+			  /*  */
 		}
 		
 		document.getElementById("c_p_count").value = c_p_count;
@@ -355,17 +355,20 @@
                                 
                                 
                                 <div class="quantity">
-                                   <!--  <div class="pro-qty"> -->
                                     <div class="">  
                                     	<button class="dec qtybtn" onclick="countMinus(-1)"> - </button>
                                         <input type="text" value="1" id="c_p_count">
                                         <button class="dec qtybtn" onclick="countPlus(1)"> + </button>
                                     </div>
+<<<<<<< HEAD
                                     
                                     <br>
                                    	<button class="primary-btn pd-cart" onclick="goCart();">장바구니</button>
                                    	<button class="primary-btn pd-cart" onclick="goBuy();">바로구매</button>
                                    <!--  <a href="#" class="primary-btn pd-cart" onclick="goCart();">Add To Cart</a> -->
+=======
+                                   	<button class="primary-btn pd-cart" onclick="goCart();">Add To Cart</button>
+>>>>>>> branch 'master' of https://github.com/wldnjs9504/TeamProject2.git
                                 </div>
                                 
                                 <!-- 총 금액 계산하기  -->
