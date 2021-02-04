@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -47,7 +48,7 @@ public class ProductQnaDAO {
 		//insertQna(ProductQnaBean pqb)
 		public void insertQna(ProductQnaBean pqb) {
 			
-			int qno = 0;
+			int qno = 1;
 			
 			try {
 				con = getCon();
@@ -62,21 +63,107 @@ public class ProductQnaDAO {
 				System.out.println("글번호 : "+qno);
 				
 				sql = "insert into productqna (q_num,id,p_num,subject,content, "
-						+ "re_result,reply, re_ref, re_lev, reg_date,    re_reg_date) "
-						+ "values(?,?,?,?,?,?,?,?,?,now(),null)";
+						+ "re_result,reply, re_ref, re_lev ,re_seq, reg_date,    re_reg_date) "
+						+ "values(?,?,?,?,?,?,null,?,?,?,now(),null)";
+				pstmt = con.prepareCall(sql);
+				pstmt.setInt(1, qno);
+				pstmt.setString(2, pqb.getId());
+				pstmt.setInt(3, pqb.getP_num());
+				pstmt.setString(4, pqb.getSubject());
+				pstmt.setString(5, pqb.getContent());
+				pstmt.setInt(6, 0);
+				pstmt.setInt(7, qno);
+				pstmt.setInt(8, 0);
+				pstmt.setInt(9, 0);
 				
+				pstmt.executeUpdate();
+				System.out.println("DAO : insertQna 실행완료!");
 			} catch (Exception e1) {
+				System.out.println("DAO : insertQna 실행실패!");
 				e1.printStackTrace();
 				
 			}finally {
 				closeDB();
 			}
-			
-			
-			
 		}
 		
 		//insertQna(ProductQnaBean pqb)
+		
+		
+		
+		
+		
+		
+		
+		//getQnaCount(int p_num);
+		public int getQnaCount(int p_num, String id){
+			
+			int count = 0;
+			
+			try {
+				con = getCon();
+				sql = "select count(*) from productqna where p_num = ?, id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, p_num);
+				pstmt.setString(2, id);
+				
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt("count(*)");
+				}
+				System.out.println("DAO 글갯수 계산 완료 : " + count);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			
+			return count;
+		}
+		//getQnaCount(int p_num);
+		
+		//getQnaList(int p_num); 
+		public ArrayList<ProductQnaBean> getQnaList(int p_num, String id){
+			
+			ArrayList<ProductQnaBean> qnaList = new ArrayList<ProductQnaBean>();
+			
+			try {
+				con = getCon();
+				
+				sql = "select * from productqna where p_num = ?, id = ?"
+						+ " order by re_ref desc, re_seq asc ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, p_num);
+				pstmt.setString(2, id);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					ProductQnaBean qb = new ProductQnaBean();
+					qb.setContent(rs.getString("content"));
+					qb.setId(rs.getString("id"));
+					qb.setP_num(rs.getInt("p_num"));
+					qb.setQ_num(rs.getInt("q_num"));
+					qb.setRe_lev(rs.getInt("re_lev"));
+					qb.setRe_ref(rs.getInt("re_ref"));
+					qb.setRe_reg_date(rs.getDate("re_reg_date"));
+					qb.setRe_result(rs.getInt("re_result"));
+					qb.setReg_date(rs.getDate("reg_date"));
+					qb.setReply(rs.getString("reply"));
+					qb.setSubject(rs.getString("subject"));
+					
+					qnaList.add(qb);
+				}
+				System.out.println("DAO : 게시판 목록 저장완료! (페이징처리)");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			return qnaList;
+		}
+		//getQnaList(int p_num);
+		
+		
 		
 		
 

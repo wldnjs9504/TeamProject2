@@ -1,10 +1,15 @@
 package net.product.action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.product.db.ProductBean;
 import net.product.db.ProductDAO;
+import net.product.db.ProductQnaBean;
+import net.product.db.ProductQnaDAO;
 
 public class ProductDetailAction implements Action{
 
@@ -18,6 +23,11 @@ public class ProductDetailAction implements Action{
 		ProductDAO pdao = new ProductDAO();
 		
 		int p_num = Integer.parseInt(request.getParameter("p_num"));
+		//id저장	
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		
 		
 			//제품정보 저장
 			//pdao.getProduct(p_num) 제품상세정보
@@ -34,7 +44,17 @@ public class ProductDetailAction implements Action{
 			request.setAttribute("review_count", review_count);
 		
 		
-			//QnA정보 들고오기
+			//QnA list 들고오기
+			//QnA 갯수
+			ProductQnaDAO pqdao = new ProductQnaDAO();
+			int count = pqdao.getQnaCount(p_num, id); //QnA총 갯수
+			//int pageCount = 5; //보여줄 QnA갯수
+			//QnaList 저장 (QnA리스트, 리스트 전체수, ) 
+			ArrayList<ProductQnaBean> qnaList = pqdao.getQnaList(p_num, id);
+			request.setAttribute("qnaList", qnaList);
+			request.setAttribute("count", count);
+			//request.setAttribute("pageCount", pageCount);
+			
 		
 		
 		

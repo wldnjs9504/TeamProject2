@@ -132,6 +132,16 @@
 		   var n = (str.replace(/[^\d]+/g, '')).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 		   return n;
 		}
+	
+	function idcheck(){
+		
+		var id = <%=id%>;
+		if(id == null){
+			alert("로그인이 필요합니다");
+			return false;
+		}
+	}
+	
 
 </script>
 
@@ -319,8 +329,6 @@
                             <div class="product-details">
                                 <div class="pd-title">
                               	<!-- 카테고리 -->
-                              	<!-- 제목 위 회색 숫자 같은데 지워도 되는지? -->
-                                    <span>${pb.category }</span> 
                                     <h3>${pb.p_name }</h3> 
                                     <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                 </div>
@@ -574,10 +582,16 @@
                                 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@ 3  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
                                 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  --> 
                                 
-                                <!-- SPECIFICATIONS -->
+                                
+                                
+                                
+                                
+                                
+                                
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="specification-table">
-                                    	<form action="./ProductQnaWriteAction.p?p_num=${pb.p_num} }" method="post">
+                                    <!-- QnA 작성하기 -->
+                                    	<form action="./ProductQnaWriteAction.p?p_num=${pb.p_num}"  method="post" onsubmit="return idcheck()">
                                         <table>
                                             <tr>
                                                 <td class="p-catagory" colspan="4">
@@ -593,9 +607,40 @@
                                         	<br>
                                             <input type="submit" value="문의하기">
                                         </form>
+                                         <!-- QnA 작성하기 -->
+                                        
+                                        
+                                        <!-- QnA 불러오기 -->
+                                        <c:if test="${requestScope.count == 0} ">
+	                                		문의하신 내용이 없습니다.
+                                		</c:if>
+                                		
+                                		<c:if test="${requestScope.count != 0 }">
+	                                	
+		                                	<table id="QnA" border="1">
+		                                		<c:forEach items="${requestScope.qnaList }" var="item">
+		                                		<c:set value="${pageScope.item }" var="ql" />
+		                                		
+		                                		<tr>
+		                                			<th>제목</th>
+		                                			<th>제목</th>
+		                                		</tr>
+		                                		<tr>
+		                                			<th>문의내용</th>
+		                                			<th>문의내용</th>
+		                                		</tr>
+		                                		
+		                                		 
+		                                		
+		                                		
+		                                		</c:forEach>
+		                                		
+		                                	</table>
+                                		</c:if>
+                                	<!-- QnA 불러오기 -->
                                     </div>
                                 </div>
-                                
+                               
                                
                                 
                                 
