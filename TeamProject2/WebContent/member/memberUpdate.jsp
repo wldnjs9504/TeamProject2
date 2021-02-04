@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="col-lg-9 order-1 order-lg-2">
-                    <div class="member-info-form">
+                    <div class="member-update-form">
                     
                     
                         <h2>내 정보 변경</h2>
@@ -139,10 +139,9 @@ function execDaumPostcode() {
                         	    <th>주소</th>
                         	    <td>
                         	      <input type="text" name="postcode" id="postcode" value="<%=mb.getPostcode()%>" readonly>
-                        	      
                         	      <input type="button" class="site-btn post" onclick="execDaumPostcode()" value="주소검색">
-                        	      <input type="text" name="address1" id="address1" value="<%=mb.getAddress1()%>" readonly>
-                        	      <input type="text" name="address2" id="address2" value="<%=mb.getAddress2()%>">
+                        	      <input type="text" name="address1" id="address1" class="update" value="<%=mb.getAddress1()%>" readonly>
+                        	      <input type="text" name="address2" id="address2" class="update" value="<%=mb.getAddress2()%>">
 								</td>
                         	  </tr>
                         	</table>

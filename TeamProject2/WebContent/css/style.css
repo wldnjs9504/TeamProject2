@@ -3904,6 +3904,7 @@ ol {
 .register-form h2,
 .login-form h2,
 .member-info-form h2,
+.member-update-form h2,
 .register-product-form h2,
 .pass-check-form h2 {
 	color: #252525;
@@ -3915,6 +3916,7 @@ ol {
 .register-form form .group-input,
 .login-form form .group-input,
 .member-info-form form .group-input,
+.member-update-form form .group-input,
 .register-product-form form .group-input {
 	margin-bottom: 25px;
 }
@@ -3927,25 +3929,46 @@ ol {
 	margin-bottom: 13px;
 }
 
-.register-form form .group-input input,
+.register-form form .group-input input[type='text'],
+.register-form form .group-input input[type='password'],
+.register-form form .group-input input[type='email'],
 .login-form form .group-input input {
 	border: 1px solid #ebebeb;
 	height: 50px;
 	width: 100%;
 	padding: 0 20px;
 }
+
+.register-form .post,
+.member-update-form .post{
+	float: right;
+	padding: 13px 20px 11px;
+	position: relative;
+	top: -48.98px;
+	width: 100px;
+}
+.register-form input[type='button'],
+.member-update-form input[type='button']{
+	float: right;
+	padding: 13px 20px 11px;
+	position: relative;
+	top: -48.98px;
+	width: 100px;
+}
+
+.register-form #address1,
+.register-form #address2,
+.member-update-form #address1,
+.member-update-form #address2 {
+	position: relative;	
+	top: -48.98px;
+}
+
 /* 
 .register-form .group-input #postcode {
 	width: 70%;
 }
  */
-.register-form .post,
-.member-info-form .post{
-	float: right;
-	padding: 13px 20px 11px;
-	position: relative;
-	top: -48.3333px;
-}
 
 .register-form form .register-btn,
 .register-form form .login-btn,
@@ -4042,7 +4065,8 @@ ol {
 	color: #6B6B6B;
 }
 
-.member-info-form table {
+.member-info-form table,
+.member-update-form table {
 	font-size: 18px;
 	margin-left: 50px;
 	margin-bottom: 30px;
@@ -4050,11 +4074,13 @@ ol {
 	border-spacing: 10px;
 }
 
-.member-info-form th {
+.member-info-form th,
+.member-update-form th {
 	width: 180px;
 }
 
-.member-info-form form input {
+.member-info-form form input,
+.member-update-form form input {
 	border: none;
 	border-bottom: 1px solid #ebebeb;
 	height: 50px;
@@ -4063,12 +4089,14 @@ ol {
 }
 
 .member-info-form .check-btn,
+.member-update-form .check-btn,
 .register-product-form .check-btn,
 .pass-check-form .check-btn {
 	text-align: center;
 }
 
 .member-info-form .check-btn>input,
+.member-update-form .check-btn>input,
 .register-product-form .check-btn>input {
 	width: 100px;
 	margin: 0 30px;
@@ -4116,7 +4144,7 @@ ol {
 	width: 100%;
 	padding-top: 9px;
 }
-/*  */
+
 .pass-check-form {
 	width: 600px;
 	margin: 0 auto;

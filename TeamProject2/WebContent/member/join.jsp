@@ -161,9 +161,7 @@ $(function(){
                             <div class="group-input">
                                 <label for="address">주소 *</label>
                                 <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly="readonly" required="required">
-                                
                                 <input type="button" class="site-btn post" onclick="execDaumPostcode()" value="주소검색">
-                                
                                 <input type="text" id="address1" name="address1" placeholder="주소" readonly="readonly" required="required">
                                 <input type="text" id="address2" name="address2" placeholder="상세 주소" required="required">
                             </div>                            
