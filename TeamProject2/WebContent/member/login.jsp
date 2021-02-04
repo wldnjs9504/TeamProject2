@@ -74,7 +74,7 @@
                             <button type="submit" class="site-btn login-btn">Sign In</button>
                         </form>
                         <div class="switch-login">
-                            <a href="<%=request.getContextPath() %>/Join.me" class="or-login">Or Create An Account</a>
+                            <a href="./Join.me" class="or-login">Or Create An Account</a>
                         </div>
                     </div>
                 </div>

@@ -54,13 +54,13 @@
                     <div class="filter-widget">
                         <ul class="filter-catagories">
                         	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
-                    		<li> <a href="<%=request.getContextPath() %>/MemberInfo.me"> 내 정보 보기</a></li>
-                     		<li class="check-menu"> <a href="<%=request.getContextPath() %>/MemberUpdate.me"> 내 정보 변경</a></li>
+                    		<li> <a href="./MemberInfo.me"> 내 정보 보기</a></li>
+                     		<li class="check-menu"> <a href="./MemberUpdate.me"> 내 정보 변경</a></li>
                     		<li> <a href="#"> 주문 이력</a></li>
                     		<li> <a href="#"> 내 포인트 현황</a></li>
                     		<li> <a href="#"> 나의 리뷰</a></li>
                     		<li> <a href="#"> 고객센터</a></li>
-                    		<li> <a href="<%=request.getContextPath() %>/MemberDelete.me"> 회원탈퇴</a></li> 
+                    		<li> <a href="./MemberDelete.me"> 회원탈퇴</a></li> 
                         </ul>                    	
                     </div>
                 </div>

@@ -29,15 +29,15 @@
 			<div class="row">
 				<div class="col-lg-2 col-md-2">
 					<div class="logo">
-						<a href="<%=request.getContextPath() %>/index.jsp">
-							<img src="<%=request.getContextPath() %>/img/logo_sample1.png" alt="logo">
+						<a href="./Main.me">
+							<img src="./img/logo_sample1.png" alt="logo">
 						</a>
 					</div>
 				</div>
 				
 				<!-- 검색창  -->
 				<div class="col-lg-7 col-md-7">
-					<form action="<%=request.getContextPath() %>/ProductList.p?category=0/board/board.jsp" method="get">
+					<form action="./ProductList.p?category=0/board/board.jsp" method="get">
 						<%@include file="search.jsp" %>
 					</form>
 				</div>

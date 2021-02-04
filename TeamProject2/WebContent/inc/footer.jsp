@@ -6,12 +6,12 @@
 			<div class="col-lg-8">
 				<div class="footer-left">
 					<div class="footer-logo">
-						<a href="#"><img src="<%=request.getContextPath() %>/img/logo_sample2_footer.png" alt="" height="30px" width=auto></a>
+						<a href="#"><img src="./img/logo_sample2_footer.png" alt="" height="30px" width=auto>uR (유알) </a>
 					</div>
 					<ul>
 						<li>Address: 부산광역시 부산진구 동천로 109<br> 
 						&emsp;&emsp;&emsp;&emsp; 삼한골든게이트빌딩 7층</li>
-						<li>E-mail : <a href="mailto:wldnjs5842@naver.com">wldnjs5842@naver.com</a><br></li>
+						<li>E-mail : <a href="mailto:rmedictest@naver.com">rmedictest@naver.com</a><br></li>
 						<li>사업자등록번호 : 214-82-75412</li>
 					</ul>
 					<div class="footer-social">
@@ -45,7 +45,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
 					<div class="payment-pic">
-						<img src="<%=request.getContextPath() %>/img/payment-method.png" alt="">
+						<img src="./img/payment-method.png" alt="">
 					</div>
 				</div>
 			</div>

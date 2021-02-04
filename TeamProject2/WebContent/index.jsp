@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>Fashi | Template</title>
+	<title>uR</title>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
     <meta name="keywords" content="Fashi, unica, creative, html">
@@ -39,6 +39,7 @@
     <section class="hero-section">
         <div class="hero-items owl-carousel">
             <div class="single-hero-items set-bg" data-setbg="img/hero-1.jpg">
+            <!-- <div class="single-hero-items set-bg" data-setbg="img/banner01.png"> -->
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
@@ -55,6 +56,7 @@
                 </div>
             </div>
             <div class="single-hero-items set-bg" data-setbg="img/hero-2.jpg">
+            <!-- <div class="single-hero-items set-bg" data-setbg="img/banner02.png"> -->
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
@@ -73,8 +75,8 @@
         </div>
     </section>
     <!-- Hero Section End -->
-
-    <!-- Banner Section Begin -->
+<!-- 
+    Banner Section Begin
     <div class="banner-section spad">
         <div class="container-fluid">
             <div class="row">
@@ -105,9 +107,10 @@
             </div>
         </div>
     </div>
-    <!-- Banner Section End -->
-
-    <!-- Women Banner Section Begin -->
+    Banner Section End
+     -->
+<!-- 
+    Women Banner Section Begin
     <section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
@@ -222,8 +225,8 @@
             </div>
         </div>
     </section>
-    <!-- Women Banner Section End -->
-    
+    Women Banner Section End
+ -->    
 <!-- 필요 여부 검토 
     Deal Of The Week Section Begin
     <section class="deal-of-week set-bg spad" data-setbg="img/time-bg.jpg">
@@ -268,12 +271,14 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="filter-control">
+                    <!-- 
                         <ul>
                             <li class="active">Clothings</li>
                             <li>HandBag</li>
                             <li>Shoes</li>
                             <li>Accessories</li>
                         </ul>
+                         -->
                     </div>
                     <div class="product-slider owl-carousel">
                         <div class="product-item">

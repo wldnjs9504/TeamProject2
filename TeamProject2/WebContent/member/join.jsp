@@ -168,7 +168,7 @@ $(function(){
                             <button type="submit" class="site-btn register-btn">회원가입</button>
                         </form>
                         <div class="switch-login">
-                            <a href="<%=request.getContextPath() %>/Login.me" class="or-login">Or Login</a>
+                            <a href="./Login.me" class="or-login">Or Login</a>
                         </div>
                     </div>
                 </div>
