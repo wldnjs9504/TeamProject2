@@ -72,6 +72,20 @@
                     </div>
                 </div>
             </div>
+            <div class="single-hero-items set-bg" data-setbg="img/banner01.png">
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="img/banner02.png">
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="img/banner03.png">
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="img/banner04.png">
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="img/banner05.png">
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="img/banner06.png">
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="img/banner07.png">
+            </div>
         </div>
     </section>
     <!-- Hero Section End -->

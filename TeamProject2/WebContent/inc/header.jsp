@@ -8,19 +8,20 @@
 	<div class="header-top">
 		<div class="container">
 			<div class="ht-right">
+			  <ul>
 			<%if(id == null || id.isEmpty()) { %>
-				<a href="./Join.me" class="login-panel"><i class="fa fa-user"></i>Join</a>
-				<a href="./Login.me" class="login-panel"><i class="fa fa-user"></i>Login</a>
+				<li><a href="./Login.me" class="login-panel"><i class="fa fa-user"></i>Login</a></li>
+				<li><a href="./Join.me" class="login-panel"><i class="fa fa-user"></i>Join</a></li>
 			<%}else if(id.equals("admin")){	%>
-				<a href="./AdminMenu.ao" class="login-panel"><i class="fa fa-user"></i>Admin</a>
-				<a href="./Logout.me" class="login-panel"><i class="fa fa-user"></i>Logout</a>
 				<!-- id 클릭시 관리자 페이지로 이동. jsp 페이지명 변경될 수 있음 -->
-				<a href="./AdminMenu.ao" class="login-panel">관리자님 환영합니다.</a>
+				<li class="menu-page"><a href="./AdminMenu.ao" class="login-panel">관리자님 환영합니다.</a></li>
+				<li><a href="./Logout.me" class="login-panel"><i class="fa fa-user"></i>Logout</a></li>
 			<%}else{ %>
-				<a href="./Logout.me" class="login-panel"><i class="fa fa-user"></i>Logout</a>
 				<!-- id 클릭시 회원정보 페이지로 이동 -->			
-				<a href="./MemberInfo.me" class="login-panel"><%=id %>님 환영합니다.</a>
+				<li class="menu-page"><a href="./MemberInfo.me" class="login-panel menu-page"><%=id %>님 환영합니다.</a></li>
+				<li><a href="./Logout.me" class="login-panel"><i class="fa fa-user"></i>Logout</a></li>
 			<%} %>
+			  </ul>			
 			</div>
 		</div>
 	</div>

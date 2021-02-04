@@ -418,6 +418,18 @@ ol {
 	margin-left: 15px;
 }
 
+.header-top .ht-right ul li {
+	list-style: none;
+	float: left;
+}
+.header-top .ht-right .menu-page a:hover{
+	background-color: #f8f3ea;
+	color: #254e7b;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
 .inner-header {
 	padding: 39px 0;
 }
