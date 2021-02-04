@@ -8,7 +8,7 @@
 <html>
 
 <head>
-    <title>Fashi | Template</title>
+    <title>uR</title>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
     <meta name="keywords" content="Fashi, unica, creative, html">

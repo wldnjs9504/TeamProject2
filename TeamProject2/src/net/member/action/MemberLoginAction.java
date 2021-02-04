@@ -47,6 +47,7 @@ public class MemberLoginAction implements Action {
 	    HttpSession session = request.getSession();
 	    session.setAttribute("id", id);
 	    
+	    
 	    // 메인 페이지로 이동
 	    // 페이지 이동 - ActionForward 객체 
 	    ActionForward forward = new ActionForward();

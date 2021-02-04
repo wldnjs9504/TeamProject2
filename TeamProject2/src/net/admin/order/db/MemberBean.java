@@ -5,8 +5,8 @@ public class MemberBean {
 	private String pass;
 	private String email;
 	private int postcode; 
-	private String adress1;
-	private String adress2;
+	private String address1;
+	private String address2;
 	private int grade;
 	private int totalprice;
 	private int point;
@@ -34,17 +34,17 @@ public class MemberBean {
 	public void setPostcode(int postcode) {
 		this.postcode = postcode;
 	}
-	public String getAdress1() {
-		return adress1;
+	public String getAddress1() {
+		return address1;
 	}
-	public void setAdress1(String adress1) {
-		this.adress1 = adress1;
+	public void setAddress1(String address1) {
+		this.address1 = address1;
 	}
-	public String getAdress2() {
-		return adress2;
+	public String getAddress2() {
+		return address2;
 	}
-	public void setAdress2(String adress2) {
-		this.adress2 = adress2;
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
 	public int getGrade() {
 		return grade;
@@ -66,9 +66,11 @@ public class MemberBean {
 	}
 	@Override
 	public String toString() {
-		return "MemberBean [id=" + id + ", pass=" + pass + ", email=" + email + ", postcode=" + postcode + ", adress1="
-				+ adress1 + ", adress2=" + adress2 + ", grade=" + grade + ", totalprice=" + totalprice + ", point="
+		return "MemberBean [id=" + id + ", pass=" + pass + ", email=" + email + ", postcode=" + postcode + ", address1="
+				+ address1 + ", address2=" + address2 + ", grade=" + grade + ", totalprice=" + totalprice + ", point="
 				+ point + "]";
 	}
+	
+	
 	
 }

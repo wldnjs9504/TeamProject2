@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>이메일 인증 페이지</title>
+<title>uR</title>
 <link rel="stylesheet" href="../css/main.css"/>
 <style type="text/css">
 	#reg_form {
