@@ -138,9 +138,10 @@ function execDaumPostcode() {
                         	  <tr>
                         	    <th>주소</th>
                         	    <td>
-                        	      <input type="text" name="postcode" id="postcode" value="<%=mb.getPostcode()%>">
-                        	      <button class="site-btn post" onclick="execDaumPostcode()">주소검색</button>
-                        	      <input type="text" name="address1" id="address1" value="<%=mb.getAddress1()%>">
+                        	      <input type="text" name="postcode" id="postcode" value="<%=mb.getPostcode()%>" readonly>
+                        	      
+                        	      <input type="button" class="site-btn post" onclick="execDaumPostcode()" value="주소검색">
+                        	      <input type="text" name="address1" id="address1" value="<%=mb.getAddress1()%>" readonly>
                         	      <input type="text" name="address2" id="address2" value="<%=mb.getAddress2()%>">
 								</td>
                         	  </tr>
