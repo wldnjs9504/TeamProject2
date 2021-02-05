@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 
@@ -58,6 +59,15 @@
 	
 	
  <script type="text/javascript">
+ //qns 제목 토글적용
+ $(document).ready(function(){
+	 $(".q_sub a").click(function(){
+		 $(this).parent().parent().nextUntil(".q_sub").toggle();
+	      return false;
+	 });
+ });
+ 
+ 
 	function goCart(){
 	//var p_num = document.getElementById("p_num").value;
 	var p_num = ${pb.p_num};
@@ -621,27 +631,18 @@
 	                                		문의하신 내용이 없습니다.
                                 		<%}%>
                                 		
-	                                	
 		                                	<table id="QnA" border="1">
 		                                		<c:forEach items="${requestScope.qnaList }" var="item">
 		                                		<c:set value="${pageScope.item }" var="ql" />
 		                                		
-		                                		
-		                                		<tr>
-		                                			<th>제목</th>
-		                                			<th>${ql.subject }&nbsp;&nbsp;
-		                                			<fmt:formatDate value="${ql.reg_date }" dateStyle="long"/> 
-		                                			</th>
-		                                		</tr>
-		                                		
-		                                		<tr>
-		                                			<th>문의내용</th>
-		                                			<th>${ql.content }</th>
-		                                		</tr>
-		                                		
-		                                		 <br>
-		                                		
-		                                		
+			                                		<tr class="q_sub">
+			                                			<td>글번호  : ${ql.q_num }</td>
+			                                			<td><a href="#">제목 : ${ql.subject }</a></td>
+			                                			<td><fmt:formatDate value="${ql.reg_date }" dateStyle="long"/></td>
+			                                		</tr>
+			                                		<tr>
+			                                			<td colspan="3">${ql.content }</td>
+			                                		</tr>
 		                                		</c:forEach>
 		                                		
 		                                	</table>
