@@ -624,7 +624,7 @@
                                          <!-- QnA 작성하기 -->
                                         
                                         
-                                        <!-- QnA 불러오기 -->
+                                        <!-- QnA 불러오기 --> 
                                         <%
                                         int count = (int)request.getAttribute("count");
                                         if(id == null || count == 0){ %>
