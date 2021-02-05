@@ -32,7 +32,7 @@ public class OrderDAO {
 	}//end of getCon()
 	
 	//주문등록하기
-	public void addOrder(OrderBean ob, List<CartBean> cartList, List<ProductBean> productList) {
+	public void addOrder(orderBean ob, List<CartBean> cartList, List<ProductBean> productList) {
 		int b_num = 0; //일련번호
 		int trade_num = 0; //주문번호
 
