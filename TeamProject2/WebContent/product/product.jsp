@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+    
 </head>
 
 	<%
@@ -53,6 +55,7 @@
 	<c:set value="${requestScope.star_avg }" var="star_avg" />
 	<c:set value="${requestScope.review_count }" var="review_count"/>
 	<c:set value="${pb.p_num }" var="p_num"/>
+	
 	
  <script type="text/javascript">
 	function goCart(){
@@ -607,36 +610,41 @@
                                         	<br>
                                             <input type="submit" value="문의하기">
                                         </form>
+                                        <br>
                                          <!-- QnA 작성하기 -->
                                         
                                         
                                         <!-- QnA 불러오기 -->
-                                        <c:if test="${requestScope.count == 0} ">
+                                        <%
+                                        int count = (int)request.getAttribute("count");
+                                        if(id == null || count == 0){ %>
 	                                		문의하신 내용이 없습니다.
-                                		</c:if>
+                                		<%}%>
                                 		
-                                		<c:if test="${requestScope.count != 0 }">
 	                                	
 		                                	<table id="QnA" border="1">
 		                                		<c:forEach items="${requestScope.qnaList }" var="item">
 		                                		<c:set value="${pageScope.item }" var="ql" />
 		                                		
+		                                		
 		                                		<tr>
 		                                			<th>제목</th>
-		                                			<th>제목</th>
-		                                		</tr>
-		                                		<tr>
-		                                			<th>문의내용</th>
-		                                			<th>문의내용</th>
+		                                			<th>${ql.subject }&nbsp;&nbsp;
+		                                			<fmt:formatDate value="${ql.reg_date }" dateStyle="long"/> 
+		                                			</th>
 		                                		</tr>
 		                                		
-		                                		 
+		                                		<tr>
+		                                			<th>문의내용</th>
+		                                			<th>${ql.content }</th>
+		                                		</tr>
+		                                		
+		                                		 <br>
 		                                		
 		                                		
 		                                		</c:forEach>
 		                                		
 		                                	</table>
-                                		</c:if>
                                 	<!-- QnA 불러오기 -->
                                     </div>
                                 </div>

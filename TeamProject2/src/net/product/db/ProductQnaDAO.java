@@ -102,7 +102,7 @@ public class ProductQnaDAO {
 			
 			try {
 				con = getCon();
-				sql = "select count(*) from productqna where p_num = ?, id = ?";
+				sql = "select count(*) from productqna where p_num = ? and id = ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, p_num);
 				pstmt.setString(2, id);
@@ -111,7 +111,7 @@ public class ProductQnaDAO {
 				if(rs.next()) {
 					count = rs.getInt("count(*)");
 				}
-				System.out.println("DAO 글갯수 계산 완료 : " + count);
+				System.out.println("DAO QNA글갯수 계산 완료 : " + count);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
@@ -130,7 +130,7 @@ public class ProductQnaDAO {
 			try {
 				con = getCon();
 				
-				sql = "select * from productqna where p_num = ?, id = ?"
+				sql = "select * from productqna where p_num = ? and id = ?"
 						+ " order by re_ref desc, re_seq asc ";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, p_num);
@@ -153,7 +153,7 @@ public class ProductQnaDAO {
 					
 					qnaList.add(qb);
 				}
-				System.out.println("DAO : 게시판 목록 저장완료! (페이징처리)");
+				System.out.println("DAO : QNA게시판 목록 저장완료!");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
