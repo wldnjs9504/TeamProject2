@@ -2,7 +2,7 @@ package net.order.db;
 
 import java.sql.Date;
 
-public class orderBean {
+public class OrderBean {
 
 	private int b_num;
 	private String id;
@@ -20,6 +20,7 @@ public class orderBean {
 	private String d_address;
 	private String d_address2;
 	private String d_message;
+	private int d_postcode;
 	private int payment;
 	public int getB_num() {
 		return b_num;
@@ -123,12 +124,18 @@ public class orderBean {
 	public void setPayment(int payment) {
 		this.payment = payment;
 	}
+	public int getD_postcode() {
+		return d_postcode;
+	}
+	public void setD_postcode(int d_postcode) {
+		this.d_postcode = d_postcode;
+	}
 	@Override
 	public String toString() {
 		return "orderBean [b_num=" + b_num + ", id=" + id + ", o_name=" + o_name + ", o_phone=" + o_phone + ", o_email="
 				+ o_email + ", b_date=" + b_date + ", p_num=" + p_num + ", b_count=" + b_count + ", point=" + point
 				+ ", d_cost=" + d_cost + ", d_result=" + d_result + ", d_name=" + d_name + ", d_phone=" + d_phone
-				+ ", d_address=" + d_address + ", d_address2=" + d_address2 + ", d_message=" + d_message + ", payment="
+				+ ", d_address=" + d_address + ", d_postcode =" + d_postcode  + ", d_address2=" + d_address2 + ", d_message=" + d_message + ", payment="
 				+ payment + "]";
 	}
 	

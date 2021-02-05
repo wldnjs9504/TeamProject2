@@ -1,5 +1,5 @@
 <%@page import="net.admin.product.db.ProductBean"%>
-<%@page import="net.order.db.orderBean"%>
+<%@page import="net.order.db.OrderBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -48,10 +48,10 @@
     </div>
     <!-- Breadcrumb Section Begin -->
 <%
-List list = (List)request.getAttribute("list");
-orderBean ob=(orderBean)list.get(0);
-if(id == null || id.isEmpty() || !id.equals("admin")) { 
-	%>
+	List list = (List)request.getAttribute("list");
+OrderBean ob=(OrderBean)list.get(0);
+if(id == null || id.isEmpty() || !id.equals("admin")) {
+%>
 	<!-- 로그인이 필요한 페이지의 경우 넣는 페이지 -->
 	<script>
 		alert("올바르지 않은 접속 방법입니다.");

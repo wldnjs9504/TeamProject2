@@ -1,5 +1,5 @@
 <%@page import="net.admin.order.db.MemberBean"%>
-<%@page import="net.order.db.orderBean"%>
+<%@page import="net.order.db.OrderBean"%>
 <%@page import="java.util.List"%>
 <%@page import="net.admin.product.db.ProductBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

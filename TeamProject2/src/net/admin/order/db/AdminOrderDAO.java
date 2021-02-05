@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import net.admin.product.db.ProductBean;
-import net.order.db.orderBean;
+import net.order.db.OrderBean;
 
 public class AdminOrderDAO {
 
@@ -60,7 +60,7 @@ public class AdminOrderDAO {
 			rs = pstmt.executeQuery();
 			System.out.println("문제없음");
 			while(rs.next()) {
-				orderBean ob = new orderBean();
+				OrderBean ob = new OrderBean();
 				ob.setB_count(rs.getInt("b_count"));
 				ob.setB_date(rs.getDate("b_date"));
 				ob.setB_num(rs.getInt("b_num"));
@@ -107,7 +107,7 @@ public class AdminOrderDAO {
 			
 			System.out.println("문제 없음");
 			while(rs.next()) {
-				orderBean ob = new orderBean();
+				OrderBean ob = new OrderBean();
 				ProductBean pb = new ProductBean();
 				ob.setB_count(rs.getInt("b_count"));
 				ob.setB_date(rs.getDate("b_date"));
@@ -149,7 +149,7 @@ public class AdminOrderDAO {
 	//getAdminOrderDetail(b_num)
 	
 	//updateOrder(OrderBean ob)
-	public void updateOrder(orderBean ob) {
+	public void updateOrder(OrderBean ob) {
 		try {
 			con = getCon();
 			sql = "update p_order set d_result=? where b_num=?";
@@ -236,7 +236,7 @@ public class AdminOrderDAO {
 			rs = pstmt.executeQuery();
 			System.out.println("문제없음");
 			while(rs.next()) {
-				orderBean ob = new orderBean();
+				OrderBean ob = new OrderBean();
 				ob.setB_count(rs.getInt("b_count"));
 				ob.setB_date(rs.getDate("b_date"));
 				ob.setB_num(rs.getInt("b_num"));

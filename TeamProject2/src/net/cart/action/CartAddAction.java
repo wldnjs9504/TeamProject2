@@ -1,0 +1,54 @@
+package net.cart.action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.cart.db.CartBean;
+import net.cart.db.CartDAO;
+
+public class CartAddAction implements Action {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) 
+			throws Exception {
+		System.out.println("M : CartAddAction의 execute() 호출");
+		// 로그인 정보 (로그인 처리필요)
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		ActionForward forward = new ActionForward();
+		if(id == null){
+			forward.setPath("./MemberLogin.me");
+			forward.setRedirect(false);
+			return forward;
+		}
+		
+		//한글처리
+		request.setCharacterEncoding("UTF-8");
+		
+		// 장바구니 저장
+		// CartBean / CartDAO 객체 	
+		// 장바구니 객체 생성
+		// 파라미터값 저장(상품번호,구매수량) + ID
+		CartBean cb = new CartBean();
+		cb.setP_num(Integer.parseInt(request.getParameter("p_num")));
+		cb.setC_count(Integer.parseInt(request.getParameter("c_count")));
+		cb.setId(id);
+		System.out.println("장바구니 객체정보: "+cb);
+		
+		// CartDAO 객체 생성
+		CartDAO cdao = new CartDAO();
+		//해당상품(+옵션까지)이 장바구니에 동일한게 있는지 체크
+		int result = cdao.checkProduct(cb);
+		
+		// CartAdd() - 추가
+		if(result != 1){ //장바구니에 해당상품이 없다
+			cdao.cartAdd(cb);
+		}
+		
+		//장바구니list로 이동
+		forward.setPath("./CartList.ba");
+		forward.setRedirect(true);
+		return forward;
+	}
+}
