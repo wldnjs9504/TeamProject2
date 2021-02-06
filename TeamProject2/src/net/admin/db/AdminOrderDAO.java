@@ -267,4 +267,25 @@ public class AdminOrderDAO {
 		return list;
 	}
 	//getAdminOrderList()
+	
+	//deleteMember(id)
+	public void deleteMember(String id) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "delete from member where id=?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+	}
+	//deleteMember(id)
 }

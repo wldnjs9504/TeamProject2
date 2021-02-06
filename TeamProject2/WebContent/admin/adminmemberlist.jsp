@@ -49,21 +49,6 @@
 	List list = (List)request.getAttribute("list");
 	MemberBean mb=(MemberBean)list.get(0);
 	%>
-<script type="text/javascript">
-function removeCheck() {
-
-	 if (confirm("정말 강제 탈퇴시키겠습니까?") == true){    //확인
-		 if(<%= mb.getId().equals("admin") %>){
-			 alert("관리자 계정은 탈퇴할 수 없습니다.");
-			 return false;
-		 }else{
-			 
-		 }
-	 }else{   //취소
-	     return false;
-	 }
-}
-</script>
 
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
@@ -161,10 +146,12 @@ function removeCheck() {
                                     <td class="price">
                                         <%= sb %>원
                                     </td>
-                                    
+                                    <%if(!mb.getId().equals("admin")){  %>
                                     <td class="button2">
                                     	<input type="button" class="site-btn update" value="강퇴" onclick="removeCheck()">
     								</td>
+    								<%} %>
+    							
     							</tr>	   
                                 <%
    								}
@@ -177,6 +164,16 @@ function removeCheck() {
         </div>
     </section>
     <!-- Shopping Cart Section End -->
+<script type="text/javascript">
+function removeCheck() {
+
+	 if (confirm("정말 강제 탈퇴시키겠습니까?") == true){    //확인
+		 location.href="./AdminMemberDelete.ao?id=<%=mb.getId() %>";
+	 }else{   //취소
+	     return false;
+	 }
+}
+</script>
 
     <!-- 푸터 -->
     <%@include file="../inc/footer.jsp" %>

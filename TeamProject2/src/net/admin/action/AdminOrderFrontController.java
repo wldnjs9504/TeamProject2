@@ -72,6 +72,14 @@ public class AdminOrderFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/AdminMemberDelete.ao")) {
+			action = new AdminMemberDelete();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null) {
