@@ -32,7 +32,7 @@ public class ProductDetailAction implements Action{
 			//제품정보 저장
 			//pdao.getProduct(p_num) 제품상세정보
 			ProductBean pb = pdao.getProduct(p_num);
-			//productBean  저장
+			//productBean  저장  
 			request.setAttribute("pb", pb);
 			 
 			//pdao.getStarAvg(p_num) 별점계산

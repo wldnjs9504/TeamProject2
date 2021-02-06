@@ -166,7 +166,7 @@ public class ProductQnaDAO {
 					
 					qnaList.add(qb);
 				}
-				System.out.println("DAO : QNA게시판 목록 저장완료!");
+				System.out.println("DAO : QNA게시판 목록 저장완료!"); 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
