@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <style type="text/css">
+    <!-- <style type="text/css">
     #qnaTable tr:HOVER{background-color: #FFFFD2; }
     #qnaTable td{text-overflow: :ellipsis; overflow: hidden;}
     #qnaTable {width:100%; border-spacing: 0; border-collapse: collapse; position:relative;}
@@ -48,7 +48,8 @@
 		filter:alpha(opacity=0); */
 	}    
     
-    </style>
+    </style> -->
+    
     
 </head>
 
@@ -502,12 +503,12 @@
 				                                			<c:if test="${ql.re_result ==1 }">[답변등록 완료] </c:if>			                                			
 			                                			</th>
 			                                		</tr>
-			                                		<tr>
+			                                		<tr class="none">
 			                                			<td colspan="3">${ql.content }</td>
 			                                		</tr>	
 			                                	<!-- 답글 달렸을 경우 답글 보이게  -->	
 		                                		<c:if test="${ql.re_result==1 }">
-			                                		<tr>
+			                                		<tr class="none">
 			                                			<td colspan="3"><img src="./product/re.gif">&nbsp; ${ql.reply }</td>
 			                                		</tr>
 		                                		</c:if>
@@ -526,12 +527,24 @@
 			                                			</c:if>
 			                                		</tr>
 			                                			<%}%>
+			                                			
 		                                		</c:forEach>
 		                                		
 		                                	</table>
+		                                	<!-- <script type="text/css"> -->
+											<!-- $(document).ready(function(){
+											$(".none").css("display","none");
+											});		 -->
+											<!-- </script> -->
+		                                	
+			                                			<!-- <script type="text/javascript">
+			                                			document.getElementsByClassName("none")[0].style.display = "none";
+			                                			document.getElementsByClassName("none")[1].style.display = "none";
+                               							 </script>	 -->	
                                 	<!-- QnA 불러오기 -->
                                     </div>
                                 </div>
+                                
                                
                                
                                 

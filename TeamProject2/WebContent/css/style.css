@@ -114,6 +114,9 @@ ol {
 /*---------------------
   Helper CSS
 -----------------------*/
+.none{
+	display:none;
+}
 
 .section-title {
 	margin-bottom: 40px;
