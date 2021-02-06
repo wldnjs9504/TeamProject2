@@ -177,15 +177,24 @@ public class ProductQnaDAO {
 		//getQnaList(int p_num);
 		
 		//replyQnaList(int p_num, String id)
-		public void replyQnaList(int p_num, String id) {
+		public void replyQnaList(ProductQnaBean pqb, int p_num) {
+			//p_num, reply, id, q_num 넘김
 			
 			try {
 				con = getCon();
 				
 				sql = "update productqna set re_result=1, reply =?, re_reg_date=now() "
-						+ "where p_num=? and id = ? "
-						+ "order by re_ref desc";
+						+ "where p_num=? and id = ? and q_num = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, pqb.getReply());
+				pstmt.setInt(2, p_num);
+				pstmt.setString(3, pqb.getId());
+				pstmt.setInt(4, pqb.getQ_num());
+				
+				pstmt.executeUpdate();
+				System.out.println("DAO : QNA Reply update 완료!");
 			} catch (Exception e) {
+				System.out.println("DAO : QNA Reply update 실패!");
 				e.printStackTrace();
 			}finally {
 				closeDB();

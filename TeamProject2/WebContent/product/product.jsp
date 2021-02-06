@@ -206,131 +206,7 @@
     <section class="product-shop spad page-details">
         <div class="container">
             <div class="row">
-                <!-- <div class="col-lg-3">
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Categories</h4>
-                        <ul class="filter-catagories">
-                            <li><a href="#">Men</a></li>
-                            <li><a href="#">Women</a></li>
-                            <li><a href="#">Kids</a></li>
-                        </ul>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Brand</h4>
-                        <div class="fw-brand-check">
-                            <div class="bc-item">
-                                <label for="bc-calvin">
-                                    Calvin Klein
-                                    <input type="checkbox" id="bc-calvin">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-diesel">
-                                    Diesel
-                                    <input type="checkbox" id="bc-diesel">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-polo">
-                                    Polo
-                                    <input type="checkbox" id="bc-polo">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-tommy">
-                                    Tommy Hilfiger
-                                    <input type="checkbox" id="bc-tommy">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Price</h4>
-                        <div class="filter-range-wrap">
-                            <div class="range-slider">
-                                <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
-                                </div>
-                            </div>
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="33" data-max="98">
-                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                            </div>
-                        </div>
-                        <a href="#" class="filter-btn">Filter</a>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Color</h4>
-                        <div class="fw-color-choose">
-                            <div class="cs-item">
-                                <input type="radio" id="cs-black">
-                                <label class="cs-black" for="cs-black">Black</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-violet">
-                                <label class="cs-violet" for="cs-violet">Violet</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-blue">
-                                <label class="cs-blue" for="cs-blue">Blue</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-yellow">
-                                <label class="cs-yellow" for="cs-yellow">Yellow</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-red">
-                                <label class="cs-red" for="cs-red">Red</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-green">
-                                <label class="cs-green" for="cs-green">Green</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Size</h4>
-                        <div class="fw-size-choose">
-                            <div class="sc-item">
-                                <input type="radio" id="s-size">
-                                <label for="s-size">s</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="m-size">
-                                <label for="m-size">m</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="l-size">
-                                <label for="l-size">l</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="xs-size">
-                                <label for="xs-size">xs</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Tags</h4>
-                        <div class="fw-tags">
-                            <a href="#">Towel</a>
-                            <a href="#">Shoes</a>
-                            <a href="#">Coat</a>
-                            <a href="#">Dresses</a>
-                            <a href="#">Trousers</a>
-                            <a href="#">Men's hats</a>
-                            <a href="#">Backpack</a>
-                        </div>
-                    </div>
-                </div> -->
-                
-                
+
                 <div class="col-lg-12">
                     <div class="row">
                     
@@ -381,42 +257,6 @@
                                     <span><fmt:formatNumber value="${pb.p_price}" pattern="#,###" />원</span></h4>
                                 </div>
                                 
-                                <!-- 색상 사이즈 -->
-                                <!-- <div class="pd-color">
-                                    <h6>Color</h6>
-                                    <div class="pd-color-choose">
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-black">
-                                            <label for="cc-black"></label>
-                                        </div>
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-yellow">
-                                            <label for="cc-yellow" class="cc-yellow"></label>
-                                        </div>
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-violet">
-                                            <label for="cc-violet" class="cc-violet"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pd-size-choose">
-                                    <div class="sc-item">
-                                        <input type="radio" id="sm-size">
-                                        <label for="sm-size">s</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="md-size">
-                                        <label for="md-size">m</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="lg-size">
-                                        <label for="lg-size">l</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="xl-size">
-                                        <label for="xl-size">xs</label>
-                                    </div>
-                                </div> -->
                                 <!-- 
                                 <div class="quantity">
                                     <div class="pro-qty">
@@ -426,13 +266,11 @@
                                 </div>                               
                                  -->
                                 
-                                
-                                
                                 <div class="quantity">
-                                    <div class="">  
-                                    	<button class="dec qtybtn" onclick="countMinus(-1)"> - </button>
+                                    <div class="qty">  
+                                    	<button class="minus qtybtn" onclick="countMinus(-1)"> - </button>
                                         <input type="text" value="1" id="c_p_count">
-                                        <button class="dec qtybtn" onclick="countPlus(1)"> + </button>
+                                        <button class="plus qtybtn" onclick="countPlus(1)"> + </button>
                                     </div>
                                     
                                     <br>

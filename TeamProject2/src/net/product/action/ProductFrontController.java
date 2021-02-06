@@ -79,6 +79,18 @@ public class ProductFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/ProductQnaReview.p")) {
+			System.out.println("/ProductQnaReview.p 호출");
+			System.out.println("db 업데이트 리뷰로 이동");
+			
+			action = new ProductQnaReviewAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		
