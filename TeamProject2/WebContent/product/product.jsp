@@ -28,7 +28,27 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <style type="text/css">
+    #qnaTable tr:HOVER{background-color: #FFFFD2; }
+    #qnaTable td{text-overflow: :ellipsis; overflow: hidden;}
+    #qnaTable {width:100%; border-spacing: 0; border-collapse: collapse; position:relative;}
+    #qnaTable tr,td {border-top: 1px solid #D5D5D5;
+    		border-bottom: 1px solid #D5D5D5;
+    		background: white; border-top: 0; text-align: center; width: 50%;}
+    #qnaTable th{border-top: 1px solid #D5D5D5;}
+    #qnaTable tr{background: #EAEAEA; display:none;}
+	#qnaTable tr.q_sub {display:table-row;}
+	#qnaTable .q_sub a{
+		position:absolute;
+		width:100%;
+		text-indent: -9999px;
+		left:0;
+		opacity:0;
+		/* -ms-filter:alpha(opacity=0);
+		filter:alpha(opacity=0); */
+	}    
     
+    </style>
     
 </head>
 
@@ -631,14 +651,16 @@
 	                                		문의하신 내용이 없습니다.
                                 		<%}%>
                                 		
-		                                	<table id="QnA" border="1">
+		                                	<table id="QnA" border="1" id="qnaTable">
 		                                		<c:forEach items="${requestScope.qnaList }" var="item">
 		                                		<c:set value="${pageScope.item }" var="ql" />
 		                                		
 			                                		<tr class="q_sub">
-			                                			<td>글번호  : ${ql.q_num }</td>
-			                                			<td><a href="#">제목 : ${ql.subject }</a></td>
-			                                			<td><fmt:formatDate value="${ql.reg_date }" dateStyle="long"/></td>
+			                                			<th colspan="2"><a href="#">[${ql.q_num }] 문의글 : ${ql.subject }&nbsp;
+			                                			<c:if test="${ql.re_result ==0 }">[답변등록 대기중] </c:if>
+			                                			<c:if test="${ql.re_result ==1 }">[답변등록 완료] </c:if>
+			                                			</a></th>
+			                                			<th colspan="1"><fmt:formatDate value="${ql.reg_date }" dateStyle="long"/></th>
 			                                		</tr>
 			                                		<tr>
 			                                			<td colspan="3">${ql.content }</td>

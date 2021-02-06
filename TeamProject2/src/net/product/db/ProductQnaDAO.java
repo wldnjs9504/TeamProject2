@@ -127,14 +127,27 @@ public class ProductQnaDAO {
 			
 			ArrayList<ProductQnaBean> qnaList = new ArrayList<ProductQnaBean>();
 			
+			StringBuffer sql = new StringBuffer(); 
+			
 			try {
 				con = getCon();
 				
-				sql = "select * from productqna where p_num = ? and id = ?"
-						+ " order by re_ref desc, re_seq asc ";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, p_num);
-				pstmt.setString(2, id);
+				sql.append("select * from productqna where p_num = ? ");
+				
+				if(id.equals("admin")) {
+					sql.append("order by re_ref desc, re_seq asc ");
+				}else{
+					sql.append("and id = ? order by re_ref desc, re_seq asc ");
+				}
+				pstmt = con.prepareStatement(sql.toString());
+				
+				if(id.equals("admin")) {
+					pstmt.setInt(1, p_num);
+				}else {
+					pstmt.setInt(1, p_num);
+					pstmt.setString(2, id);
+				}
+				
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()) {
@@ -162,6 +175,24 @@ public class ProductQnaDAO {
 			return qnaList;
 		}
 		//getQnaList(int p_num);
+		
+		//replyQnaList(int p_num, String id)
+		public void replyQnaList(int p_num, String id) {
+			
+			try {
+				con = getCon();
+				
+				sql = "update productqna set re_result=1, reply =?, re_reg_date=now() "
+						+ "where p_num=? and id = ? "
+						+ "order by re_ref desc";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			
+		}
+		//replyQnaList(int p_num, String id)
 		
 		
 		
