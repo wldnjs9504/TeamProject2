@@ -206,11 +206,7 @@
     <section class="product-shop spad page-details">
         <div class="container">
             <div class="row">
-<<<<<<< HEAD
-
-=======
                 
->>>>>>> branch 'master' of https://github.com/wldnjs9504/TeamProject2.git
                 <div class="col-lg-12">
                     <div class="row">
                     
@@ -498,15 +494,38 @@
 		                                		<c:set value="${pageScope.item }" var="ql" />
 		                                		
 			                                		<tr class="q_sub">
-			                                			<th colspan="2"><a href="#">[${ql.q_num }] 문의글 : ${ql.subject }&nbsp;
-			                                			<c:if test="${ql.re_result ==0 }">[답변등록 대기중] </c:if>
-			                                			<c:if test="${ql.re_result ==1 }">[답변등록 완료] </c:if>
-			                                			</a></th>
-			                                			<th colspan="1"><fmt:formatDate value="${ql.reg_date }" dateStyle="long"/></th>
+			                                			<th colspan="2">
+			                                				<a href="#">[${ql.q_num }] 문의글 : ${ql.subject }
+			                                			</th>
+			                                			<th colspan="1"><fmt:formatDate value="${ql.reg_date }" dateStyle="long"/>&nbsp;
+				                                			<c:if test="${ql.re_result ==0 }">[답변등록 대기중] </c:if>
+				                                			<c:if test="${ql.re_result ==1 }">[답변등록 완료] </c:if>			                                			
+			                                			</th>
 			                                		</tr>
 			                                		<tr>
 			                                			<td colspan="3">${ql.content }</td>
+			                                		</tr>	
+			                                	<!-- 답글 달렸을 경우 답글 보이게  -->	
+		                                		<c:if test="${ql.re_result==1 }">
+			                                		<tr>
+			                                			<td colspan="3"><img src="./product/re.gif">&nbsp; ${ql.reply }</td>
 			                                		</tr>
+		                                		</c:if>
+			                                		<!-- 관리자일경우 -> 답글달기 칸보이게 -->
+			                                			<%if(id.equals("admin")){%>
+			                                		<tr>	
+			                                			<c:if test="${ql.re_result==0 }">
+				                                			<td colspan="3">
+					                                			<form action="./ProductQnaReview.p?p_num=${pb.p_num }" method="post">
+					                                				<input type="hidden" name="q_num" value="${ql.q_num }">
+					                                				<input type="hidden" name="id" value="${ql.id}">
+					                                				<input type="text" name="reply" >
+					                                				<input type="submit" value="답글작성">
+					                                			</form>
+				                                			</td>
+			                                			</c:if>
+			                                		</tr>
+			                                			<%}%>
 		                                		</c:forEach>
 		                                		
 		                                	</table>
