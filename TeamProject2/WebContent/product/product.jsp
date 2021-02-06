@@ -346,7 +346,7 @@
                                     <a data-toggle="tab" href="#tab-2" role="tab">Customer Reviews (02)</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-3" role="tab">Q & A</a>
+                                    <a data-toggle="tab" href="#tab-3" role="tab" id="tab0">Q & A</a>
                                 </li>
                             </ul>
                         </div>

@@ -15,6 +15,7 @@ import jdk.nashorn.internal.ir.ReturnNode;
 import net.member.db.MemberBean;
 import net.order.db.orderBean;
 import net.product.db.ProductBean;
+import net.product.db.ProductQnaBean;
 
 public class AdminOrderDAO {
 
@@ -294,4 +295,43 @@ public class AdminOrderDAO {
 		
 	}
 	//deleteMember(id)
+	
+	//getQnaList()
+	public List getQnaList() {
+		List list = new ArrayList();
+		
+		try {
+			con = getCon();
+			sql = "select * from productqna where re_result = 0 order by reg_date desc";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				do {
+					ProductQnaBean qb = new ProductQnaBean();
+					qb.setContent(rs.getString("content"));
+					qb.setId(rs.getString("id"));
+					qb.setP_num(rs.getInt("p_num"));
+					qb.setQ_num(rs.getInt("q_num"));
+					qb.setRe_lev(rs.getInt("re_lev"));
+					qb.setRe_ref(rs.getInt("re_ref"));
+					qb.setRe_reg_date(rs.getDate("re_reg_date"));
+					qb.setRe_result(rs.getInt("re_result"));
+					qb.setReg_date(rs.getDate("reg_date"));
+					qb.setReply(rs.getString("reply"));
+					qb.setSubject(rs.getString("subject"));
+					
+					list.add(qb);
+				}while(rs.next());
+			}else {
+				list = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return list;
+	}
+	//getQnaList()
 }

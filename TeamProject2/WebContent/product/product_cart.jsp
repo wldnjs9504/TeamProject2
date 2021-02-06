@@ -1,3 +1,5 @@
+<%@page import="net.product.db.ProductBean"%>
+<%@page import="java.util.Vector"%>
 <%@page import="net.cart.db.CartBean"%>
 <%@page import="java.awt.List"%>
 <%
@@ -23,13 +25,13 @@ if(listIsNull){ //전달된 리스트정보가 null인 경우
 	<%
 }else{ ////전달된 리스트정보가 null이 아닌 경우
 	//basketList에서 구현한 정보를 전달받아서 처리
-	List cartList = (List) request.getAttribute("cartList");
-	List productList = (List) request.getAttribute("productList");
-	CartBean cb = cartList.get(0);
+	Vector cartList = (Vector) request.getAttribute("cartList");
+	Vector productList = (Vector) request.getAttribute("productList");
+	CartBean cb = (CartBean) cartList.get(0);
 %>
 <!-- 장바구니 번호, 사진(대표이미지), 상품명, 사이즈,색상,수량,가격, 삭제 -->
  <table border="1">
-   <caption><%=cb.getC_m_id() %>님의 장바구니</caption>
+   <caption><%=cb.getId() %>님의 장바구니</caption>
 	<tr>
 	   <th>번호</th>
 	   <th>사진</th>
@@ -43,16 +45,16 @@ if(listIsNull){ //전달된 리스트정보가 null인 경우
    <%
    //EL태그는 FOR문과 상관없이 <c:forEach> 사용해서 출력해야한다.
    for(int i=0; i<cartList.size(); i++){
-	   CartBean cb = (CartBean) cartList.get(i);
+	   cb = (CartBean) cartList.get(i);
 	   ProductBean pb = (ProductBean) productList.get(i);
    %>
    <tr>
    	<!-- 순차 넘버링  -->
       <td><%=i+1%></td>
-      <td><img src="./upload/<%=pb.getImage().split(",")[0] %>" height="100px"></td>
-      <td><%=pb.getName() %></td>
-      <td><%=cb.getC_p_count() %></td>
-      <td><%=pb.getPrice() %></td>
+      <td><img src="./upload/<%=pb.getImg_main().split(",")[0] %>" height="100px"></td>
+      <td><%=pb.getP_name() %></td>
+      <td><%=cb.getC_count() %></td>
+      <td><%=pb.getP_saleprice() %></td>
       <td>
 	  	<input type="button" class="btn" value="[장바구니에서 삭제]" 
 	  			onclick="location.href='./CartDelete.ba?b_num=<%=cb.getC_num()%>'">
