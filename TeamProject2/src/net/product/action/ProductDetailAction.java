@@ -54,8 +54,10 @@ public class ProductDetailAction implements Action{
 			int count = pqdao.getQnaCount(p_num, id); //QnA총 갯수
 			//int pageCount = 5; //보여줄 QnA갯수
 			//QnaList 저장 (QnA리스트, 리스트 전체수, ) 
-			ArrayList<ProductQnaBean> qnaList = pqdao.getQnaList(p_num, id);
-			request.setAttribute("qnaList", qnaList);
+			if(count != 0) {
+				ArrayList<ProductQnaBean> qnaList = pqdao.getQnaList(p_num, id);
+				request.setAttribute("qnaList", qnaList);
+			}
 			request.setAttribute("count", count);
 			//request.setAttribute("pageCount", pageCount);
 			
