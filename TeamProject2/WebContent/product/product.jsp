@@ -80,6 +80,39 @@
 	
 	
  <script type="text/javascript">
+ 
+ //qna댓글작성 commentBtn  pb.p_num, ql.q_num, ql.id, #reply  필요
+ /*  $(document).ready(function(){
+	  $("#commentBtn").click(function(){
+		  
+		  var p_num = ${pb.p_num};
+		  var q_num = $(ql.q_num);
+		  var id = ${ql.id};
+		  var reply = $("#reply").val();
+		  
+		  $.ajax({
+			  type : "post",
+			  url : "productQnaReviewAction.java",
+			  data : {
+				  "p_num" : p_num,
+				  "q_num" : q_num,
+				  "id" : id,
+				  "reply" : reply
+			  },
+			  dateType : "json",
+			  success : function(result){
+				  $("#reply").val("");
+			  },
+			  error: function(){
+				  alert("답글 입력 실패");
+			  }
+		  });}); }); */
+ 
+ 
+ 
+ 
+ 
+ 
  //qns 제목 토글적용
  $(document).ready(function(){
 	 $(".q_sub a").click(function(){
@@ -346,7 +379,7 @@
                                     <a data-toggle="tab" href="#tab-2" role="tab">Customer Reviews (02)</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-3" role="tab" id="tab0">Q & A</a>
+                                    <a data-toggle="tab" href="#tab-3" role="tab">Q & A</a>
                                 </li>
                             </ul>
                         </div>
@@ -520,12 +553,17 @@
 					                                			<form action="./ProductQnaReview.p?p_num=${pb.p_num }" method="post">
 					                                				<input type="hidden" name="q_num" value="${ql.q_num }">
 					                                				<input type="hidden" name="id" value="${ql.id}">
-					                                				<input type="text" name="reply" >
+					                                				<input type="text" name="reply" id="reply">
 					                                				<input type="submit" value="답글작성">
 					                                			</form>
 				                                			</td>
+					                                		<!-- <div>
+					                                			<textarea rows="5" cols="20" id="reply"></textarea>
+					                                			<button >답글작성</button>
+					                                		</div> -->
 			                                			</c:if>
 			                                		</tr>
+			                                		
 			                                			<%}%>
 			                                			
 		                                		</c:forEach>
