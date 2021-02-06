@@ -54,7 +54,7 @@
                     		<li> <a href="./AdminMember.ao"> 회원 관리</a></li>
                      		<li> <a href="./ProductList.ap"> 상품 관리</a></li>
                      		<li> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
-                     		<li> <a href="#"> QnA 관리</a></li>
+                     		<li> <a href="./AdminQnaList.ao"> QnA 관리</a></li>
                         </ul>                    	
                     </div>
                 </div>   
@@ -74,7 +74,7 @@
 	                        </div>
 	                        <div class="col-lg-6 col-sm-6 admin-menu">
 	                        	<h3>QnA 관리</h3>
-								<a href="#"><img alt="QnA관리" src="img/pic_qna.png"></a>
+								<a href="./AdminQnaList.ao"><img alt="QnA관리" src="img/pic_qna.png"></a>
 	                        </div>
                     </div>
                 </div>

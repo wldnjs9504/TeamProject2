@@ -1,4 +1,4 @@
-<%@page import="net.admin.product.db.ProductBean"%>
+<%@page import="net.product.db.ProductBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
