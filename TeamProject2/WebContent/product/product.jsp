@@ -206,7 +206,11 @@
     <section class="product-shop spad page-details">
         <div class="container">
             <div class="row">
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> branch 'master' of https://github.com/wldnjs9504/TeamProject2.git
                 <div class="col-lg-12">
                     <div class="row">
                     
