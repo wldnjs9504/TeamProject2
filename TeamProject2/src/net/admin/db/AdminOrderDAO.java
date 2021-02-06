@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import jdk.nashorn.internal.ir.ReturnNode;
 import net.member.db.MemberBean;
 import net.order.db.orderBean;
 import net.product.db.ProductBean;
@@ -236,27 +237,32 @@ public class AdminOrderDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			System.out.println("문제없음");
-			while(rs.next()) {
-				orderBean ob = new orderBean();
-				ob.setB_count(rs.getInt("b_count"));
-				ob.setB_date(rs.getDate("b_date"));
-				ob.setB_num(rs.getInt("b_num"));
-				ob.setD_address(rs.getString("d_address"));
-				ob.setD_address2(rs.getString("d_address2"));
-				ob.setD_cost(rs.getInt("d_cost"));
-				ob.setD_message(rs.getString("d_message"));
-				ob.setD_name(rs.getString("d_name"));
-				ob.setD_phone(rs.getString("d_phone"));
-				ob.setId(rs.getString("id"));
-				ob.setO_email(rs.getString("o_email"));
-				ob.setO_name(rs.getString("o_name"));
-				ob.setO_phone(rs.getString("o_phone"));
-				ob.setP_num(rs.getInt("p_num"));
-				ob.setPayment(rs.getInt("payment"));
-				ob.setPoint(rs.getInt("point"));
-				ob.setD_result(rs.getInt("d_result"));
-				list.add(ob);
+			if(rs.next()) {
+				do {
+					orderBean ob = new orderBean();
+					ob.setB_count(rs.getInt("b_count"));
+					ob.setB_date(rs.getDate("b_date"));
+					ob.setB_num(rs.getInt("b_num"));
+					ob.setD_address(rs.getString("d_address"));
+					ob.setD_address2(rs.getString("d_address2"));
+					ob.setD_cost(rs.getInt("d_cost"));
+					ob.setD_message(rs.getString("d_message"));
+					ob.setD_name(rs.getString("d_name"));
+					ob.setD_phone(rs.getString("d_phone"));
+					ob.setId(rs.getString("id"));
+					ob.setO_email(rs.getString("o_email"));
+					ob.setO_name(rs.getString("o_name"));
+					ob.setO_phone(rs.getString("o_phone"));
+					ob.setP_num(rs.getInt("p_num"));
+					ob.setPayment(rs.getInt("payment"));
+					ob.setPoint(rs.getInt("point"));
+					ob.setD_result(rs.getInt("d_result"));
+					list.add(ob);
+				}while(rs.next());
+			}else {
+				list=null;
 			}
+			
 			System.out.println("문제없음");
 		} catch (Exception e) {
 			e.printStackTrace();
