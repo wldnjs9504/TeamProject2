@@ -10,6 +10,7 @@ import net.product.db.ProductBean;
 import net.product.db.ProductDAO;
 import net.product.db.ProductQnaBean;
 import net.product.db.ProductQnaDAO;
+import net.product.db.ReviewBean;
 
 public class ProductDetailAction implements Action{
 
@@ -42,7 +43,10 @@ public class ProductDetailAction implements Action{
 			//pdao.getReviewCount(p_num) 리뷰수 계산
 			int review_count = pdao.getReviewCount(p_num);
 			request.setAttribute("review_count", review_count);
-		
+			
+			//review list 들고오기
+			ArrayList<ReviewBean> reviewList = pdao.getReviewList(p_num);
+			request.setAttribute("reviewList", reviewList);
 		
 			//QnA list 들고오기
 			//QnA 갯수

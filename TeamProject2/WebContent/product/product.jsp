@@ -376,7 +376,7 @@
                                     <a class="active" data-toggle="tab" href="#tab-1" role="tab">DESCRIPTION</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-2" role="tab">Customer Reviews (02)</a>
+                                    <a data-toggle="tab" href="#tab-2" role="tab">Customer Reviews (${review_count })</a>
                                 </li>
                                 <li>
                                     <a data-toggle="tab" href="#tab-3" role="tab">Q & A</a>
@@ -419,20 +419,20 @@
                                 <!-- Customer Reviews (02)   -->
                                 <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                     <div class="customer-review-option">
-                                        <h4>2 Comments</h4>
+                                        <h4>${review_count } Comments</h4>
                                         <div class="comment-option">
                                             <div class="co-item">
-                                                <div class="avatar-pic">
+                                                <!-- <div class="avatar-pic">
                                                     <img src="img/product-single/avatar-1.png" alt="">
-                                                </div>
+                                                </div> -->
                                                 <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
+                                                
+                                                	<!-- 평균 별점  -->
+					                                <div class="pd-rating">
+					                                	<%@include file="./star_avg.jsp" %>
+					                                    <span>(${review_count})</span>
+					                                </div>
+                                                   
                                                     <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
                                                     <div class="at-reply">Nice !</div>
                                                 </div>

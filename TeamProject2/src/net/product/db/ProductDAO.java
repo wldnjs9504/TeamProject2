@@ -292,5 +292,44 @@ public class ProductDAO {
 		return pb;
 	}
 	//getProduct(p_num)
+	
+	//getReviewList(p_num)
+	public ArrayList<ReviewBean> getReviewList(int p_num){
+		
+		ArrayList<ReviewBean> reviewList = null;
+		
+		if(getReviewCount(p_num) != 0) {
+			try {
+				con = getCon();
+				sql = "select * from review where p_num = ? order by r_num desc";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, p_num);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					reviewList = new ArrayList<ReviewBean>();
+					ReviewBean rb = new ReviewBean();
+					
+					rb.setId(rs.getString("id"));
+					rb.setP_num(rs.getInt("p_num"));
+					rb.setR_content(rs.getString("content"));
+					rb.setR_date(rs.getDate("r_date"));
+					rb.setR_num(rs.getInt("r_num"));
+					rb.setR_star(rs.getDouble("r_star"));
+					
+					reviewList.add(rb);
+				}
+				System.out.println(p_num + "번 제품 reviewList 저장완료");
+			} catch (Exception e) {
+				System.out.println(p_num + "번 제품 reviewList 저장실패");
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return reviewList;
+		
+	}
+	
+	//getReviewList(p_num)
 
 }
