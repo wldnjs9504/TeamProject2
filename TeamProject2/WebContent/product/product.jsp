@@ -376,7 +376,7 @@
                                     <a class="active" data-toggle="tab" href="#tab-1" role="tab">DESCRIPTION</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-2" role="tab">Customer Reviews (02)</a>
+                                    <a data-toggle="tab" href="#tab-2" role="tab">Customer Reviews (${review_count })</a>
                                 </li>
                                 <li>
                                     <a data-toggle="tab" href="#tab-3" role="tab">Q & A</a>
@@ -419,41 +419,36 @@
                                 <!-- Customer Reviews (02)   -->
                                 <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                     <div class="customer-review-option">
-                                        <h4>2 Comments</h4>
-                                        <div class="comment-option">
-                                            <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="img/product-single/avatar-1.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div>
-                                            <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="img/product-single/avatar-2.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Roy Banks <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <h4>${review_count } Comments</h4>
+                                        <!--전체 리뷰 리스트 >>> -->
+
+                                        <c:forEach items="${requestScope.reviewList }" var="reList">
+                                        <c:set var="ri" value="${pageScope.reList }"/>
+                                        <c:set var="r_star" value="${ri.r_star }"/>
+
+	                                        <div class="comment-option">
+	                                            <div class="co-item">
+	                                                <!-- <div class="avatar-pic">
+	                                                    <img src="img/product-single/avatar-1.png" alt="">
+	                                                </div> -->
+	                                                <div class="avatar-text">
+						                                <div class="pd-rating">
+	                                                		<%@include file="./star.jsp" %>
+	                                   							 <span>${r_star}</span>
+						                                </div>
+	                                                    <h5>${ri.id } - <fmt:formatDate value="${ri.r_date }" dateStyle="long"/></h5>
+	                                                    <div class="at-reply">${ri.r_content }</div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+                                        </c:forEach>
+                                           <!-- <<< 전체 리뷰 리스트  --> 
+
+
+
+
+
+                                          <!-- 내별점>>>  -->  
                                         <div class="personal-rating">
                                             <h6>Your Ratind</h6>
                                             <div class="rating">
@@ -464,6 +459,10 @@
                                                 <i class="fa fa-star-o"></i>
                                             </div>
                                         </div>
+
+                                        <!--<<< 내별점  -->  
+
+                                        <!-- 메일보내기 >>> -->
                                         <div class="leave-comment">
                                             <h4>Leave A Comment</h4>
                                             <form action="#" class="comment-form">
@@ -481,6 +480,7 @@
                                                 </div>
                                             </form>
                                         </div>
+                                        <!-- <<< 메일보내기 -->                                        
                                     </div>
                                 </div>
                                  <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
@@ -533,7 +533,7 @@
                                         int count = (int)request.getAttribute("count");
                                         if(id == null || count == 0){ %>
 	                                		문의하신 내용이 없습니다.
-                                		<%}%>
+                                		<%}else if(count != 0 || id.equals("admin")){%>
                                 		
 										<table id="QnA" border="1" class="qnaTable">
 										  <c:forEach items="${requestScope.qnaList }" var="item">
@@ -574,9 +574,10 @@
 					                              </div> -->
 											  </c:if>
 											</tr>
-											<%}%>
+											<%} %>
 										  </c:forEach>
 		                                </table>
+		                                <%} %>
 		                                <!-- <script type="text/css"> -->
 										<!-- $(document).ready(function(){
 										$(".none").css("display","none");
