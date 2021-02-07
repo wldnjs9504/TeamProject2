@@ -58,7 +58,7 @@
 function QnACheck() {
 
 	 if (confirm("답변하시겠습니까?") == true){    //확인
-		 window.open("./Product.p?p_num=<%=qb.getP_num()%>#tab-1");
+		 window.open("./Product.p?p_num=<%=qb.getP_num()%>#tab-3");
 		 
 	 }else{   //취소
 	     return false;
