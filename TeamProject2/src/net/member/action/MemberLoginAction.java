@@ -39,7 +39,15 @@ public class MemberLoginAction implements Action {
 	    	out.close();
 	    	
 	    	return null; // 메서드 종료 -> 컨트롤러 이동X
-	    }
+		}else if(check == 2){
+			out.println("<script>");
+			out.println(" alert('현재 삭제 진행중인 계정입니다!');");
+			out.println(" history.back(); ");
+			out.println("</script>");
+			out.close();
+			
+			return null; // 메서드 종료 -> 컨트롤러 이동X
+		}
 	    
 	    // check == 1 (로그인성공)
 	    

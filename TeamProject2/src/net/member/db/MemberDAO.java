@@ -84,7 +84,7 @@ public class MemberDAO {
 			
 			con = getCon();
 			
-			sql = "select pass from member where id=?";
+			sql = "select pass, action from member where id=?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, id);
@@ -96,6 +96,9 @@ public class MemberDAO {
 				if(pass.equals(rs.getString("pass"))) {
 					//본인
 					result = 1;
+					if(rs.getInt("action")==1) {
+						result=2;
+					}
 				}else {
 					//본인x(비밀번호 오류)
 					result = 0;
