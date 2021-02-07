@@ -4,10 +4,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>uR</title>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
@@ -58,7 +58,7 @@
 function QnACheck() {
 
 	 if (confirm("답변하시겠습니까?") == true){    //확인
-		 window.open("./Product.p?p_num=<%=qb.getP_num()%>#tab0");
+		 window.open("./Product.p?p_num=<%=qb.getP_num()%>#tab-1");
 		 
 	 }else{   //취소
 	     return false;
@@ -76,7 +76,7 @@ function QnACheck() {
                     		<li> <a href="./AdminMember.ao"> 회원 관리</a></li>
                      		<li> <a href="./ProductList.ap"> 상품 관리</a></li>
                      		<li> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
-                     		<li class="check-menu"> <a href="#"> QnA 관리</a></li>
+                     		<li class="check-menu"> <a href="./AdminQnaList.ao"> QnA 관리</a></li>
                         </ul>                    	
                     </div>
                 </div> 
