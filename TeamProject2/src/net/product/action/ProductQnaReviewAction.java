@@ -10,10 +10,9 @@ public class ProductQnaReviewAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		request.setCharacterEncoding("UTF-8");
 		System.out.println("ProductQnaReviewAction_execute 실행");
 		int p_num = Integer.parseInt(request.getParameter("p_num"));
-		
 		ProductQnaBean pqb = new ProductQnaBean();
 		pqb.setReply(request.getParameter("reply"));
 		pqb.setId(request.getParameter("id"));

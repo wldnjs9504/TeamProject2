@@ -520,7 +520,7 @@
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <textarea name="content" placeholder="내용을 입력하세요"></textarea>
-                                                        <button type="submit" class="site-btn">문의하기</button>
+	                                                    <button type="submit" class="site-btn">문의하기</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -531,10 +531,10 @@
 										<!-- QnA 불러오기 --> 
                                         <%
                                         int count = (int)request.getAttribute("count");
-                                        if(id == null || count == 0){ %>
+                                        if((id == null || count == 0) && !id.equals("admin")){ %>
 	                                		문의하신 내용이 없습니다.
                                 		<%}if(count != 0 || id.equals("admin")){%>
-                                		
+                                		<br>
 										<table id="QnA" border="1" class="qnaTable">
 										  <c:forEach items="${requestScope.qnaList }" var="item">
 											<c:set value="${pageScope.item }" var="ql" />
@@ -543,19 +543,35 @@
 												<a href="#">[${ql.q_num }] 문의글 : <b>${ql.subject }</b></a>
 											  </td>
 											  <td class="date"><fmt:formatDate value="${ql.reg_date }" dateStyle="long"/>&nbsp;
-												<c:if test="${ql.re_result ==0 }">[답변등록 대기중] </c:if>
+												<c:if test="${ql.re_result ==0 }"><span>[답변등록 대기중]</span> </c:if>
 												<c:if test="${ql.re_result ==1 }">[답변등록 완료] </c:if>			                                			
 											  </td>
 											</tr>
 											<tr class="none">
-											  <td colspan="2">${ql.content }</td>
+											  <td colspan="2" class="content">${ql.content }</td>
 											</tr>	
+											<!-- 관리자일경우 -> 답글달기 칸보이게 -->
+											<%if(id.equals("admin")){%>
+											<tr class="none">	
+											  <c:if test="${ql.re_result==0 }">
+												<td colspan="2">
+												  <form action="./ProductQnaReview.p?p_num=${pb.p_num }" method="post">
+													<input type="hidden" name="q_num" value="${ql.q_num }">
+													<input type="hidden" name="id" value="${ql.id}">
+													<input type="text" name="reply" id="reply" placeholder="답변을 입력하세요">
+													<input type="submit" class="site-btn reply" value="답글작성">
+												  </form>
+												</td>
+											  </c:if>
+											</tr>
+											<%} %>
 											<!-- 답글 달렸을 경우 답글 보이게  -->	
 											<c:if test="${ql.re_result==1 }">
 											  <tr class="none">
-											    <td colspan="2"><img src="./product/re.gif">&nbsp; ${ql.reply }</td>
+											    <td colspan="2" class="content"><img src="./product/re.gif">&nbsp; ${ql.reply }</td>
 											  </tr>
 											</c:if>
+											<%-- 
 											<!-- 관리자일경우 -> 답글달기 칸보이게 -->
 											<%if(id.equals("admin")){%>
 											<tr>	
@@ -564,8 +580,8 @@
 												  <form action="./ProductQnaReview.p?p_num=${pb.p_num }" method="post">
 													<input type="hidden" name="q_num" value="${ql.q_num }">
 													<input type="hidden" name="id" value="${ql.id}">
-													<input type="text" name="reply" id="reply">
-													<input type="submit" value="답글작성">
+													<input type="text" name="reply" id="reply" placeholder="답변을 입력하세요">
+													<input type="submit" class="site-btn reply" value="답글작성">
 												  </form>
 												</td>
 					                              <!-- <div>
@@ -575,6 +591,7 @@
 											  </c:if>
 											</tr>
 											<%} %>
+											 --%>
 										  </c:forEach>
 		                                </table>
 		                                <%} %>

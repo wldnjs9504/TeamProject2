@@ -2706,7 +2706,14 @@ ol {
 	border-radius: 5px;
 	padding-left: 20px;
 	padding-top: 10px;
-	margin-bottom: 45px;
+/* 	margin-bottom: 45px; */
+	margin-bottom: 20px;
+}
+
+.customer-review-option .leave-comment .comment-form button {
+	float: right;
+	position: relative;
+	top: -10px;
 }
 
 .customer-review-option .qnaTable {
@@ -2715,12 +2722,39 @@ ol {
 	border-radius: 5px;
 }
 
-.customer-review-option .qnaTable .date{
+.customer-review-option .qnaTable td {
+	padding: 10px 0;
+}
+
+.customer-review-option .qnaTable .date {
 	width: 250px;
 	font-size: 13px;
 	color: #737981;
 }
 
+.customer-review-option .qnaTable .date span {
+	font-weight: bold;
+	color: red;
+}
+
+.customer-review-option .qnaTable input[type='text'] {
+	width: 75%;
+	font-size: 16px;
+	color: #636363;
+	height: 45px;
+	border: none;
+	padding-left: 20px;
+	margin-left: 10px;
+}
+
+.customer-review-option .qnaTable .content {
+	padding-left: 25px;
+}
+.customer-review-option .qnaTable .reply {
+	padding: 11px;
+	float: right;
+	margin-right: 10px;
+}
 
 /*---------------------
   Related Products
