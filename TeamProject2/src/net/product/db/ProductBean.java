@@ -14,27 +14,7 @@ public class ProductBean {
 	private int readcount;
 	private double star_avg;
 	private int review_count;
-	
-	
-
-	public int getReview_count() {
-		return review_count;
-	}
-	public void setReview_count(int review_count) {
-		this.review_count = review_count;
-	}
-	public double getStar_avg() {
-		return star_avg;
-	}
-	public void setStar_avg(double star_avg) {
-		this.star_avg = star_avg;
-	}
-	public int getReadcount() {
-		return readcount;
-	}
-	public void setReadcount(int readcount) {
-		this.readcount = readcount;
-	}
+	private int action;
 	public int getP_num() {
 		return p_num;
 	}
@@ -89,12 +69,40 @@ public class ProductBean {
 	public void setPrice_count(int price_count) {
 		this.price_count = price_count;
 	}
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+	public double getStar_avg() {
+		return star_avg;
+	}
+	public void setStar_avg(double star_avg) {
+		this.star_avg = star_avg;
+	}
+	public int getReview_count() {
+		return review_count;
+	}
+	public void setReview_count(int review_count) {
+		this.review_count = review_count;
+	}
+	public int getAction() {
+		return action;
+	}
+	public void setAction(int action) {
+		this.action = action;
+	}
 	@Override
 	public String toString() {
 		return "ProductBean [p_num=" + p_num + ", category=" + category + ", p_name=" + p_name + ", p_count=" + p_count
 				+ ", p_price=" + p_price + ", p_saleprice=" + p_saleprice + ", img_main=" + img_main + ", img_content="
-				+ img_content + ", price_count=" + price_count + ", readcount=" + readcount + "]";
+				+ img_content + ", price_count=" + price_count + ", readcount=" + readcount + ", star_avg=" + star_avg
+				+ ", review_count=" + review_count + ", action=" + action + "]";
 	}
+	
+	
+
 	
 	
 	

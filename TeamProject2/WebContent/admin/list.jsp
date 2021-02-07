@@ -134,6 +134,7 @@ function removeCheck() {
 	   							sb1.insert(6,',');
 	   							sb1.insert(3,',');
 	   							}
+	   							if(pb.getAction()!=1){
 	   						   %>
                                 <tr>
                                 	<td class="p-num">
@@ -179,6 +180,7 @@ function removeCheck() {
     								</td>
     							</tr>	   
                                 <%
+	   							}
    								}
                                 %>
                             </tbody>

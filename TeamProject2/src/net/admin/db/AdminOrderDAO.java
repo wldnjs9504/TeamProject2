@@ -199,7 +199,7 @@ public class AdminOrderDAO {
 		
 		try {
 			con = getCon();
-			sql = "select m.id, p.o_name as pass, m.email, m.address1, m.address2, grade, count(coalesce(b_num,0)) as postcode, sum(coalesce(p.point,0)) as point, sum(coalesce(p1.p_saleprice,0)*coalesce(p.b_count,0)-coalesce(p.d_cost,0)-coalesce(p.point,0)) as totalprice from member m left join p_order p on m.id = p.id left join product p1 on p.p_num = p1.p_num group by m.id";
+			sql = "select m.action,m.id, p.o_name as pass, m.email, m.address1, m.address2, grade, count(coalesce(b_num,0)) as postcode, sum(coalesce(p.point,0)) as point, sum(coalesce(p1.p_saleprice,0)*coalesce(p.b_count,0)-coalesce(p.d_cost,0)-coalesce(p.point,0)) as totalprice from member m left join p_order p on m.id = p.id left join product p1 on p.p_num = p1.p_num group by m.id";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -214,6 +214,7 @@ public class AdminOrderDAO {
 				mb.setPoint(rs.getInt("point"));
 				mb.setPostcode(rs.getInt("postcode"));
 				mb.setTotalprice(rs.getInt("totalprice"));
+				mb.setAction(rs.getInt("action"));
 				list.add(mb);
 			}
 			
@@ -280,7 +281,7 @@ public class AdminOrderDAO {
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "delete from member where id=?";
+			sql = "update member set action=1, pass=0, postcode=0, address1=null, address2=null, grade=0, totalprice=0, point=0 where id=?";
 			
 			pstmt = con.prepareStatement(sql);
 			

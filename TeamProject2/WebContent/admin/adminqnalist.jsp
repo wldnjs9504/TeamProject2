@@ -83,9 +83,6 @@ function QnACheck() {
 
                 <div class="col-lg-10 order-1 order-lg-2">
                     <div class="cart-table">
-                    	<div class="member-count">
-                    		<h5>미답변 문의 수 : <%= list.size() %>개 </h5>
-                    	</div>
                         <table>
                             <thead>
                                 <tr>

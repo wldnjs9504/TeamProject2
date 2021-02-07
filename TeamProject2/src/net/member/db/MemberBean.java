@@ -14,8 +14,7 @@ public class MemberBean {
 	private int grade;
 	private int point;
 	private int totalprice;
-	
-	// alt shift s + r
+	private int action;
 	public String getId() {
 		return id;
 	}
@@ -70,6 +69,13 @@ public class MemberBean {
 	public void setTotalprice(int totalprice) {
 		this.totalprice = totalprice;
 	}
+	public int getAction() {
+		return action;
+	}
+	public void setAction(int action) {
+		this.action = action;
+	}
+	
 	
 	
 

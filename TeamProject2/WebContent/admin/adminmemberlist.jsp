@@ -61,7 +61,7 @@
                     		<li class="check-menu"> <a href="./AdminMember.ao"> 회원 관리</a></li>
                      		<li> <a href="./ProductList.ap"> 상품 관리</a></li>
                      		<li> <a href="./AdminOrderList.ao"> 주문 관리</a></li>
-                     		<li> <a href="./AdminQnaList.ao"> QnA 관리</a></li>
+                     		<li> <a href="#"> QnA 관리</a></li>
                         </ul>                    	
                     </div>
                 </div> 
@@ -85,15 +85,16 @@
                             <tbody>
                             
                                <%
+                               
    								for(int i=0;i<list.size();i++){
-	   							mb=(MemberBean)list.get(i);
+	   								mb=(MemberBean)list.get(i);
+	   								
+	   								String price = Integer.toString(mb.getTotalprice());
+	   								StringBuffer sb = new StringBuffer(price);
+	   								String point = Integer.toString(mb.getPoint());
+	   								StringBuffer sb1 = new StringBuffer(point);
 	   							
-	   							String price = Integer.toString(mb.getTotalprice());
-	   							StringBuffer sb = new StringBuffer(price);
-	   							String point = Integer.toString(mb.getPoint());
-	   							StringBuffer sb1 = new StringBuffer(point);
-	   							
-	   							if(price.length()==4){
+	   								if(price.length()==4){
 	                                sb.insert(1,',');
 		   							}else if(price.length()==5){
 		   							sb.insert(2,',');	
@@ -125,6 +126,7 @@
 		   							sb1.insert(6,',');
 		   							sb1.insert(3,',');
 		   							}
+		   							if(mb.getAction()!=1){
 	   						   %>
                                 <tr>
                                 	<td class="id">
@@ -154,6 +156,7 @@
     							
     							</tr>	   
                                 <%
+		   							}
    								}
                                 %>
                             </tbody>
