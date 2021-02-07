@@ -15,6 +15,7 @@ public class MemberBean {
 	private int point;
 	private int totalprice;
 	private int action;
+	
 	public String getId() {
 		return id;
 	}
@@ -75,8 +76,5 @@ public class MemberBean {
 	public void setAction(int action) {
 		this.action = action;
 	}
-	
-	
-	
 
 }

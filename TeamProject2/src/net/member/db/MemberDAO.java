@@ -19,6 +19,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import net.order.db.orderBean;
+
 
 public class MemberDAO {
 	// DB에 관련된 모든 처리를 하는 객체
@@ -92,21 +94,36 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				// 회원이다
-				if(pass.equals(rs.getString("pass"))) {
-					//본인
-					result = 1;
-					if(rs.getInt("action")==1) {
-						result=2;
-					}
-				}else {
-					//본인x(비밀번호 오류)
-					result = 0;
-				}				
-			}else {
-				// 비회원이다
-				result = -1;
-			}	
+				if(rs.getInt("action")==1) { //사용 불가 계정
+					result=0;
+				}else if(pass.equals(rs.getString("pass"))) { //로그인 가능
+					result=1;
+				}else { //비밀번호 오류
+					result=-1;
+				}
+			}else { //비회원
+				result=-1;
+			}
+			
+			
+//			if(rs.next()) {
+//				// 회원이다
+//				if(pass.equals(rs.getString("pass"))) {
+//					//본인
+//					result = 1;
+//					if(rs.getInt("action")==1) { //사용 불가 계정(탈퇴/강제탈퇴)
+//						result=2;
+//						result=0;
+//					}
+//				}else {
+//					//본인x(비밀번호 오류)
+//					result = 0;
+//					result = -1;
+//				}				
+//			}else {
+//				// 비회원이다
+//				result = -1;
+//			}	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -165,7 +182,7 @@ public class MemberDAO {
 		try {
 			con = getCon();
 			
-			sql = "select pass from member where id = ?";
+			sql = "select pass from member where id = ? and action=0";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, UIMB.getId());
@@ -213,7 +230,7 @@ public class MemberDAO {
 		try {
 			con = getCon();
 			
-			sql = "select pass from member where id = ?";
+			sql = "select pass from member where id = ? and action=0";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, id);
@@ -223,7 +240,8 @@ public class MemberDAO {
 			if(rs.next()) {
 				if(pass.equals(rs.getString("pass"))) {
 					
-					sql = "delete from member where id=?";
+//					sql = "delete from member where id=?";
+					sql = "update member set action=1, pass=0, postcode=0, address1=null, address2=null, grade=0, totalprice=0, point=0 where id=?";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, id);
@@ -338,4 +356,67 @@ public class MemberDAO {
 		}
 		return sb.toString();
 	}
+	
+	//getMemberOrderList(id)
+	public List getMemberOrderList(String id) {
+		List list = new ArrayList();
+		
+		try {
+			getCon();
+			sql = "select * from p_order where id=? order by b_num desc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			System.out.println("문제없음");
+			while(rs.next()) {
+				orderBean ob = new orderBean();
+				ob.setB_count(rs.getInt("b_count"));
+				ob.setB_date(rs.getDate("b_date"));
+				ob.setB_num(rs.getInt("b_num"));
+				ob.setD_address(rs.getString("d_address"));
+				ob.setD_address2(rs.getString("d_address2"));
+				ob.setD_cost(rs.getInt("d_cost"));
+				ob.setD_message(rs.getString("d_message"));
+				ob.setD_name(rs.getString("d_name"));
+				ob.setD_phone(rs.getString("d_phone"));
+				ob.setId(rs.getString("id"));
+				ob.setO_email(rs.getString("o_email"));
+				ob.setO_name(rs.getString("o_name"));
+				ob.setO_phone(rs.getString("o_phone"));
+				ob.setP_num(rs.getInt("p_num"));
+				ob.setPayment(rs.getInt("payment"));
+				ob.setPoint(rs.getInt("point"));
+				ob.setD_result(rs.getInt("d_result"));
+				list.add(ob);
+			}
+			System.out.println("문제없음");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return list;
+	}//getMemberOrderList(id)
+	
+	//getMemberOrderCount(id)
+	public int getMemberOrderCount(String id) {
+		int result = 0;
+		
+		try {
+			getCon();
+			sql = "select count(*) from p_order where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("count(*)");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;		
+	}//getMemberOrderCount(id)
 }

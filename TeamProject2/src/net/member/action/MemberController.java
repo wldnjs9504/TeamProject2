@@ -140,6 +140,18 @@ public class MemberController extends HttpServlet {
 	    	forward.setPath("./member/mail.jsp");
 	    	forward.setRedirect(false);
 	    }
+	    
+	    else if(command.equals("/MemberOrderList.me")) {
+	    	action = new MemberOrderList();
+	    	
+	    	try {
+				forward=action.execute(request, response);
+				forward.setPath("./member/memberOrderList.jsp");
+				forward.setRedirect(false);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	    }
 	
 	     
 	    

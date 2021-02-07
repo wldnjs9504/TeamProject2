@@ -50,13 +50,13 @@
     <div class="register-login-section spad">
         <div class="container">
             <div class="row">
-            	<div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 products-sidebar-filter">
                     <div class="filter-widget">
                         <ul class="filter-catagories">
                         	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
                     		<li class="check-menu"> <a href="./MemberInfo.me"> 내 정보 보기</a></li>
                      		<li> <a href="./passCheck.me"> 내 정보 변경</a></li>
-                    		<li> <a href="#"> 주문 이력</a></li>
+                    		<li> <a href="./MemberOrderList.me"> 주문 이력</a></li>
                     		<li> <a href="#"> 내 포인트 현황</a></li>
                     		<li> <a href="#"> 나의 리뷰</a></li>
                     		<li> <a href="#"> 고객센터</a></li>
@@ -105,7 +105,7 @@
                         	  <tr>
                         	    <th>포인트</th>
                         	    <!-- 링크 클릭시 포인트 조회 페이지로 이동 -->
-                        	    <td><a href="#">포인트</a></td>
+                        	    <td><a href="#"> <%=mb.getPoint() %>포인트</a></td>
                         	  </tr>
                         	 
                         	  <tr>

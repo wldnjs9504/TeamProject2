@@ -23,31 +23,41 @@ public class MemberLoginAction implements Action {
 	    response.setContentType("text/html; charset=UTF-8");
 	    PrintWriter out = response.getWriter();
 	    
-	    if(check == 0) { //비밀번호 오류
+//	    if(check == 0) { //비밀번호 오류
+//	    	out.println("<script>");
+//	    	out.println(" alert('비밀번호 오류!');");
+//	    	out.println(" history.back(); ");
+//	    	out.println("</script>");
+//	    	out.close();
+//	    	
+//	    	return null; // 메서드 종료 -> 컨트롤러 이동X
+	    if(check == 0) { //사용 불가 계정
 	    	out.println("<script>");
-	    	out.println(" alert('비밀번호 오류!');");
+	    	out.println(" alert('사용할 수 없는 계정입니다');");
 	    	out.println(" history.back(); ");
 	    	out.println("</script>");
 	    	out.close();
-	    	
+	    		
 	    	return null; // 메서드 종료 -> 컨트롤러 이동X
 	    }else if(check == -1){
 	    	out.println("<script>");
-	    	out.println(" alert('비회원 입니다!');");
+//	    	out.println(" alert('비회원 입니다!');");
+	    	out.println(" alert('아이디와 비밀번호가 일치하지 않습니다');");
 	    	out.println(" history.back(); ");
 	    	out.println("</script>");
 	    	out.close();
 	    	
 	    	return null; // 메서드 종료 -> 컨트롤러 이동X
-		}else if(check == 2){
-			out.println("<script>");
-			out.println(" alert('현재 삭제 진행중인 계정입니다!');");
-			out.println(" history.back(); ");
-			out.println("</script>");
-			out.close();
-			
-			return null; // 메서드 종료 -> 컨트롤러 이동X
 		}
+//	    else if(check == 2){
+//			out.println("<script>");
+//			out.println(" alert('현재 삭제 진행중인 계정입니다!');");
+//			out.println(" history.back(); ");
+//			out.println("</script>");
+//			out.close();
+//			
+//			return null; // 메서드 종료 -> 컨트롤러 이동X
+//		}
 	    
 	    // check == 1 (로그인성공)
 	    
