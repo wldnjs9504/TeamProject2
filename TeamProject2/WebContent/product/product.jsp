@@ -431,7 +431,7 @@
 	                                                    <img src="img/product-single/avatar-1.png" alt="">
 	                                                </div> -->
 	                                                <div class="avatar-text">
-						                                <div class="pd-rating">
+						                                <div class="rating">
 	                                                		<%@include file="./star.jsp" %>
 	                                   							 <span>${r_star}</span>
 						                                </div>
@@ -521,7 +521,7 @@
                                         int count = (int)request.getAttribute("count");
                                         if(id == null || count == 0){ %>
 	                                		문의하신 내용이 없습니다.
-                                		<%}else if(count != 0 || id.equals("admin")){%>
+                                		<%}if(count != 0 || id.equals("admin")){%>
                                 		
 		                                	<table id="QnA" border="1" id="qnaTable">
 		                                		<c:forEach items="${requestScope.qnaList }" var="item">
