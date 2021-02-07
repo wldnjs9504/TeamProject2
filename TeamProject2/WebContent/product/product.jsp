@@ -3,11 +3,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
     <meta name="keywords" content="Fashi, unica, creative, html">
@@ -71,6 +71,7 @@
     <input type="hidden" id="p_num" name="p_num" value="${pb.p_num }">
     <!-- Header End -->
 	
+
 
 	<c:set value="${requestScope.pb }" var="pb"/>
 	<c:set value="${requestScope.star_avg }" var="star_avg" />
@@ -375,7 +376,7 @@
                                     <a class="active" data-toggle="tab" href="#tab-1" role="tab">DESCRIPTION</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-2" role="tab">Customer Reviews (${review_count })</a>
+                                    <a data-toggle="tab" href="#tab-2" role="tab">Customer Reviews (02)</a>
                                 </li>
                                 <li>
                                     <a data-toggle="tab" href="#tab-3" role="tab">Q & A</a>
@@ -418,36 +419,41 @@
                                 <!-- Customer Reviews (02)   -->
                                 <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                     <div class="customer-review-option">
-                                        <h4>${review_count } Comments</h4>
-                                        <!--전체 리뷰 리스트 >>> -->
-                                        
-                                        <c:forEach items="${requestScope.reviewList }" var="reList">
-                                        <c:set var="ri" value="${pageScope.reList }"/>
-                                        <c:set var="r_star" value="${ri.r_star }"/>
-                                        
-	                                        <div class="comment-option">
-	                                            <div class="co-item">
-	                                                <!-- <div class="avatar-pic">
-	                                                    <img src="img/product-single/avatar-1.png" alt="">
-	                                                </div> -->
-	                                                <div class="avatar-text">
-						                                <div class="pd-rating">
-	                                                		<%@include file="./star.jsp" %>
-	                                   							 <span>${r_star}</span>
-						                                </div>
-	                                                    <h5>${ri.id } - <fmt:formatDate value="${ri.r_date }" dateStyle="long"/></h5>
-	                                                    <div class="at-reply">${ri.r_content }</div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-                                        </c:forEach>
-                                           <!-- <<< 전체 리뷰 리스트  --> 
-                                           
-                                           
-                                           
-                                           
-                                           
-                                          <!-- 내별점>>>  -->  
+                                        <h4>2 Comments</h4>
+                                        <div class="comment-option">
+                                            <div class="co-item">
+                                                <div class="avatar-pic">
+                                                    <img src="img/product-single/avatar-1.png" alt="">
+                                                </div>
+                                                <div class="avatar-text">
+                                                    <div class="at-rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                    </div>
+                                                    <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
+                                                    <div class="at-reply">Nice !</div>
+                                                </div>
+                                            </div>
+                                            <div class="co-item">
+                                                <div class="avatar-pic">
+                                                    <img src="img/product-single/avatar-2.png" alt="">
+                                                </div>
+                                                <div class="avatar-text">
+                                                    <div class="at-rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                    </div>
+                                                    <h5>Roy Banks <span>27 Aug 2019</span></h5>
+                                                    <div class="at-reply">Nice !</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="personal-rating">
                                             <h6>Your Ratind</h6>
                                             <div class="rating">
@@ -458,10 +464,6 @@
                                                 <i class="fa fa-star-o"></i>
                                             </div>
                                         </div>
-                                        
-                                        <!--<<< 내별점  -->  
-                                        
-                                        <!-- 메일보내기 >>> -->
                                         <div class="leave-comment">
                                             <h4>Leave A Comment</h4>
                                             <form action="#" class="comment-form">
@@ -479,8 +481,6 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <!-- <<< 메일보내기 -->
-                                        
                                     </div>
                                 </div>
                                  <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
@@ -494,99 +494,102 @@
                                 
                                 
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
-                                    <div class="specification-table">
+                                    <div class="customer-review-option">
                                     <!-- QnA 작성하기 -->
+                                    <%-- 
                                     	<form action="./ProductQnaWriteAction.p?p_num=${pb.p_num}"  method="post" onsubmit="return idcheck()">
-                                        <table>
-                                            <tr>
-                                                <td class="p-catagory" colspan="4">
-                                                	제목 : <input type="text" name="subject" placeholder="제목을 입력하세요">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory" colspan="4">
-                                                    문의사항 : <input type="text"	name="content" placeholder="내용을 입력하세요.">
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        	<br>
-                                            <input type="submit" value="문의하기">
+                                          <table class="p-catagory">
+											<tr>
+												<th>제목</th>
+												<td><input type="text" name="subject" placeholder="제목을 입력하세요"></td>
+											</tr>
+											<tr>
+												<th>문의사항</th>
+												<td><textarea rows="" cols=""name="content" placeholder="내용을 입력하세요."></textarea></td>
+											</tr>
+                                          </table>
+										  <input type="submit" value="문의하기">
                                         </form>
-                                        <br>
-                                         <!-- QnA 작성하기 -->
+                                         --%>
+                                        <div class="leave-comment">
+                                        	<h4>Q & A</h4>
+                                            <form action="./ProductQnaWriteAction.p?p_num=${pb.p_num}" method="post" class="comment-form" onsubmit="return idcheck()">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <input type="text" name="subject" placeholder="제목을 입력하세요">
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <textarea name="content" placeholder="내용을 입력하세요"></textarea>
+                                                        <button type="submit" class="site-btn">문의하기</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+										<!-- QnA 작성하기 -->
                                         
                                         
-                                        <!-- QnA 불러오기 --> 
+										<!-- QnA 불러오기 --> 
                                         <%
                                         int count = (int)request.getAttribute("count");
                                         if(id == null || count == 0){ %>
 	                                		문의하신 내용이 없습니다.
-                                		<%}else if(count != 0 || id.equals("admin")){%>
+                                		<%}%>
                                 		
-		                                	<table id="QnA" border="1" id="qnaTable">
-		                                		<c:forEach items="${requestScope.qnaList }" var="item">
-		                                		<c:set value="${pageScope.item }" var="ql" />
-		                                		
-			                                		<tr class="q_sub">
-			                                			<th colspan="2">
-			                                				<a href="#">[${ql.q_num }] 문의글 : ${ql.subject }
-			                                			</th>
-			                                			<th colspan="1"><fmt:formatDate value="${ql.reg_date }" dateStyle="long"/>&nbsp;
-				                                			<c:if test="${ql.re_result ==0 }">[답변등록 대기중] </c:if>
-				                                			<c:if test="${ql.re_result ==1 }">[답변등록 완료] </c:if>			                                			
-			                                			</th>
-			                                		</tr>
-			                                		<tr class="none">
-			                                			<td colspan="3">${ql.content }</td>
-			                                		</tr>	
-			                                	<!-- 답글 달렸을 경우 답글 보이게  -->	
-		                                		<c:if test="${ql.re_result==1 }">
-			                                		<tr class="none">
-			                                			<td colspan="3"><img src="./product/re.gif">&nbsp; ${ql.reply }</td>
-			                                		</tr>
-		                                		</c:if>
-			                                		<!-- 관리자일경우 -> 답글달기 칸보이게 -->
-			                                			<%if(id.equals("admin")){%>
-			                                		<tr>	
-			                                			<c:if test="${ql.re_result==0 }">
-				                                			<td colspan="3">
-					                                			<form action="./ProductQnaReview.p?p_num=${pb.p_num }" method="post">
-					                                				<input type="hidden" name="q_num" value="${ql.q_num }">
-					                                				<input type="hidden" name="id" value="${ql.id}">
-					                                				<input type="text" name="reply" id="reply">
-					                                				<input type="submit" value="답글작성">
-					                                			</form>
-				                                			</td>
-					                                		<!-- <div>
-					                                			<textarea rows="5" cols="20" id="reply"></textarea>
-					                                			<button >답글작성</button>
-					                                		</div> -->
-			                                			</c:if>
-			                                		</tr>
-			                                		
-			                                			<%}%>
-			                                			
-		                                		</c:forEach>
-		                                		
-		                                	</table>
-		                                	<%} %>
-		                                	<!-- <script type="text/css"> -->
-											<!-- $(document).ready(function(){
-											$(".none").css("display","none");
-											});		 -->
-											<!-- </script> -->
-		                                	
-			                                			<!-- <script type="text/javascript">
-			                                			document.getElementsByClassName("none")[0].style.display = "none";
-			                                			document.getElementsByClassName("none")[1].style.display = "none";
-                               							 </script>	 -->	
+										<table id="QnA" border="1" class="qnaTable">
+										  <c:forEach items="${requestScope.qnaList }" var="item">
+											<c:set value="${pageScope.item }" var="ql" />
+											<tr class="q_sub">
+											  <td>
+												<a href="#">[${ql.q_num }] 문의글 : <b>${ql.subject }</b></a>
+											  </td>
+											  <td class="date"><fmt:formatDate value="${ql.reg_date }" dateStyle="long"/>&nbsp;
+												<c:if test="${ql.re_result ==0 }">[답변등록 대기중] </c:if>
+												<c:if test="${ql.re_result ==1 }">[답변등록 완료] </c:if>			                                			
+											  </td>
+											</tr>
+											<tr class="none">
+											  <td colspan="2">${ql.content }</td>
+											</tr>	
+											<!-- 답글 달렸을 경우 답글 보이게  -->	
+											<c:if test="${ql.re_result==1 }">
+											  <tr class="none">
+											    <td colspan="2"><img src="./product/re.gif">&nbsp; ${ql.reply }</td>
+											  </tr>
+											</c:if>
+											<!-- 관리자일경우 -> 답글달기 칸보이게 -->
+											<%if(id.equals("admin")){%>
+											<tr>	
+											  <c:if test="${ql.re_result==0 }">
+												<td colspan="2">
+												  <form action="./ProductQnaReview.p?p_num=${pb.p_num }" method="post">
+													<input type="hidden" name="q_num" value="${ql.q_num }">
+													<input type="hidden" name="id" value="${ql.id}">
+													<input type="text" name="reply" id="reply">
+													<input type="submit" value="답글작성">
+												  </form>
+												</td>
+					                              <!-- <div>
+					                                <textarea rows="5" cols="20" id="reply"></textarea>
+					                                <button >답글작성</button>
+					                              </div> -->
+											  </c:if>
+											</tr>
+											<%}%>
+										  </c:forEach>
+		                                </table>
+		                                <!-- <script type="text/css"> -->
+										<!-- $(document).ready(function(){
+										$(".none").css("display","none");
+										});		 -->
+										<!-- </script> -->
+		                                
+			                            <!-- <script type="text/javascript">
+			                            	document.getElementsByClassName("none")[0].style.display = "none";
+			                            	document.getElementsByClassName("none")[1].style.display = "none";
+                               			 </script>	 -->	
                                 	<!-- QnA 불러오기 -->
                                     </div>
                                 </div>
-                                
-                               
-                               
-                                
                                 
                             </div>
                         </div>
@@ -716,9 +719,8 @@
     <!-- Related Products Section End -->
 
 
-    <!-- Footer Section Begin -->
+    <!-- 푸터 -->
     <%@include file="../inc/footer.jsp" %>
-    <!-- Footer Section End -->
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>

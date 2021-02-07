@@ -102,7 +102,7 @@ a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #fff;
+/* 	color: #fff; */
 }
 
 ul,
@@ -2709,6 +2709,19 @@ ol {
 	margin-bottom: 45px;
 }
 
+.customer-review-option .qnaTable {
+	width: 100%;
+	border: 1px solid #ebebeb;
+	border-radius: 5px;
+}
+
+.customer-review-option .qnaTable .date{
+	width: 250px;
+	font-size: 13px;
+	color: #737981;
+}
+
+
 /*---------------------
   Related Products
 -----------------------*/
@@ -4387,7 +4400,7 @@ ol {
 		font-size: 14px;
 	}
 	.tab-item ul li a {
-		padding: 18px 39px;
+		padding: 18px 54.4px;
 	}
 	.hero-items .off-card {
 		left: 62%;
@@ -4516,9 +4529,15 @@ ol {
 		text-align: left;
 	}
 	.tab-item ul li a {
-		padding: 18px 51px;
+/* 		padding: 18px 51px; */
+		padding: 18px 25px;
 		margin-bottom: 10px;
 	}
+	
+	.product-details .quantity .qty {
+		margin-right: 20px;
+	}
+	
 	.cart-table {
 		overflow: auto;
 	}
