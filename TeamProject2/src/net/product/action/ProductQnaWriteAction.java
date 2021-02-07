@@ -12,7 +12,7 @@ public class ProductQnaWriteAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		
 		request.setCharacterEncoding("UTF-8");
 		//id값 저장
 		HttpSession session = request.getSession();
