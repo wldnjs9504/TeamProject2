@@ -95,6 +95,18 @@
 	                 		    <th><label for="img_content">서브 이미지</label></th>
 	                 		    <td colspan="5"><input type="file" id="img_content" name="img_content"></td>
 	                 		  </tr>
+	                 		  <tr>
+	                 		    <th><label for="file2">서브 이미지</label></th>
+	                 		    <td colspan="5"><input type="file" id="file2" name="file2"></td>
+	                 		  </tr>
+	                 		  <tr>
+	                 		    <th><label for="file3">서브 이미지</label></th>
+	                 		    <td colspan="5"><input type="file" id="file3" name="file3"></td>
+	                 		  </tr>
+	                 		  <tr>
+	                 		    <th><label for="file4">서브 이미지</label></th>
+	                 		    <td colspan="5"><input type="file" id="file4" name="file4"></td>
+	                 		  </tr>
 	                 		</table>    
 	                 		<div class="check-btn">
 	                 			<input class="site-btn" type="submit" value="상품 등록">
