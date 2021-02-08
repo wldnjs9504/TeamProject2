@@ -1,5 +1,12 @@
+<%-- <%@page import="net.order.db.orderBean"%> --%>
+<%-- <%@page import="net.product.db.ProductBean"%> --%>
+<%-- <%@page import="net.product.db.ReviewBean"%> --%>
+<%@page import="net.member.db.MemberDAO"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="net.product.db.ProductBean"%>
+<%@page import="net.order.db.orderBean"%>
 <%@page import="java.util.List"%>
-<%@page import="net.product.db.ProductQnaBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,6 +32,7 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    
 </head>
 
 <body>
@@ -46,7 +54,7 @@
     <!-- Breadcrumb Section Begin -->
     
 <%
-    int count = (Integer)request.getAttribute("count");
+    int p_num = (Integer)request.getAttribute("p_num");
     %>
  	
     <!-- Shopping Cart Section Begin -->
@@ -61,8 +69,8 @@
                      		<li> <a href="./passCheck.me"> 내 정보 변경</a></li>
                     		<li> <a href="./MemberOrderList.me"> 주문 이력</a></li>
                     		<li> <a href="#"> 내 포인트 현황</a></li>
-                    		<li> <a href="./MemberReviewList.me"> 나의 리뷰</a></li>
-                    		<li class="check-menu"> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
+                    		<li class="check-menu"> <a href="./MemberReviewList.me"> 나의 리뷰</a></li>
+                    		<li> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
                     		<li> <a href="#"> 고객센터</a></li>
                     		<li> <a href="./MemberDelete.me"> 회원탈퇴</a></li> 
                         </ul>                    	
@@ -70,55 +78,36 @@
                 </div>
 
                 <div class="col-lg-10 order-1 order-lg-2">
-                    <div class="cart-table">
+                    <div class="review-table">
+                      <form action="./MemberReviewWriteAction.me?p_num=<%=p_num %>" method="post">
+                        <input type="hidden" name="id" value="<%=id %>">
+                        <input type="hidden" name="p_num" value="<%=p_num %>">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th class="num">번호</th>
-                                    <th class="subject">제목</th>
-                                    <th class="date">작성일</th>
-                                    <th class="result">답변 여부</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            	<!-- 문의 내역이 없을 경우 -->
-                            	<%if(count==0){ %>
-                            	<tr>
-                            		<td colspan="5"><h2>문의 내역이 없습니다</h2></td>
-                            	</tr>
-                            	<%} %>                            
-								<%
-								List list = (List)request.getAttribute("list");
-								for(int i=0;i<list.size();i++){
-									ProductQnaBean qb=(ProductQnaBean)list.get(i);
-								%>
-                                <tr>
-                                    <td class="num">
-                                        <%= qb.getQ_num() %>
-                                    </td>
-                                	<td class="subject1">
-                                        <a href="./Product.p?p_num=<%=qb.getP_num()%>#tab-3"><%= qb.getSubject() %></a>
-                                    </td>
-                                    <td class="date">
-                                        <%= qb.getReg_date()%>
-                                    </td>
-                                    <td class="result">
-                                    <%
-                                    if(qb.getRe_result()==0){
-                                    %>
-                                    	답변 대기
-                                    <%
-                                    }else if(qb.getRe_result()==1){
-                                    %>
-                                    	답변 완료
-                                    <%
-                                    }
-                                    %>
-                                    </td>
-    							</tr>	   
-    							<%}%>
-                            </tbody>
+                          <tr>
+                            <th>고객 만족도</th>
+                            <td>
+                              <div class="rating">
+                                <select id="r_star" name="r_star">
+								  <option selected="selected">별점 주기</option>
+								  <option value="5">★★★★★</option>
+								  <option value="4">★★★★☆</option>
+								  <option value="3">★★★☆☆</option>
+								  <option value="2">★★☆☆☆</option>
+								  <option value="1">★☆☆☆☆</option>
+                                </select>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>리뷰 작성</th>
+                            <td><textarea id="r_content" name="r_content" placeholder="리뷰 내용을 작성해주세요"></textarea></td>
+                          </tr>
                         </table>
+                        <div class="check-btn">
+                          <input class="site-btn" type="submit" value="등록하기">
+                          <input class="site-btn" type="button" value="취소하기" onclick="history.back();">
+                        </div>
+                      </form>
 					</div>
                 </div>
             </div>

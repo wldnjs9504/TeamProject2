@@ -176,10 +176,28 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}	 
 	    }
-	
-	     
 	    
+	    else if(command.equals("/MemberReviewWrite.me")) {
+	    	action = new MemberReviewWrite();
+	    	
+	    	try {
+				forward=action.execute(request, response);
+				forward.setPath("./member/memberReviewWrite.jsp");
+				forward.setRedirect(false);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	    }
 	    
+	    else if(command.equals("/MemberReviewWriteAction.me")) {
+	    	action = new MemberReviewWriteAction();
+	    	
+	    	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	    	
+	    }
 	    
 	    
 		// 이동할 주소정보가 있는경우

@@ -24,6 +24,7 @@ import javax.sql.DataSource;
 import net.order.db.orderBean;
 import net.product.db.ProductBean;
 import net.product.db.ProductQnaBean;
+import net.product.db.ReviewBean;
 
 
 public class MemberDAO {
@@ -366,7 +367,7 @@ public class MemberDAO {
 		List list = new ArrayList();
 		
 		try {
-			getCon();
+			con = getCon();
 			sql = "select * from p_order where id=? order by b_num desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -407,7 +408,7 @@ public class MemberDAO {
 		int result = 0;
 		
 		try {
-			getCon();
+			con = getCon();
 			sql = "select count(*) from p_order where id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -456,20 +457,20 @@ public class MemberDAO {
 	}//getMemberOrderDetail(id)
 	
 	
-	//getCheckReview(id, b_num, p_num)
-	public int getCheckReview(String id, int b_num, int p_num) {
+	//getCheckReview(id, p_num, b_num)
+	public int getCheckReview(String id, int p_num, int b_num) {
 		int result = 0;
 		try {
 			con = getCon();
-			sql = "select * from review rv join p_order po on rv.p_num = po.p_num "
-					+ "where rv.id=? and po.b_num=? order by p_order.b_num desc, p_order.p_num asc";
+			sql = "select p_num from p_order where id=? and b_num=? order by b_num desc, p_num asc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setInt(2, b_num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				result=1;
+				result = 1;
 			}
+			System.out.println("결과 : "+result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -518,7 +519,7 @@ public class MemberDAO {
 		int result = 0;
 		
 		try {
-			getCon();
+			con = getCon();
 			sql = "select count(*) from productqna where id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -534,5 +535,37 @@ public class MemberDAO {
 		}		
 		return result;
 	}//getMemberQnaCount(id)
+	
+	
+	//insertReview(rb)
+	public void insertReview(ReviewBean rb) {
+		int rno = 0;
+		try {
+			con = getCon();
+			sql = "select max(r_num) from review";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				rno = rs.getInt(1)+1;
+			}else {
+				rno = 1;
+			}
+			
+			sql = "insert into review(r_num, p_num, id, r_content, r_star, r_date) "
+					+ "values(?,?,?,?,?,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rno);
+			pstmt.setInt(2, rb.getP_num());
+			pstmt.setString(3, rb.getId());
+			pstmt.setString(4, rb.getR_content());
+			pstmt.setDouble(5, rb.getR_star());
+			pstmt.executeUpdate();
+			System.out.println("DAO : 리뷰 작성 성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}//insertReview(rb)
 	
 }

@@ -94,12 +94,11 @@
                             	<tr>
                             		<td colspan="5"><h2>구매한 상품이 없습니다</h2></td>
                             	</tr>
-                            	<%} %>                            
+                            	<%} %>            
 								<%
 								MemberDAO mdao = new MemberDAO();
 								ArrayList<Map<String, Object>> list = mdao.getMemberOrderDetail(id);
 								for(Map<String, Object> m : list){
-										
 								%>
                                 <tr>
                                     <td class="num">
@@ -112,12 +111,12 @@
                                         <%=m.get("b_date")%>
                                     </td>
                                     <td class="result">
-                                    	<a href="./MemberReviewWrite.me">리뷰 작성</a>
+                                    	<a href="./MemberReviewWrite.me?p_num=<%=m.get("p_num")%>&b_num=<%=m.get("b_num")%>">리뷰 작성</a>
                                     </td>
     							</tr>	   
-    								<%
-//     								}
-								}%>
+    							<%
+								}
+								%>
                             </tbody>
                         </table>
 					</div>
