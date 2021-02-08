@@ -373,13 +373,13 @@
                         <div class="tab-item">
                             <ul class="nav" role="tablist">
                                 <li>
-                                    <a class="active" data-toggle="tab" href="#tab-1" role="tab">DESCRIPTION</a>
+                                    <a class="active" data-toggle="tab" href="#Tab-1" role="tab">DESCRIPTION</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-2" role="tab">Customer Reviews (${review_count })</a>
+                                    <a data-toggle="tab" href="#Tab-2" role="tab">Customer Reviews (${review_count })</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-3" role="tab" id="tab-3">Q & A</a>
+                                    <a data-toggle="tab" href="#Tab-3" role="tab" id="tab-3">Q & A</a>
                                 </li>
                             </ul>
                         </div>
@@ -387,7 +387,7 @@
                         <!-- DESCRIPTION -->
                         <div class="tab-item-content">
                             <div class="tab-content">
-                                <div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
+                                <div class="tab-pane fade-in active" id="Tab-1" role="tabpanel">
                                     <div class="product-content">
                                         <div class="row">
                                             <div class="col-lg-7">
@@ -417,7 +417,7 @@
                                 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->                               
                                 
                                 <!-- Customer Reviews (02)   -->
-                                <div class="tab-pane fade" id="tab-2" role="tabpanel">
+                                <div class="tab-pane fade" id="Tab-2" role="tabpanel">
                                     <div class="customer-review-option">
                                         <h4>${review_count } Comments</h4>
                                         <!--전체 리뷰 리스트 >>> -->
@@ -493,7 +493,7 @@
                                 
                                 
                                 
-                                <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                                <div class="tab-pane fade" id="Tab-3" role="tabpanel">
                                     <div class="customer-review-option">
                                     <!-- QnA 작성하기 -->
                                     <%-- 
@@ -531,9 +531,11 @@
 										<!-- QnA 불러오기 --> 
                                         <%
                                         int count = (int)request.getAttribute("count");
-                                        if((id == null || count == 0) && !id.equals("admin")){ %>
-	                                		문의하신 내용이 없습니다.
-                                		<%}if(count != 0 || id.equals("admin")){%>
+                                        if(id == null || count == 0){ %>
+	                                		[문의하신 내용이 없습니다.]
+                                		<%}else if(!id.equals("admin") && count == 0){%>
+                                			[문의하신 내용이 없습니다.]
+                            			<%}else if(count != 0 || id.equals("admin")){%>
                                 		<br>
 										<table id="QnA" border="1" class="qnaTable">
 										  <c:forEach items="${requestScope.qnaList }" var="item">
