@@ -1,5 +1,5 @@
-<%@page import="net.order.db.orderBean"%>
 <%@page import="java.util.List"%>
+<%@page import="net.product.db.ProductQnaBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -59,10 +59,10 @@
                         	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
                     		<li> <a href="./MemberInfo.me"> 내 정보 보기</a></li>
                      		<li> <a href="./passCheck.me"> 내 정보 변경</a></li>
-                    		<li class="check-menu"> <a href="./MemberOrderList.me"> 주문 이력</a></li>
+                    		<li> <a href="./MemberOrderList.me"> 주문 이력</a></li>
                     		<li> <a href="#"> 내 포인트 현황</a></li>
                     		<li> <a href="#"> 나의 리뷰</a></li>
-                    		<li> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
+                    		<li class="check-menu"> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
                     		<li> <a href="#"> 고객센터</a></li>
                     		<li> <a href="./MemberDelete.me"> 회원탈퇴</a></li> 
                         </ul>                    	
@@ -74,58 +74,49 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="b-num">주문번호</th>
-                                    <th class="id">아이디</th>
-                                    <th class="name">이름</th>
-                                    <th class="date">주문일시</th>
-                                    <th class="active">주문상태</th>
+                                    <th class="num">상품번호</th>
+                                    <th class="subject">제목</th>
+                                    <th class="date">작성일</th>
+                                    <th class="result">답변 여부</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            	<!-- 주문 내역이 없을 경우 -->
+                            	<!-- 문의 내역이 없을 경우 -->
                             	<%if(count==0){ %>
                             	<tr>
-                            		<td colspan="5"><h2>주문 내역이 없습니다</h2></td>
+                            		<td colspan="5"><h2>문의 내역이 없습니다</h2></td>
                             	</tr>
-                            	<%} %>
-                            	
-                               <%
-                               List list = (List)request.getAttribute("list");
+                            	<%} %>                            
+								<%
+								List list = (List)request.getAttribute("list");
 								for(int i=0;i<list.size();i++){
-									orderBean ob=(orderBean)list.get(i);
+									ProductQnaBean qb=(ProductQnaBean)list.get(i);
 								%>
                                 <tr>
-                                	<td class="b-num">
-                                        <%= ob.getB_num() %>
+                                    <td class="num">
+                                        <%= qb.getP_num() %>
                                     </td>
-                                    <td class="id">
-                                        <%= ob.getId() %>
-                                    </td>
-                                    <td class="name">
-                                        <%= ob.getO_name()%>
+                                	<td class="subject1">
+                                        <a href="./Product.p?p_num=<%=qb.getP_num()%>#tab-3"><%= qb.getSubject() %></a>
                                     </td>
                                     <td class="date">
-                                        <%= ob.getB_date()%>
+                                        <%= qb.getReg_date()%>
                                     </td>
+                                    <td class="result">
                                     <%
-                                    String result= "";
-                                    if(ob.getD_result()==0){
-                                    	result = "주문완료";
-                                    }else if(ob.getD_result()==1){
-                                    	result = "결제완료";
-                                    }else if(ob.getD_result()==2){
-                                    	result = "배송준비";
-                                    }else if(ob.getD_result()==3){
-                                    	result = "배송완료";
-                                    }                                    
+                                    if(qb.getRe_result()==0){
                                     %>
-                                    <td class="active">
-                                        <%= result %>
+                                    	답변 대기
+                                    <%
+                                    }else if(qb.getRe_result()==1){
+                                    %>
+                                    	답변 완료
+                                    <%
+                                    }
+                                    %>
                                     </td>
     							</tr>	   
-                                <%
-   								}
-                                %>
+    							<%}%>
                             </tbody>
                         </table>
 					</div>

@@ -152,6 +152,18 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 	    }
+	    
+	    else if(command.equals("/MemberQnaList.me")) {
+	    	action = new MemberQnaList();
+	    	
+	    	try {
+				forward=action.execute(request, response);
+				forward.setPath("./member/memberQnaList.jsp");
+				forward.setRedirect(false);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	    	
+	    }
 	
 	     
 	    

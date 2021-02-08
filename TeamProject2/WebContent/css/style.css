@@ -2974,6 +2974,18 @@ ol {
 /* 	background-color: #85c1e5; */
 }
 
+.cart-table .num {
+	width: 80px;
+}
+
+.cart-table .subject1 {
+	text-align: left;
+	padding-left: 20px;
+}
+.cart-table .result {
+	width: 140px;
+}
+
 .cart-buttons {
 	margin-bottom: 34px;
 }
