@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.member.db.MemberDAO;
+import net.order.db.orderBean;
 
-public class MemberQnaList implements Action {
+public class MemberReviewList implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
@@ -16,15 +17,15 @@ public class MemberQnaList implements Action {
 		
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
-
-		MemberDAO mdao = new MemberDAO();		
-		List list = mdao.getMemberQnaList(id);
-		int count = mdao.getMemberQnaCount(id);
+		
+		MemberDAO mdao = new MemberDAO();
+		List list = mdao.getMemberOrderDetail(id);
+		int count = mdao.getMemberOrderCount(id);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		ActionForward forward = new ActionForward();
-		forward.setPath("./member/memberQnaList.jsp");		
+		forward.setPath("./member/memberReviewList.jsp");
 		forward.setRedirect(false);
 		
 		return forward;

@@ -20,6 +20,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import net.order.db.orderBean;
+import net.product.db.ProductBean;
 import net.product.db.ProductQnaBean;
 
 
@@ -421,13 +422,69 @@ public class MemberDAO {
 		return result;		
 	}//getMemberOrderCount(id)
 	
+	
+	//getMemberOrderDetail(id)
+	public List getMemberOrderDetail(String id) {
+		List list = new ArrayList();
+		try {
+			con = getCon();
+			sql = "select po.b_num, po.id, po.p_num, p.p_name, po.b_date "
+					+ "from p_order po join product p on po.p_num = p.p_num "
+					+ "where id=? and po.payment=1 order by po.b_num desc, p.p_num asc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				orderBean ob = new orderBean();
+				ProductBean pb = new ProductBean();
+				ob.setB_num(rs.getInt("b_num"));
+				ob.setId(rs.getString("id"));
+				ob.setP_num(rs.getInt("p_num"));
+				pb.setP_name(rs.getString("p_name"));
+				ob.setB_date(rs.getDate("b_date"));
+				list.add(ob);
+				list.add(pb);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}		
+		return list;
+	}//getMemberOrderDetail(id)
+	
+	
+	//getCheckReview(id, b_num, p_num)
+	public int getCheckReview(String id, int b_num, int p_num) {
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "select * from review rv join p_order po on rv.p_num = po.p_num "
+					+ "where rv.id=? and po.b_num=? order by p_order.b_num desc, p_order.p_num asc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, b_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result=1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}				
+		return result;
+	}//getCheckReview(id, b_num, p_num)
+	
+	
 	//getMemberQnaList(id)
 	public List getMemberQnaList(String id) {
 		List list = new ArrayList();
 		
 		try {
 			con = getCon();
-			sql = "select * from productqna where id=? order by reg_date desc";
+			sql = "select * from productqna where id=? order by q_num desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -453,7 +510,7 @@ public class MemberDAO {
 			closeDB();
 		}		
 		return list;
-	}//getMemberQnaList(id)
+	}//getMemberQnaList(id, b_num, p_num)
 	
 	//getMemberQnaCount(id)
 	public int getMemberQnaCount(String id) {
@@ -476,4 +533,5 @@ public class MemberDAO {
 		}		
 		return result;
 	}//getMemberQnaCount(id)
+	
 }

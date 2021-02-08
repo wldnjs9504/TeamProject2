@@ -1,5 +1,7 @@
+<%@page import="net.order.db.orderBean"%>
+<%@page import="net.product.db.ProductBean"%>
+<%@page import="net.product.db.ReviewBean"%>
 <%@page import="java.util.List"%>
-<%@page import="net.product.db.ProductQnaBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,6 +27,7 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    
 </head>
 
 <body>
@@ -61,8 +64,8 @@
                      		<li> <a href="./passCheck.me"> 내 정보 변경</a></li>
                     		<li> <a href="./MemberOrderList.me"> 주문 이력</a></li>
                     		<li> <a href="#"> 내 포인트 현황</a></li>
-                    		<li> <a href="#"> 나의 리뷰</a></li>
-                    		<li class="check-menu"> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
+                    		<li class="check-menu"> <a href="./MemberReviewList.me"> 나의 리뷰</a></li>
+                    		<li> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
                     		<li> <a href="#"> 고객센터</a></li>
                     		<li> <a href="./MemberDelete.me"> 회원탈퇴</a></li> 
                         </ul>                    	
@@ -74,49 +77,43 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="num">번호</th>
-                                    <th class="subject">제목</th>
-                                    <th class="date">작성일</th>
-                                    <th class="result">답변 여부</th>
+                                    <th class="num">주문번호</th>
+                                    <th class="product">상품명</th>
+                                    <th class="date">구매일</th>
+                                    <th class="result">상태</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            	<!-- 문의 내역이 없을 경우 -->
+                            	<!-- 구매 내역이 없을 경우 -->
                             	<%if(count==0){ %>
                             	<tr>
-                            		<td colspan="5"><h2>문의 내역이 없습니다</h2></td>
+                            		<td colspan="5"><h2>구매한 상품이 없습니다</h2></td>
                             	</tr>
                             	<%} %>                            
 								<%
 								List list = (List)request.getAttribute("list");
 								for(int i=0;i<list.size();i++){
-									ProductQnaBean qb=(ProductQnaBean)list.get(i);
+									orderBean ob=(orderBean)list.get(i);
+									for(int j=0;j<list.size();j++){
+										ProductBean pb=(ProductBean)list.get(j);
+										
 								%>
                                 <tr>
                                     <td class="num">
-                                        <%= qb.getQ_num() %>
+                                        <%=ob.getB_num() %>
                                     </td>
-                                	<td class="subject1">
-                                        <a href="./Product.p?p_num=<%=qb.getP_num()%>#tab-3"><%= qb.getSubject() %></a>
+                                    <td class="product">
+                                        <a href="./Product.p?p_num=<%=pb.getP_num()%>#tab-2"><%=pb.getP_name() %></a>
                                     </td>
                                     <td class="date">
-                                        <%= qb.getReg_date()%>
+                                        <%=ob.getB_date()%>
                                     </td>
                                     <td class="result">
-                                    <%
-                                    if(qb.getRe_result()==0){
-                                    %>
-                                    	답변 대기
-                                    <%
-                                    }else if(qb.getRe_result()==1){
-                                    %>
-                                    	답변 완료
-                                    <%
-                                    }
-                                    %>
+                                    	<a href="./MemberReviewWrite.me">리뷰 작성</a>
                                     </td>
     							</tr>	   
-    							<%}%>
+    								<%}
+								}%>
                             </tbody>
                         </table>
 					</div>

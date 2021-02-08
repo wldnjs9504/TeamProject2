@@ -164,6 +164,18 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}	    	
 	    }
+	    
+	    else if(command.equals("/MemberReviewList.me")) {
+	    	action = new MemberReviewList();
+	    	
+	    	try {
+				forward=action.execute(request, response);
+				forward.setPath("./member/memberReviewList.jsp");
+				forward.setRedirect(false);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	 
+	    }
 	
 	     
 	    
