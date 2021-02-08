@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -424,8 +426,9 @@ public class MemberDAO {
 	
 	
 	//getMemberOrderDetail(id)
-	public List getMemberOrderDetail(String id) {
-		List list = new ArrayList();
+	public ArrayList<Map<String, Object>> getMemberOrderDetail(String id){
+		ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
 		try {
 			con = getCon();
 			sql = "select po.b_num, po.id, po.p_num, p.p_name, po.b_date "
@@ -436,15 +439,13 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				orderBean ob = new orderBean();
-				ProductBean pb = new ProductBean();
-				ob.setB_num(rs.getInt("b_num"));
-				ob.setId(rs.getString("id"));
-				ob.setP_num(rs.getInt("p_num"));
-				pb.setP_name(rs.getString("p_name"));
-				ob.setB_date(rs.getDate("b_date"));
-				list.add(ob);
-				list.add(pb);
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("b_num",rs.getInt("po.b_num"));
+				map.put("id", rs.getString("po.id"));
+				map.put("p_num", rs.getInt("po.p_num"));
+				map.put("p_name", rs.getString("p.p_name"));
+				map.put("b_date", rs.getDate("po.b_date"));
+				list.add(map);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

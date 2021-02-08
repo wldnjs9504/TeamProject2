@@ -1,6 +1,8 @@
 package net.member.action;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +21,7 @@ public class MemberReviewList implements Action {
 		String id = (String) session.getAttribute("id");
 		
 		MemberDAO mdao = new MemberDAO();
-		List list = mdao.getMemberOrderDetail(id);
+		ArrayList<Map<String, Object>> list = mdao.getMemberOrderDetail(id);
 		int count = mdao.getMemberOrderCount(id);
 		
 		request.setAttribute("list", list);

@@ -1,6 +1,11 @@
-<%@page import="net.order.db.orderBean"%>
+<%-- <%@page import="net.order.db.orderBean"%> --%>
+<%-- <%@page import="net.product.db.ProductBean"%> --%>
+<%-- <%@page import="net.product.db.ReviewBean"%> --%>
+<%@page import="net.member.db.MemberDAO"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="net.product.db.ProductBean"%>
-<%@page import="net.product.db.ReviewBean"%>
+<%@page import="net.order.db.orderBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -91,28 +96,27 @@
                             	</tr>
                             	<%} %>                            
 								<%
-								List list = (List)request.getAttribute("list");
-								for(int i=0;i<list.size();i++){
-									orderBean ob=(orderBean)list.get(i);
-									for(int j=0;j<list.size();j++){
-										ProductBean pb=(ProductBean)list.get(j);
+								MemberDAO mdao = new MemberDAO();
+								ArrayList<Map<String, Object>> list = mdao.getMemberOrderDetail(id);
+								for(Map<String, Object> m : list){
 										
 								%>
                                 <tr>
                                     <td class="num">
-                                        <%=ob.getB_num() %>
+                                        <%=m.get("b_num") %>
                                     </td>
                                     <td class="product">
-                                        <a href="./Product.p?p_num=<%=pb.getP_num()%>#tab-2"><%=pb.getP_name() %></a>
+                                        <a href="./Product.p?p_num=<%=m.get("p_num")%>#tab-2"><%=m.get("p_name") %></a>
                                     </td>
                                     <td class="date">
-                                        <%=ob.getB_date()%>
+                                        <%=m.get("b_date")%>
                                     </td>
                                     <td class="result">
                                     	<a href="./MemberReviewWrite.me">리뷰 작성</a>
                                     </td>
     							</tr>	   
-    								<%}
+    								<%
+//     								}
 								}%>
                             </tbody>
                         </table>
