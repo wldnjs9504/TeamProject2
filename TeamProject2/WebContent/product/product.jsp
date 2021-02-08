@@ -431,7 +431,7 @@
 	                                                <!-- <div class="avatar-pic">
 	                                                    <img src="img/product-single/avatar-1.png" alt="">
 	                                                </div> -->
-	                                                <div class="avatar-text">
+	                                                <div class="avatar-text personal-rating">
 						                                <div class="rating">
 	                                                		<%@include file="./star.jsp" %>
 	                                   							 <span>${r_star}</span>
@@ -531,10 +531,10 @@
 										<!-- QnA 불러오기 --> 
                                         <%
                                         int count = (int)request.getAttribute("count");
-                                        if(id == null || count == 0){ %>
-	                                		[문의하신 내용이 없습니다.]
+                                        if(id == null && count == 0){ %>
+	                                		[문의하신 내용이 없습니다]
                                 		<%}else if(!id.equals("admin") && count == 0){%>
-                                			[문의하신 내용이 없습니다.]
+                                			[문의하신 내용이 없습니다]
                             			<%}else if(count != 0 || id.equals("admin")){%>
                                 		<br>
 										<table id="QnA" border="1" class="qnaTable">
