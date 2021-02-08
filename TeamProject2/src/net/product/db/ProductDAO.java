@@ -343,18 +343,18 @@ public class ProductDAO {
 		try {
 			con = getCon();
 			
-			sql = "select * from review where id = ? and p_num = ?";
+			sql = "select * from review where p_num = ? and id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, p_num);
 			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+			System.out.println("DAO : getMyReview 실행");
+			if(rs.next()){
 				rb = new ReviewBean();
 				rb.setId(rs.getString("id"));
 				rb.setP_num(rs.getInt("p_num"));
 				rb.setR_content(rs.getString("r_content"));
-				rb.setR_date(rs.getDate("date"));
+				rb.setR_date(rs.getDate("r_date"));
 				rb.setR_num(rs.getInt("r_num"));
 				rb.setR_star(rs.getDouble("r_star"));
 				

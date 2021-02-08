@@ -50,6 +50,7 @@ public class ProductDetailAction implements Action{
 			
 			//나의 review 들고오기
 			if(id != null ) {
+				System.out.println("M : id : " + id);
 				ReviewBean rb = new ReviewBean();
 				rb = pdao.getMyReview(p_num, id);
 				if(rb != null) {

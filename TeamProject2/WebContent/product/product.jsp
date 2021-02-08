@@ -437,7 +437,7 @@
 	                                                		<%@include file="./star.jsp" %>
 	                                   							 <span>(${r_star})</span>
 						                                </div>
-	                                                    <h5>${ri.id } - <fmt:formatDate value="${ri.r_date }" dateStyle="long"/></h5>
+	                                                    <h5>${ri.id }  <fmt:formatDate value="${ri.r_date }" dateStyle="short"/></h5>
 	                                                    <div class="at-reply">${ri.r_content }</div>
 	                                                </div>
 	                                            </div>
@@ -452,16 +452,19 @@
                                           <!-- 내별점>>>  -->  
                                         <div class="personal-rating">
                                         <%
-                                        ReviewBean rb = null;
-                                        rb = (ReviewBean)request.getAttribute("rb");
-                                        if(rb != null){
+                                        ReviewBean myReview = null;
+                                        myReview = (ReviewBean)request.getAttribute("myReview");
+                                        if(myReview != null){
+                                        	System.out.println("V : myReview : " + myReview.toString());
                                         %>
-                                          	  <h6>나의 별점</h6>
-                                            	<c:set var="my_star" value="${rb.r_star }"/>
+                                          	  <h6>나의 별점  <fmt:formatDate value="${ri.r_date }" dateStyle="short"/></h6> 
+                                            	<c:set var="my_star" value="${myReview.r_star }"/>
 	                                           		 <div class="rating">
 		                                            	<%@include file="./my_star.jsp" %>
 		                       							 <span>(${my_star})</span>
 	                                           		 </div>
+	                                           	${myReview.r_content} 
+	                                           	
                                           <%}%>
                                             
                                             
