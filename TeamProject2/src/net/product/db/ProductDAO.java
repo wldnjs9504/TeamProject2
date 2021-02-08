@@ -334,5 +334,39 @@ public class ProductDAO {
 	}
 	
 	//getReviewList(p_num)
-
+	
+	//getMyReview(p_num, id)
+	public ReviewBean getMyReview(int p_num, String id) {
+		
+		ReviewBean rb = null;
+		
+		try {
+			con = getCon();
+			
+			sql = "select * from review where id = ? and p_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, p_num);
+			pstmt.setString(2, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				rb = new ReviewBean();
+				rb.setId(rs.getString("id"));
+				rb.setP_num(rs.getInt("p_num"));
+				rb.setR_content(rs.getString("r_content"));
+				rb.setR_date(rs.getDate("date"));
+				rb.setR_num(rs.getInt("r_num"));
+				rb.setR_star(rs.getDouble("r_star"));
+				
+				System.out.println("DAO : 개인 reviewBean 저장완료");
+			}
+		} catch (Exception e) {
+			System.out.println("DAO : 개인 reviewBean 저장실패");
+			e.printStackTrace();
+		}finally {
+			closeDB();
+		}
+		return rb;
+	}
+	//getMyReview(p_num, id)
 }

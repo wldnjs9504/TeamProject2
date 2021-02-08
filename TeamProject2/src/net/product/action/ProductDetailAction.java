@@ -47,6 +47,16 @@ public class ProductDetailAction implements Action{
 			//review list 들고오기
 			ArrayList<ReviewBean> reviewList = pdao.getReviewList(p_num);
 			request.setAttribute("reviewList", reviewList);
+			
+			//나의 review 들고오기
+			if(id != null ) {
+				ReviewBean rb = new ReviewBean();
+				rb = pdao.getMyReview(p_num, id);
+				if(rb != null) {
+					request.setAttribute("myReview", rb);
+				}
+			}
+			
 		
 			//QnA list 들고오기
 			//QnA 갯수

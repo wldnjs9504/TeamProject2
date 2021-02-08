@@ -1,3 +1,4 @@
+<%@page import="net.product.db.ReviewBean"%>
 <%@page import="net.cart.db.CartBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -434,7 +435,7 @@
 	                                                <div class="avatar-text personal-rating">
 						                                <div class="rating">
 	                                                		<%@include file="./star.jsp" %>
-	                                   							 <span>${r_star}</span>
+	                                   							 <span>(${r_star})</span>
 						                                </div>
 	                                                    <h5>${ri.id } - <fmt:formatDate value="${ri.r_date }" dateStyle="long"/></h5>
 	                                                    <div class="at-reply">${ri.r_content }</div>
@@ -447,17 +448,23 @@
 
 
 
-
+									
                                           <!-- 내별점>>>  -->  
                                         <div class="personal-rating">
-                                            <h6>Your Ratind</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
+                                        <%
+                                        ReviewBean rb = null;
+                                        rb = (ReviewBean)request.getAttribute("rb");
+                                        if(rb != null){
+                                        %>
+                                          	  <h6>나의 별점</h6>
+                                            	<c:set var="my_star" value="${rb.r_star }"/>
+	                                           		 <div class="rating">
+		                                            	<%@include file="./my_star.jsp" %>
+		                       							 <span>(${my_star})</span>
+	                                           		 </div>
+                                          <%}%>
+                                            
+                                            
                                         </div>
 
                                         <!--<<< 내별점  -->  
