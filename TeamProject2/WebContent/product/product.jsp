@@ -375,7 +375,7 @@
                                 <li>
                                     <a class="active" data-toggle="tab" href="#Tab-1" role="tab">DESCRIPTION</a>
                                 </li>
-                                <li>
+                                <li> 
                                     <a data-toggle="tab" href="#Tab-2" role="tab">Customer Reviews (${review_count })</a>
                                 </li>
                                 <li> 
