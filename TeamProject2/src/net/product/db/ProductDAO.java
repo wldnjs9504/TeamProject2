@@ -175,13 +175,20 @@ public class ProductDAO {
 	// getProductList()
 
 	// getProductListCount()
-	public int getProductListCount() {
+	public int getProductListCount(int category) {
 		int result = 0;
 
 		try {
 			con = getCon();
-			sql = "select count(*) from product";
+			if(category == 0) {
+				sql = "select count(*) from product";
+			}else {
+				sql = "select count(*) from product where category = ?";
+			}
 			pstmt = con.prepareStatement(sql);
+			if(category != 0) {
+				pstmt.setInt(1, category);
+			}
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				result = rs.getInt("count(*)");

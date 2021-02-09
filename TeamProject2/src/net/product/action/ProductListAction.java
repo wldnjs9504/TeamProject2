@@ -40,7 +40,7 @@ public class ProductListAction implements Action{
 		ProductDAO pdao = new ProductDAO();
 		
 		//총 제품 수량
-		int count = pdao.getProductListCount();
+		int count = pdao.getProductListCount(category);
 		System.out.println("M : 총 " + count +"개");
 		
 		
@@ -59,8 +59,11 @@ public class ProductListAction implements Action{
 				//시작행 계산
 				int currentPage = Integer.parseInt(pageNum);
 				int startPage = (currentPage -1) * pageSize +1;
+				if(count == 0) {
+					startPage = 0;
+				}
 				//끝행 계산
-				int endPage = currentPage*pageSize;
+				//int endPage = currentPage*pageSize;
 				
 		
 		
