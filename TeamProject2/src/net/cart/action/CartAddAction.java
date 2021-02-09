@@ -50,7 +50,7 @@ public class CartAddAction implements Action {
 		if(back == 1) {
 			
 			//product.jsp로 다시이동
-			forward.setPath("./Product.p");
+			forward.setPath("./Product.p?p_num="+request.getParameter("p_num"));
 			forward.setRedirect(true);
 			return forward;
 		}
