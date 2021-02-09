@@ -2786,6 +2786,14 @@ ol {
 	margin-bottom: 40px;
 }
 
+.cart-table a{
+	color: #254e7b;
+}
+
+.cart-table a:hover{
+	text-decoration: underline;
+}
+
 .cart-table .member-count h5{
 	float: right;
 	margin: 15px;
@@ -2984,6 +2992,60 @@ ol {
 }
 .cart-table .result {
 	width: 140px;
+}
+
+.cart-table .review {
+	width: 100px;
+	padding: 5px;
+	border-radius: 8px;
+}
+
+.review-table {
+	width: 100%;
+	margin: 30px auto 0;
+}
+
+.review-table table {
+	width: 100%;
+	min-width: 300px;
+}
+
+.review-table table tr{
+	border: 1px solid #ebebeb;
+}
+
+.review-table th {
+	text-align: center;
+	width: 100px;
+	padding: 20px 5px;
+}
+
+.review-table td {
+	padding: 20px 5px;
+	text-align: center;
+}
+
+.review-table select {
+	width: 100%;
+}
+
+.review-table textarea {
+	width: 100%;
+	height: 90px;
+	resize: none;
+}
+
+.review-table .check-btn {
+	width: 100%;
+	min-width: 300px;
+	text-align: center;
+}
+
+.review-table .review {
+	width: 100px;
+	padding: 5px;
+	margin: 10px;
+	border-radius: 8px;
 }
 
 .cart-buttons {
@@ -4290,6 +4352,8 @@ ol {
 	width: 400px !important;
 	margin: 15px auto !important;
 }
+
+/* . */
   
 /* ------------------------------ Responsive Media Styles ---------------------------- */
 

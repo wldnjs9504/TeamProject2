@@ -426,9 +426,9 @@
 	                                                <div class="avatar-text personal-rating">
 						                                <div class="rating">
 	                                                		<%@include file="./star.jsp" %>
-	                                   							 <span>(${r_star})</span>
+	                                   							 &nbsp;<span>(${r_star})</span>
 						                                </div>
-	                                                    <h5>${ri.id }  <fmt:formatDate value="${ri.r_date }" dateStyle="short"/></h5>
+	                                                    <h5>${ri.id } <span class="date"><fmt:formatDate value="${ri.r_date }" dateStyle="short"/></span></h5>
 	                                                    <div class="at-reply">${ri.r_content }</div>
 	                                                </div>
 	                                            </div>

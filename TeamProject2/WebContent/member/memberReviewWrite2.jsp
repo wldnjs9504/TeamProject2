@@ -32,22 +32,51 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-<style type="text/css">
-	html {overflow:hidden;} 
-</style>   
+    
 </head>
 
 <body>
+	<!-- 헤더 -->
+    <%@include file="../inc/header.jsp" %>
+    <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <span>회원정보</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
     
 <%
-	request.setCharacterEncoding("UTF-8");
-	String id = (String)session.getAttribute("id");
-	int p_num = (Integer)request.getAttribute("p_num");
+    int p_num = (Integer)request.getAttribute("p_num");
     %>
  	
     <!-- Shopping Cart Section Begin -->
-    <section class="">
+    <section class="shopping-cart spad">
         <div class="container">
+            <div class="row">
+            	<div class="col-lg-2 col-md-6 col-sm-8 order-2 order-lg-1 products-sidebar-filter">
+                    <div class="filter-widget">
+                        <ul class="filter-catagories">
+                        	<!-- 해당 페이지의 메뉴에만 class="check-menu" 적용 -->
+                    		<li> <a href="./MemberInfo.me"> 내 정보 보기</a></li>
+                     		<li> <a href="./passCheck.me"> 내 정보 변경</a></li>
+                    		<li> <a href="./MemberOrderList.me"> 주문 이력</a></li>
+                    		<li> <a href="#"> 내 포인트 현황</a></li>
+                    		<li class="check-menu"> <a href="./MemberReviewList.me"> 나의 리뷰</a></li>
+                    		<li> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
+                    		<li> <a href="#"> 고객센터</a></li>
+                    		<li> <a href="./MemberDelete.me"> 회원탈퇴</a></li> 
+                        </ul>                    	
+                    </div>
+                </div>
+
                 <div class="col-lg-10 order-1 order-lg-2">
                     <div class="review-table">
                       <form action="./MemberReviewWriteAction.me?p_num=<%=p_num %>" method="post">
@@ -55,7 +84,7 @@
                         <input type="hidden" name="p_num" value="<%=p_num %>">
                         <table>
                           <tr>
-                            <th class="r_star">고객 만족도</th>
+                            <th>고객 만족도</th>
                             <td>
                               <div class="rating">
                                 <select id="r_star" name="r_star">
@@ -70,13 +99,13 @@
                             </td>
                           </tr>
                           <tr>
-                            <th class="r_content">리뷰 작성</th>
+                            <th>리뷰 작성</th>
                             <td><textarea id="r_content" name="r_content" placeholder="리뷰 내용을 작성해주세요"></textarea></td>
                           </tr>
                         </table>
                         <div class="check-btn">
-                          <input class="site-btn review" type="submit" value="등록하기">
-                          <input class="site-btn review" type="button" value="취소하기" onclick="window.close();">
+                          <input class="site-btn" type="submit" value="등록하기">
+                          <input class="site-btn" type="button" value="취소하기" onclick="history.back();">
                         </div>
                       </form>
 					</div>
@@ -86,5 +115,7 @@
     </section>
     <!-- Shopping Cart Section End -->
 
+    <!-- 푸터 -->
+    <%@include file="../inc/footer.jsp" %>
 </body>
 </html>

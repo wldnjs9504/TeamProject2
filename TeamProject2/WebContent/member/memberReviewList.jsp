@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    
 </head>
 
 <body>
@@ -89,7 +88,7 @@
                                     <th class="num">주문번호</th>
                                     <th class="product">상품명</th>
                                     <th class="date">구매일</th>
-                                    <th class="result">상태</th>
+                                    <th class="result"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,7 +109,8 @@
                                         <%=m.get("b_date")%>
                                     </td>
                                     <td class="result">
-                                    	<a href="./MemberReviewWrite.me?p_num=<%=m.get("p_num")%>&b_num=<%=m.get("b_num")%>">리뷰 작성</a>
+                                    	<button class="site-btn review" onclick="window.open('./MemberReviewWrite.me?p_num=<%=m.get("p_num")%>&b_num=<%=m.get("b_num")%>',
+                                    	'window_name','top=100,left=100,width=700,height=300,location=no,status=no');">리뷰 작성</button>
                                     </td>
     							</tr>	   
     							<%
@@ -124,7 +124,12 @@
         </div>
     </section>
     <!-- Shopping Cart Section End -->
-
+<script type="text/javascript">
+function review(){
+	
+}
+</script>    
+    
     <!-- 푸터 -->
     <%@include file="../inc/footer.jsp" %>
 </body>
