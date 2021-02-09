@@ -1,3 +1,4 @@
+<%@page import="net.cart.db.CartDAO"%>
 <%@page import="net.product.db.ReviewBean"%>
 <%@page import="net.cart.db.CartBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -133,24 +134,10 @@
 		var gocart = confirm("장바구니로 바로 가시겠습니까?");
 		if(gocart == true){//카트추가 주소로 보내기
 		//location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;
-		location.href="./CartAdd.ba?c_p_count="+c_p_count+"&p_num="+p_num;
+		location.href="./CartAdd.ba?c_p_count="+c_p_count+"&p_num="+p_num+"&back=0";
 		}else{
-			<%
-			/* int c_p_count = (int)pageContext.getAttribute("c_p_count");//구매수량
-			System.out.println("c_p_count :" + c_p_count);
-			int p_num = (int)pageContext.getAttributesScope("p_num");//제품번호
-			System.out.println("p_num :" + p_num);
+		location.href="./CartAdd.ba?c_p_count="+c_p_count+"&p_num="+p_num+"&back=1";
 			
-			
-			CartBean cb = new CartBean();
-			cb.setC_p_num(p_num);
-			cb.setC_p_count(c_p_count);
-			cb.setC_m_id(id); */
-			
-			//CartDAO 넣으면 넣기
-			//CartDAO cdao = new CartDAO();
-			//cdao.CartAdd(cb);
-			%>
 		}
 	}
 	
@@ -158,6 +145,7 @@
 		//var p_num = document.getElementById("p_num").value;
 		var p_num = ${pb.p_num};
 		var c_p_count = document.getElementById("c_p_count").value;
+		alert("c_p_count : " + c_p_count + "& p_num : " + p_num);
 		
 		//order 주소로 이동필요
 			//location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;

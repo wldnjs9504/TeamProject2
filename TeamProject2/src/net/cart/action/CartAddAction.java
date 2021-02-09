@@ -45,10 +45,21 @@ public class CartAddAction implements Action {
 		if(result != 1){ //장바구니에 해당상품이 없다
 			cdao.cartAdd(cb);
 		}
+		//back=0 : cartList로 이동, back =1 : 쇼핑계속하기 -> product.jsp로 다시이동
+		int back = Integer.parseInt(request.getParameter("back"));
+		if(back == 1) {
+			
+			//product.jsp로 다시이동
+			forward.setPath("./Product.p");
+			forward.setRedirect(true);
+			return forward;
+		}
+			//장바구니list로 이동
+			forward.setPath("./CartList.ba");
+			forward.setRedirect(true);
+			return forward;
+			
 		
-		//장바구니list로 이동
-		forward.setPath("./CartList.ba");
-		forward.setRedirect(true);
-		return forward;
+		
 	}
 }
