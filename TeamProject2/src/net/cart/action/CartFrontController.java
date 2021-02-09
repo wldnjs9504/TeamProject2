@@ -50,7 +50,7 @@ public class CartFrontController extends HttpServlet {
 			action = new CartListAction();
 			try { forward = action.execute(request, response);
 			} catch (Exception e) { e.printStackTrace(); }
-			//장바구니에서 상품 삭제
+		//장바구니에서 상품 삭제
 		}else if(command.equals("/CartDelete.ba")){
 			System.out.println("C: /CartDelete.ba 호출");
 			//.jsp -> Action_DAO_DB ->.ag로 이동
@@ -58,13 +58,16 @@ public class CartFrontController extends HttpServlet {
 			try { 
 				forward = action.execute(request, response);
 			} catch (Exception e) { e.printStackTrace(); }
+			
 		}else if(command.equals("/CartDeletePart.ba")){
 			System.out.println("C: /CartDeletePart.ba 호출");
 			//.jsp -> Action_DAO_DB ->.ag로 이동
+
 			action = new CartDeletePartAction();
 			try { 
 				forward = action.execute(request, response);
 			} catch (Exception e) { e.printStackTrace(); }
+
 		}
 
 		

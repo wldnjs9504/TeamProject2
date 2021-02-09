@@ -32,7 +32,7 @@ public class CartAddAction implements Action {
 		// 파라미터값 저장(상품번호,구매수량) + ID
 		CartBean cb = new CartBean();
 		cb.setP_num(Integer.parseInt(request.getParameter("p_num")));
-		cb.setP_count(Integer.parseInt(request.getParameter("c_count")));
+		cb.setP_count(Integer.parseInt(request.getParameter("c_p_count")));
 		cb.setId(id);
 		System.out.println("장바구니 객체정보: "+cb);
 		

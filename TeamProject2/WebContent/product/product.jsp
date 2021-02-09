@@ -132,7 +132,8 @@
 		/* 장바구니로  */
 		var gocart = confirm("장바구니로 바로 가시겠습니까?");
 		if(gocart == true){//카트추가 주소로 보내기
-		location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;
+		//location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;
+		location.href="./CartAdd.ba?c_p_count="+c_p_count+"&p_num="+p_num;
 		}else{
 			<%
 			/* int c_p_count = (int)pageContext.getAttribute("c_p_count");//구매수량
@@ -159,7 +160,8 @@
 		var c_p_count = document.getElementById("c_p_count").value;
 		
 		//order 주소로 이동필요
-			location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;
+			//location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;
+			location.href="./OrderStar.or?c_p_count="+c_p_count+"&p_num="+p_num;
 			
 		}
 	

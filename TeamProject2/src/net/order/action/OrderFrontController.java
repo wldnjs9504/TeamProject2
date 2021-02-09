@@ -41,7 +41,6 @@ public class OrderFrontController extends HttpServlet {
 			// 주문하기
 		} else if (command.equals("/OrderAdd.or")) {
 			System.out.println("C: /OrderAdd.or 호출");
-//			action = new OrderAddAction();
 			action = new OrderAddAction();
 			try {
 				forward = action.execute(request, response);
