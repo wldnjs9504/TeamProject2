@@ -1,5 +1,5 @@
 <%@page import="net.product.db.ProductBean"%>
-<%@page import="net.order.db.orderBean"%>
+<%@page import="net.order.db.OrderBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -68,7 +68,7 @@
 
                <%
 	List list = (List)request.getAttribute("list");
-	orderBean ob=(orderBean)list.get(0);
+	OrderBean ob=(OrderBean)list.get(0);
  %>
  
            <h4>주문 정보 조회</h4>
