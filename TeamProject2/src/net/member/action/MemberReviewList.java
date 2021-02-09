@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.member.db.MemberDAO;
-import net.order.db.orderBean;
+import net.order.db.OrderBean;
 
 public class MemberReviewList implements Action {
 

@@ -2,7 +2,7 @@ package net.order.db;
 
 import java.sql.Date;
 
-public class orderBean {
+public class OrderBean {
 
 	private int b_num;
 	private String id;

@@ -1,12 +1,15 @@
 package net.cart.db;
 
+import net.product.db.ProductBean;
+
 public class CartBean {
 	
 	private int c_num;
 	private String id;
 	private int p_num;
-	private int c_count;
+	private int p_count;
 	
+	private ProductBean products;
 
 	public int getC_num() {
 		return c_num;
@@ -38,19 +41,30 @@ public class CartBean {
 	}
 
 
-	public int getC_count() {
-		return c_count;
+	public int getP_count() {
+		return p_count;
 	}
 
 
-	public void setC_count(int c_count) {
-		this.c_count = c_count;
+	public void setP_count(int p_count) {
+		this.p_count = p_count;
 	}
+
+
+	public ProductBean getProducts() {
+		return products;
+	}
+
+
+	public void setProducts(ProductBean products) {
+		this.products = products;
+	}
+
 
 	@Override
 	public String toString() {
 		return "OrderBean [c_num=" + c_num + ", id =" + id + ", p_num=" + p_num + 
-				", c_count =" + c_count + "]";
+				", p_count =" + p_count + "]";
 	}
 	
 }

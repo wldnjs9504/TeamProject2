@@ -21,7 +21,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import net.order.db.orderBean;
+import net.order.db.OrderBean;
 import net.product.db.ProductBean;
 import net.product.db.ProductQnaBean;
 import net.product.db.ReviewBean;
@@ -374,7 +374,7 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			System.out.println("문제없음");
 			while(rs.next()) {
-				orderBean ob = new orderBean();
+				OrderBean ob = new OrderBean();
 				ob.setB_count(rs.getInt("b_count"));
 				ob.setB_date(rs.getDate("b_date"));
 				ob.setB_num(rs.getInt("b_num"));

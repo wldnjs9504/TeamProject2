@@ -1,11 +1,12 @@
 package net.order.action;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.cart.db.CartBean;
 import net.cart.db.CartDAO;
 import net.member.db.MemberDAO;
 
@@ -20,22 +21,19 @@ public class OrderStarAction implements Action {
 		String id = (String) session.getAttribute("id");
 		ActionForward forward = new ActionForward();
 		if(id == null){
-			forward.setPath("./MemberLogin.me");
+			forward.setPath("./Login.me");
 			forward.setRedirect(true);
 			return forward;
 		}
 		//장바구니정보 저장
 		CartDAO cdao = new CartDAO();
-		Vector total = cdao.getCartList(id);
-		request.setAttribute("cartList", total.get(0));
-		//장바구니에 저장된 상품정보 정보
-		request.setAttribute("productList", total.get(1));
+		ArrayList<CartBean> cartList = cdao.getCartList(id);
 
 		//구매회원정보 저장 
 		MemberDAO mdao = new MemberDAO();
 		//MemberBean mb = mdao.getMember(id); 한 줄에 처리
 		request.setAttribute("memberBean", mdao.getMember(id));
-		
+		request.setAttribute("cartList", cartList);
 		//페이지이동
 		forward.setPath("./product/product_buy.jsp");
 		forward.setRedirect(false);

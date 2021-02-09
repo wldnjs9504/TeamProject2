@@ -369,4 +369,33 @@ public class ProductDAO {
 		return rb;
 	}
 	//getMyReview(p_num, id)
+	
+
+	/**
+	 * 주문 후 상품 수량 감소
+	 * 
+	 * @param p_num
+	 * @param p_count
+	 * @return
+	 */
+	public int updateProductCnt(int p_num, int p_count) {
+		int result = 0;
+
+		try{
+			getCon();
+			sql ="update product set p_count = p_count - ? where p_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, p_count);
+			pstmt.setInt(2, p_num);
+			pstmt.executeUpdate();
+			System.out.println("DAO: 상품테이블 [" + p_num + "] 상품 수량 변경");
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			closeDB();
+		}
+		return result;
+	}//end of updateProductCnt()
+
 }

@@ -5,7 +5,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="net.product.db.ProductBean"%>
-<%@page import="net.order.db.orderBean"%>
+<%@page import="net.order.db.OrderBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

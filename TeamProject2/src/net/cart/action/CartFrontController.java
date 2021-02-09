@@ -32,7 +32,41 @@ public class CartFrontController extends HttpServlet {
 		ActionForward forward = null;
 		// 주소에 따른 처리 구분 (주소 매핑후 이동)
 		
+		// 주소에 따른 처리 구분 (주소 매핑후 이동)
+		if(command.equals("/CartAdd.ba")){
+			//장바구니 추가 : .jsp -> DB
+			System.out.println("C: /CartAdd.ba 호출");
+			//.ag -> .jsp로 이동
+			//컨트롤러 -> 뷰페이지 이동
+			action = new CartAddAction();
+			try { forward = action.execute(request, response);
+			} catch (Exception e) { e.printStackTrace(); }
 		
+		
+		//장바구니 리스트
+		}else if(command.equals("/CartList.ba")){
+			System.out.println("C: /CartList.ba 호출");
+			//DB - > JSP페이지출력
+			action = new CartListAction();
+			try { forward = action.execute(request, response);
+			} catch (Exception e) { e.printStackTrace(); }
+			//장바구니에서 상품 삭제
+		}else if(command.equals("/CartDelete.ba")){
+			System.out.println("C: /CartDelete.ba 호출");
+			//.jsp -> Action_DAO_DB ->.ag로 이동
+			action = new CartDeleteAction();
+			try { 
+				forward = action.execute(request, response);
+			} catch (Exception e) { e.printStackTrace(); }
+		}else if(command.equals("/CartDeletePart.ba")){
+			System.out.println("C: /CartDeletePart.ba 호출");
+			//.jsp -> Action_DAO_DB ->.ag로 이동
+			action = new CartDeletePartAction();
+			try { 
+				forward = action.execute(request, response);
+			} catch (Exception e) { e.printStackTrace(); }
+		}
+
 		
 		System.out.println("-----------------@ 페이지 이동 @--------------");
 		if(forward != null){ // 이동할 정보가 있다
@@ -48,33 +82,6 @@ public class CartFrontController extends HttpServlet {
 				dis.forward(request, response);			
 			}
 		}//end of 페이지이동
-		
-		// 주소에 따른 처리 구분 (주소 매핑후 이동)
-		if(command.equals("/CartAdd.ba")){
-			//장바구니 추가 : .jsp -> DB
-			System.out.println("C: /CartAdd.ba 호출");
-			//.ag -> .jsp로 이동
-			//컨트롤러 -> 뷰페이지 이동
-			action = new CartAddAction();
-			try { forward = action.execute(request, response);
-			} catch (Exception e) { e.printStackTrace(); }
-		
-		
-		//장바구니 리스트
-	}else if(command.equals("/CartList.ba")){
-		System.out.println("C: /CartList.ba 호출");
-		//DB - > JSP페이지출력
-		action = new CartListAction();
-		try { forward = action.execute(request, response);
-		} catch (Exception e) { e.printStackTrace(); }
-		//장바구니에서 상품 삭제
-	}else if(command.equals("/CartDelete.ba")){
-		System.out.println("C: /CartDelete.ba 호출");
-		//.jsp -> Action_DAO_DB ->.ag로 이동
-		action = new CartDeleteAction();
-		try { forward = action.execute(request, response);
-		} catch (Exception e) { e.printStackTrace(); }
-	}
 		
 	}//end of doProcess
 	

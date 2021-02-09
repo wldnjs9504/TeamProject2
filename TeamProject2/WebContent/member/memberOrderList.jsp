@@ -1,4 +1,4 @@
-<%@page import="net.order.db.orderBean"%>
+<%@page import="net.order.db.OrderBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -46,7 +46,7 @@
     <!-- Breadcrumb Section Begin -->
     
 <%
-    int count = (Integer)request.getAttribute("count");
+    	int count = (Integer)request.getAttribute("count");
     %>
  	
     <!-- Shopping Cart Section Begin -->
@@ -83,17 +83,21 @@
                             </thead>
                             <tbody>
                             	<!-- 주문 내역이 없을 경우 -->
-                            	<%if(count==0){ %>
+                            	<%
+                            		if(count==0){
+                            	%>
                             	<tr>
                             		<td colspan="5"><h2>주문 내역이 없습니다</h2></td>
                             	</tr>
-                            	<%} %>
+                            	<%
+                            		}
+                            	%>
                             	
                                <%
-                               List list = (List)request.getAttribute("list");
-								for(int i=0;i<list.size();i++){
-									orderBean ob=(orderBean)list.get(i);
-								%>
+                            	                               	List list = (List)request.getAttribute("list");
+                            	                               						for(int i=0;i<list.size();i++){
+                            	                               							OrderBean ob=(OrderBean)list.get(i);
+                            	                               %>
                                 <tr>
                                 	<td class="b-num">
                                         <%= ob.getB_num() %>

@@ -22,10 +22,10 @@ public class ActionForward {
 	public void setRedirect(boolean isRedirect) {
 		this.isRedirect = isRedirect;
 	}
-	
+/*	
 	//3.toString
 	@Override
 	public String toString() {
 		return "ActionForward [path=" + path + ", isRedirect=" + isRedirect + "]";
-	}
+	}*/
 }

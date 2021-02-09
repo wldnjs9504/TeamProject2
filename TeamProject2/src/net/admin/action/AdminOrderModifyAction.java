@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.admin.db.AdminOrderDAO;
-import net.order.db.orderBean;
+import net.order.db.OrderBean;
 
 public class AdminOrderModifyAction implements Action{
 	@Override
@@ -14,7 +14,7 @@ public class AdminOrderModifyAction implements Action{
 		request.setCharacterEncoding("UTF-8");
 		
 		System.out.println("문제 없음");
-		orderBean ob = new orderBean();
+		OrderBean ob = new OrderBean();
 		System.out.println("문제 없음");
 		System.out.println("문제 없음");
 		

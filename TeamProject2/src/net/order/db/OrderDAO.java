@@ -5,14 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.naming.Context; //import 추가
 import javax.naming.InitialContext; //import 추가
 import javax.sql.DataSource;
 
 import net.cart.db.CartBean;
+import net.cart.db.CartDAO;
 import net.product.db.ProductBean;
 
 public class OrderDAO {
@@ -26,13 +27,13 @@ public class OrderDAO {
 		// 커넥션 풀
 		//context.xml추가
 		Context init = new InitialContext();
-		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/model2DB");
+		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/team1");
 		con = ds.getConnection();
 		System.out.println("DAO : 디비연결 완료 "+con);
 	}//end of getCon()
 	
 	//주문등록하기
-	public void addOrder(orderBean ob, List<CartBean> cartList, List<ProductBean> productList) {
+	public void addOrder(OrderBean ob) {
 		int b_num = 0; //일련번호
 		int trade_num = 0; //주문번호
 
@@ -42,11 +43,14 @@ public class OrderDAO {
 		Calendar cal = Calendar.getInstance(); //시스템날짜
 		//날짜 정보를 포맷
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		
+		CartDAO cdao = new CartDAO();
+		ArrayList<CartBean> cartList = cdao.getCartList(ob.getId());
 
 		try{
 			getCon();
 			//주문테이블(itwillbs_order) 번호 계산하기
-			sql = "selct max(o_num) from team1_order";
+			sql = "select max(b_num) from p_order";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
@@ -59,37 +63,38 @@ public class OrderDAO {
 			//전달정보 사용해서 데이터베이스에 추가
 			for(int i=0; i<cartList.size(); i++){
 				CartBean cb = (CartBean) cartList.get(i);
-				ProductBean pb = (ProductBean) productList.get(i);
+				ProductBean pb = (ProductBean) cb.getProducts();
 
-				sql = "insert into order values(?,?,?,?,?,"
+				sql = "insert into p_order(b_num, id, o_name, o_phone, o_email, b_date, "
+						+ "p_num, b_count, point, d_cost, d_result, "
+						+ "d_name, d_phone, d_postcode, d_address, d_address2,"
+						+ "d_message, payment) "
+						+ "values(?,?,?,?,?,now(),"
 						+ "?,?,?,?,?,"
 						+ "?,?,?,?,?,"
-						+ "?,?,?,?)";
+						+ "?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, b_num);
 				pstmt.setString(2, ob.getId());
-				pstmt.setInt(3, cb.getP_num());				
-//				pstmt.setString(4, pb.getName());
-				pstmt.setString(4, pb.getP_name());
-				pstmt.setInt(5, cb.getC_count());
-				pstmt.setString(6, ob.getO_email());
-				pstmt.setString(7, ob.getO_phone());
-				pstmt.setDate(8, ob.getB_date());
-				pstmt.setInt(9, ob.getPoint());
-
-				pstmt.setInt(10, ob.getD_cost());
-				pstmt.setInt(11, ob.getD_result());
-
-				pstmt.setString(12, ob.getD_name());
-				pstmt.setString(13, ob.getD_address());
-				pstmt.setString(14, ob.getD_address2());
-				pstmt.setString(15, ob.getD_phone());
-				pstmt.setString(16, ob.getD_message());
-//				pstmt.setInt(17, cb.getC_count() * pb.getPrice());
-				pstmt.setInt(17, cb.getC_count() * pb.getP_price());
+				pstmt.setString(3, ob.getO_name());
+				pstmt.setString(4, ob.getO_phone());
+				pstmt.setString(5, ob.getO_email());
 				
-				pstmt.setInt(18, ob.getD_postcode());
-				pstmt.setInt(19, ob.getPayment());
+				pstmt.setInt(6, cb.getP_num());		
+				pstmt.setInt(7, cb.getP_count());
+				pstmt.setInt(8, (int)(cb.getP_count()*pb.getP_saleprice()*0.1)); //10% 포인트
+				pstmt.setInt(9, cb.getP_count()*pb.getP_saleprice());
+				pstmt.setInt(10, ob.getD_result());
+
+				pstmt.setString(11, ob.getD_name());
+				pstmt.setString(12, ob.getD_phone());		
+				pstmt.setInt(13, ob.getD_postcode());
+				pstmt.setString(14, ob.getD_address());
+				pstmt.setString(15, ob.getD_address2());
+				
+				pstmt.setString(16, ob.getD_message());
+				pstmt.setInt(17, ob.getPayment());
+				
 				pstmt.executeUpdate();
 
 				b_num++; //일련번호를 증가시킴

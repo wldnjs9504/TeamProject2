@@ -1,4 +1,4 @@
-<%@page import="net.order.db.orderBean"%>
+<%@page import="net.order.db.OrderBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -47,10 +47,10 @@
     <!-- Breadcrumb Section Begin -->
     
 	<%
-    //request.setAttribute("ProductList", productList);
-    List list = (List)request.getAttribute("list");
-    orderBean ob=(orderBean)list.get(0);
-    %>
+    		//request.setAttribute("ProductList", productList);
+    	    List list = (List)request.getAttribute("list");
+    	    OrderBean ob=(OrderBean)list.get(0);
+    	%>
 
 <script type="text/javascript">
 function removeCheck() {
@@ -94,9 +94,9 @@ function removeCheck() {
                             <tbody>
                             
 								<%
-								for(int i=0;i<list.size();i++){
-									ob=(orderBean)list.get(i);
-								 %>
+                            									for(int i=0;i<list.size();i++){
+                            															ob=(OrderBean)list.get(i);
+                            								%>
                                 <tr>
                                 	<td class="b-num">
                                         <%= ob.getB_num() %>
