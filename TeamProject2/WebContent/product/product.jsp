@@ -634,121 +634,64 @@
 
 
 
-
-
-    <!-- Related Products Section End -->
+	
+	
+    <!--추천상품: 있을때만 표시됨 >>>-->
     <div class="related-products spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Related Products</h2>
+                    	<c:if test="${requestScope.recomList.size() != 0}">
+                        <h2>Related Products </h2>
+                        </c:if>
                     </div>
                 </div>
             </div>
             <div class="row">
+            
+            <!-- 제품1 -->
+            <c:forEach items="${requestScope.recomList }" var="recom">
+            <c:set value="${pageScope.recom }" var="rec"/>
                 <div class="col-lg-3 col-sm-6">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="img/products/women-1.jpg" alt="">
+                            <img src="img/${rec.img_main }" alt="">
                             <div class="sale">Sale</div>
                             <div class="icon">
                                 <i class="icon_heart_alt"></i>
                             </div>
                             <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                <!--  <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li> -->
+                                 <li class="quick-view"><a href="./Product.p?p_num=${rec.p_num }">+ 상세보기</a></li>
+                                <!--  <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li> -->
                             </ul>
                         </div>
                         <div class="pi-text">
-                            <div class="catagory-name">Coat</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
+                            <div class="catagory-name">
+                               <c:if test="${rec.category == 1 }">피로/간</c:if>
+                               <c:if test="${rec.category == 2 }">수면/스트레스</c:if>
+                               <c:if test="${rec.category == 3 }">피부</c:if>
+                               <c:if test="${rec.category == 4 }">눈</c:if>
+                               <c:if test="${rec.category == 5 }">두뇌활동</c:if>
+                               <c:if test="${rec.category == 6 }">심장/혈관/혈당</c:if>
+                            </div>
+                            <a href="./Product.p?p_num=${rec.p_num }">
+                                <h5>${rec.p_name }</h5>
                             </a>
                             <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
+                                <fmt:formatNumber value="${rec.p_saleprice}" pattern="#,###" />원
+                               	<span><fmt:formatNumber value="${rec.p_price}" pattern="#,###" />원</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-2.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Shoes</div>
-                            <a href="#">
-                                <h5>Guangzhou sweater</h5>
-                            </a>
-                            <div class="product-price">
-                                $13.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-3.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-4.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Converse Shoes</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div> 
+            </c:forEach>   
+            <!-- 제품1 -->   
             </div>
         </div>
     </div>
-    <!-- Related Products Section End -->
+    <!-- <<< 추천상품-->
 
 
     <!-- 푸터 -->

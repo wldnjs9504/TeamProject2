@@ -370,6 +370,53 @@ public class ProductDAO {
 	}
 	//getMyReview(p_num, id)
 	
+	//recommendList(category, p_num)
+	public ArrayList<ProductBean> recommendList(int category, int p_num){
+		
+		ArrayList<ProductBean> recomList = new ArrayList<ProductBean>();
+		ProductBean pb = null;
+		
+		try {
+			con = getCon();
+			
+			sql = "select * from product where category = ? and p_num != ? order by p_num desc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, category);
+			pstmt.setInt(2, p_num);
+			rs = pstmt.executeQuery();
+			int i = 0;
+			while(rs.next() && (i <4)) {
+				pb = new ProductBean();
+				pb.setCategory(rs.getInt("category"));
+				pb.setImg_content(rs.getString("img_content"));
+				pb.setImg_main(rs.getString("img_main"));
+				pb.setP_count(rs.getInt("p_count"));
+				pb.setP_name(rs.getString("p_name"));
+				pb.setP_num(rs.getInt("p_num"));
+				pb.setP_price(rs.getInt("p_price"));
+				pb.setP_saleprice(rs.getInt("p_saleprice"));
+				pb.setPrice_count(rs.getInt("price_count"));
+				pb.setReadcount(rs.getInt("readcount"));
+				recomList.add(pb);
+				i++;
+				System.out.println("DAO : recomList 저장 완료!");
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("DAO : recomList 저장 실패!");
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		
+		
+		return recomList;
+		
+	}
+	//recommendList(category, p_num)
+	
 
 	/**
 	 * 주문 후 상품 수량 감소
@@ -397,5 +444,4 @@ public class ProductDAO {
 		}
 		return result;
 	}//end of updateProductCnt()
-
 }

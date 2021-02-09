@@ -35,6 +35,13 @@ public class ProductDetailAction implements Action{
 			ProductBean pb = pdao.getProduct(p_num);
 			//productBean  저장  
 			request.setAttribute("pb", pb);
+			//제품 카테고리
+			int category = pb.getCategory();
+			//동일 카테고리 제품리스트 (추천상품리스트)
+			ArrayList<ProductBean> recomList = pdao.recommendList(category, p_num);
+			request.setAttribute("recomList", recomList);
+			System.out.println("M : recomList size = " + recomList.size());
+			
 			 
 			//pdao.getStarAvg(p_num) 별점계산
 			double star_avg = pdao.getStarAvg(p_num);
