@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Vector;
 
 import javax.mail.Address;
 import javax.mail.Authenticator;
@@ -426,15 +427,14 @@ public class MemberDAO {
 	}//getMemberOrderCount(id)
 	
 	
-	//getMemberOrderDetail(id)
+	//getMemberOrderDetail(id)-주문한 제품
 	public ArrayList<Map<String, Object>> getMemberOrderDetail(String id){
 		ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
 		try {
 			con = getCon();
-			sql = "select po.b_num, po.id, po.p_num, p.p_name, po.b_date "
-					+ "from p_order po join product p on po.p_num = p.p_num "
-					+ "where id=? and po.payment=1 order by po.b_num desc, p.p_num asc";
+			sql = "select * from p_order po join product p on po.p_num = p.p_num "
+					+ "where id=? order by po.b_num desc, p.p_num asc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -443,9 +443,24 @@ public class MemberDAO {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("b_num",rs.getInt("po.b_num"));
 				map.put("id", rs.getString("po.id"));
-				map.put("p_num", rs.getInt("po.p_num"));
-				map.put("p_name", rs.getString("p.p_name"));
+				map.put("o_name", rs.getString("po.o_name"));
+				map.put("o_phone", rs.getString("o_phone"));
 				map.put("b_date", rs.getDate("po.b_date"));
+				map.put("p_num", rs.getInt("po.p_num"));
+				map.put("b_count", rs.getInt("b_count"));
+				map.put("point", rs.getInt("point"));
+				map.put("d_cost", rs.getInt("d_cost"));
+				map.put("d_result", rs.getObject("po.d_result"));
+				map.put("d_name", rs.getString("d_name"));
+				map.put("d_phone", rs.getString("d_phone"));
+				map.put("d_postcode", rs.getInt("d_postcode"));
+				map.put("d_address", rs.getString("d_address"));
+				map.put("d_address2", rs.getString("d_address2"));
+				map.put("payment", rs.getInt("payment"));
+				map.put("p_name", rs.getString("p.p_name"));
+				map.put("p_price", rs.getInt("p_price"));
+				map.put("p_saleprice", rs.getInt("p_saleprice"));
+				map.put("price_count", rs.getInt("price_count"));
 				list.add(map);
 			}
 		} catch (Exception e) {
@@ -455,6 +470,52 @@ public class MemberDAO {
 		}		
 		return list;
 	}//getMemberOrderDetail(id)
+	
+	
+	//getMemberOrderDetail(id,b_num)-주문한 제품의 주문번호와 일치하는 제품
+	public ArrayList<Map<String, Object>> getMemberOrderDetail(String id, int b_num){
+		ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
+		try {
+			con = getCon();
+			sql = "select * from p_order po join product p on po.p_num = p.p_num "
+					+ "where id=? and b_num=?order by po.b_num desc, p.p_num asc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, b_num);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("b_num",rs.getInt("po.b_num"));
+				map.put("id", rs.getString("po.id"));
+				map.put("o_name", rs.getString("po.o_name"));
+				map.put("o_phone", rs.getString("o_phone"));
+				map.put("b_date", rs.getDate("po.b_date"));
+				map.put("p_num", rs.getInt("po.p_num"));
+				map.put("b_count", rs.getInt("b_count"));
+				map.put("point", rs.getInt("point"));
+				map.put("d_cost", rs.getInt("d_cost"));
+				map.put("d_result", rs.getObject("po.d_result"));
+				map.put("d_name", rs.getString("d_name"));
+				map.put("d_phone", rs.getString("d_phone"));
+				map.put("d_postcode", rs.getInt("d_postcode"));
+				map.put("d_address", rs.getString("d_address"));
+				map.put("d_address2", rs.getString("d_address2"));
+				map.put("payment", rs.getInt("payment"));
+				map.put("p_name", rs.getString("p.p_name"));
+				map.put("p_price", rs.getInt("p_price"));
+				map.put("p_saleprice", rs.getInt("p_saleprice"));
+				map.put("price_count", rs.getInt("price_count"));
+				list.add(map);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}		
+		return list;
+	}//getMemberOrderDetail(id,b_num)
 	
 	
 	//getCheckReview(id, p_num, b_num)
@@ -568,64 +629,69 @@ public class MemberDAO {
 		}
 	}//insertReview(rb)
 	
-	
-	//getmemberOrderDetail(b_num)
-		public List getmemberOrderDetail(int b_num, int p_num) {
-			List list = new ArrayList();
-
-			try {
-				con = getCon();
-				sql = "select * from p_order po join product p where po.p_num = p.p_num and po.p_num=? and po.b_num=?";
-				pstmt = con.prepareStatement(sql);
-
-				pstmt.setInt(1, p_num);
-				pstmt.setInt(2, b_num);
-
-				rs = pstmt.executeQuery();
-
-				while (rs.next()) {
-					OrderBean ob = new OrderBean();
+	//getOrderDetail(b_num)
+	public Vector getOrderDetail(int b_num){
+			
+		Vector totalList = new Vector();
+		ArrayList orderList = new ArrayList();
+		ArrayList productList = new ArrayList();
+		
+		try {
+			con = getCon();
+			
+			sql  = "select * from p_order where b_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, b_num);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				OrderBean ob = new OrderBean();
+				ob.setB_count(rs.getInt("b_count"));
+				ob.setB_date(rs.getDate("b_date"));
+				ob.setB_num(rs.getInt("b_num"));
+				ob.setD_address(rs.getString("d_address"));
+				ob.setD_address2(rs.getString("d_address2"));
+				ob.setD_cost(rs.getInt("d_cost"));
+				ob.setD_message(rs.getString("d_message"));
+				ob.setD_name(rs.getString("d_name"));
+				ob.setD_phone(rs.getString("d_phone"));
+				ob.setD_postcode(rs.getInt("d_postcode"));
+				ob.setD_result(rs.getInt("d_result"));
+				ob.setId(rs.getString("id"));
+				ob.setO_email(rs.getString("o_email"));
+				ob.setO_name(rs.getString("o_name"));
+				ob.setO_phone(rs.getString("o_phone"));
+				ob.setP_num(rs.getInt("p_num"));
+				ob.setPayment(rs.getInt("payment"));
+				ob.setPoint(rs.getInt("point"));
+				
+				orderList.add(ob);
+				
+				sql = "select * from product where p_num=?";
+				PreparedStatement pstmt2 = con.prepareStatement(sql);
+				pstmt2.setInt(1, ob.getP_num());
+				ResultSet rs2 = pstmt2.executeQuery();
+				
+				if(rs2.next()) {
 					ProductBean pb = new ProductBean();
-					ob.setB_count(rs.getInt("b_count"));
-					ob.setB_date(rs.getDate("b_date"));
-					ob.setB_num(rs.getInt("b_num"));
-					ob.setD_address(rs.getString("d_address"));
-					ob.setD_address2(rs.getString("d_address2"));
-					ob.setD_cost(rs.getInt("d_cost"));
-					ob.setD_message(rs.getString("d_message"));
-					ob.setD_name(rs.getString("d_name"));
-					ob.setD_phone(rs.getString("d_phone"));
-					ob.setId(rs.getString("id"));
-					ob.setO_email(rs.getString("o_email"));
-					ob.setO_name(rs.getString("o_name"));
-					ob.setO_phone(rs.getString("o_phone"));
-					ob.setP_num(rs.getInt("p_num"));
-					ob.setPayment(rs.getInt("payment"));
-					ob.setPoint(rs.getInt("point"));
-					ob.setD_result(rs.getInt("d_result"));
-					pb.setCategory(rs.getInt("category"));
-					pb.setP_count(rs.getInt("p_count"));
-					pb.setImg_content(rs.getString("img_content"));
-					pb.setImg_main(rs.getString("img_main"));
-					pb.setP_name(rs.getString("p_name"));
-					pb.setP_num(rs.getInt("p_num"));
-					pb.setP_price(rs.getInt("p_price"));
-					pb.setP_saleprice(rs.getInt("p_saleprice"));
-					pb.setPrice_count(rs.getInt("price_count"));
-					list.add(ob);
-					list.add(pb);
-				}
-
-				System.out.println("DAO-orderdetail");
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				closeDB();
-			}
-			return list;
+					pb.setP_name(rs2.getString("p_name"));
+					pb.setImg_main(rs2.getString("img_main"));
+					pb.setP_price(rs2.getInt("p_price"));
+					pb.setP_saleprice(rs2.getInt("p_saleprice"));
+					productList.add(pb);
+				}//if
+			}//while
+			
+			totalList.add(orderList);
+			totalList.add(productList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			closeDB();
 		}
-		
-		
+		return totalList;
+	}//getOrderDetail(b_num)
+
 	
 }

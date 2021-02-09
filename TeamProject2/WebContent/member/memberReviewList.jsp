@@ -79,6 +79,10 @@
 
                 <div class="col-lg-10 order-1 order-lg-2">
                     <div class="cart-table">
+					<!-- 구매 내역이 없을 경우 -->
+					<%if(count==0){ %>
+						<h2>구매한 상품이 없습니다</h2>
+					<%} %> 
                         <table>
                             <thead>
                                 <tr>
@@ -89,12 +93,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	<!-- 구매 내역이 없을 경우 -->
-                            	<%if(count==0){ %>
-                            	<tr>
-                            		<td colspan="5"><h2>구매한 상품이 없습니다</h2></td>
-                            	</tr>
-                            	<%} %>            
+           
 								<%
 								MemberDAO mdao = new MemberDAO();
 								ArrayList<Map<String, Object>> list = mdao.getMemberOrderDetail(id);
@@ -105,7 +104,7 @@
                                         <%=m.get("b_num") %>
                                     </td>
                                     <td class="product">
-                                        <a href="./Product.p?p_num=<%=m.get("p_num")%>#tab-2"><%=m.get("p_name") %></a>
+                                        <a href="./Product.p?p_num=<%=m.get("p_num")%>#Tab-1"><%=m.get("p_name") %></a>
                                     </td>
                                     <td class="date">
                                         <%=m.get("b_date")%>

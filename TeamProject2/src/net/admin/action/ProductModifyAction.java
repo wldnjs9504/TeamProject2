@@ -36,7 +36,10 @@ public class ProductModifyAction implements Action {
 		pb.setP_price(Integer.parseInt(multi.getParameter("p_price")));
 		pb.setP_saleprice(Integer.parseInt(multi.getParameter("p_saleprice")));
 		String image1 = multi.getFilesystemName("img_main");
-		String image2 = multi.getFilesystemName("img_content");
+		String image2 = multi.getFilesystemName("file1")+","
+				+multi.getFilesystemName("file2")+","
+				+multi.getFilesystemName("file3")+","
+				+multi.getFilesystemName("file4");
 		pb.setImg_main(image1);
 		pb.setImg_content(image2);
 		pb.setP_name(multi.getParameter("p_name"));

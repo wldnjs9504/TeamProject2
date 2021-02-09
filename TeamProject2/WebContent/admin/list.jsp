@@ -168,7 +168,7 @@ function removeCheck() {
                                     
                                     <td class="cart-title">
                                     	<div class="p-cate"><%= result %><br></div>
-                                        <%= pb.getP_name() %>
+                                        <a href="./Product.p?p_num=<%=pb.getP_num()%>"><%= pb.getP_name() %></a>
                                     </td>
                                     <td class="p-price"><%= sb %>원</td>
                                 	<td class="p-count">

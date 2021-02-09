@@ -92,8 +92,8 @@
 	                 		    <td colspan="5"><input type="file" id="img_main" name="img_main"></td>
 	                 		  </tr>
 	                 		  <tr>
-	                 		    <th><label for="img_content">서브 이미지</label></th>
-	                 		    <td colspan="5"><input type="file" id="img_content" name="img_content"></td>
+	                 		    <th><label for="file1">서브 이미지</label></th>
+	                 		    <td colspan="5"><input type="file" id="file1" name="file1"></td>
 	                 		  </tr>
 	                 		  <tr>
 	                 		    <th><label for="file2">서브 이미지</label></th>

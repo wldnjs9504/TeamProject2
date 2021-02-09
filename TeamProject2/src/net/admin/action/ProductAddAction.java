@@ -29,7 +29,7 @@ public class ProductAddAction implements Action {
 		pb.setP_price(Integer.parseInt(multi.getParameter("p_price")));
 		pb.setP_saleprice(Integer.parseInt(multi.getParameter("p_saleprice")));
 		String image1 = multi.getFilesystemName("img_main");
-		String image2 = multi.getFilesystemName("content")+","
+		String image2 = multi.getFilesystemName("file1")+","
 				+multi.getFilesystemName("file2")+","
 				+multi.getFilesystemName("file3")+","
 				+multi.getFilesystemName("file4");

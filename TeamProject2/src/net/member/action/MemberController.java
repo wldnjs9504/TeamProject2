@@ -199,12 +199,9 @@ public class MemberController extends HttpServlet {
 			}	    	
 	    }
 	    
-	    
 		else if (command.equals("/MemberOrderDetail.me")) {
-
-			System.out.println("컨트롤러-detail");
-
 			action = new MemberOrderDetailAction();
+			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

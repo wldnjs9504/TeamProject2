@@ -1,3 +1,6 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="net.member.db.MemberDAO"%>
 <%@page import="net.order.db.OrderBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -71,59 +74,48 @@
 
                 <div class="col-lg-10 order-1 order-lg-2">
                     <div class="cart-table">
+					<!-- 주문 내역이 없을 경우 -->
+					<%if(count==0){	%>
+						<h2>주문 내역이 없습니다</h2>
+					<%}	%>
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="b-num">주문번호</th>
-                                    <th class="id">아이디</th>
-                                    <th class="name">이름</th>
+                                    <th class="num">주문번호</th>
+                                    <th class="product">상품명</th>
                                     <th class="date">주문일시</th>
-                                    <th class="active">주문상태</th>
+                                    <th class="result">상태</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            	<!-- 주문 내역이 없을 경우 -->
-                            	<%
-                            		if(count==0){
-                            	%>
-                            	<tr>
-                            		<td colspan="5"><h2>주문 내역이 없습니다</h2></td>
-                            	</tr>
-                            	<%
-                            		}
-                            	%>
-                            	
                                <%
-                            	                               	List list = (List)request.getAttribute("list");
-                            	                               						for(int i=0;i<list.size();i++){
-                            	                               							OrderBean ob=(OrderBean)list.get(i);
-                            	                               %>
+								MemberDAO mdao = new MemberDAO();
+								ArrayList<Map<String, Object>> list = mdao.getMemberOrderDetail(id);
+								for(Map<String, Object> m : list){
+								%>
                                 <tr>
-                                	<td class="b-num">
-                                        <%= ob.getB_num() %>
+                                	<td class="num">
+                                        <%=m.get("b_num") %>
                                     </td>
-                                    <td class="id">
-                                        <%= ob.getId() %>
-                                    </td>
-                                    <td class="name">
-                                        <%= ob.getO_name()%>
+                                    <td class="product">
+                                        <a href="./MemberOrderDetail.me?b_num=<%=m.get("b_num")%>"><%=m.get("p_name") %></a>
                                     </td>
                                     <td class="date">
-                                        <%= ob.getB_date()%>
+                                        <%=m.get("b_date")%>
                                     </td>
                                     <%
                                     String result= "";
-                                    if(ob.getD_result()==0){
+                                    if(m.get("d_result").equals(0)){
                                     	result = "주문완료";
-                                    }else if(ob.getD_result()==1){
+                                    }else if(m.get("d_result").equals(1)){
                                     	result = "결제완료";
-                                    }else if(ob.getD_result()==2){
+                                    }else if(m.get("d_result").equals(2)){
                                     	result = "배송준비";
-                                    }else if(ob.getD_result()==3){
+                                    }else if(m.get("d_result").equals(3)){
                                     	result = "배송완료";
                                     }                                    
                                     %>
-                                    <td class="active">
+                                    <td class="result">
                                         <%= result %>
                                     </td>
     							</tr>	   
