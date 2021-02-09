@@ -145,11 +145,12 @@
 		//var p_num = document.getElementById("p_num").value;
 		var p_num = ${pb.p_num};
 		var c_p_count = document.getElementById("c_p_count").value;
-		alert("c_p_count : " + c_p_count + "& p_num : " + p_num);
+		//alert("c_p_count : " + c_p_count + "& p_num : " + p_num);
 		
+		location.href="./CartAdd.ba?c_p_count="+c_p_count+"&p_num="+p_num+"&back=-1";
 		//order 주소로 이동필요
 			//location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;
-			location.href="./OrderStar.or?c_p_count="+c_p_count+"&p_num="+p_num;
+			//location.href="./OrderStar.or?c_p_count="+c_p_count+"&p_num="+p_num;
 			
 		}
 	

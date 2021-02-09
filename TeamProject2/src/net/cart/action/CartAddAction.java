@@ -53,6 +53,13 @@ public class CartAddAction implements Action {
 			forward.setPath("./Product.p?p_num="+request.getParameter("p_num"));
 			forward.setRedirect(true);
 			return forward;
+			
+		}else if(back == -1) { //구매 바로가기
+			
+			forward.setPath("./OrderStar.or");
+			forward.setRedirect(true);
+			return forward;
+			
 		}
 			//장바구니list로 이동
 			forward.setPath("./CartList.ba");
