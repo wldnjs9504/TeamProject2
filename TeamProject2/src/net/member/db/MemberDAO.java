@@ -568,4 +568,64 @@ public class MemberDAO {
 		}
 	}//insertReview(rb)
 	
+	
+	//getmemberOrderDetail(b_num)
+		public List getmemberOrderDetail(int b_num, int p_num) {
+			List list = new ArrayList();
+
+			try {
+				con = getCon();
+				sql = "select * from p_order po join product p where po.p_num = p.p_num and po.p_num=? and po.b_num=?";
+				pstmt = con.prepareStatement(sql);
+
+				pstmt.setInt(1, p_num);
+				pstmt.setInt(2, b_num);
+
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					OrderBean ob = new OrderBean();
+					ProductBean pb = new ProductBean();
+					ob.setB_count(rs.getInt("b_count"));
+					ob.setB_date(rs.getDate("b_date"));
+					ob.setB_num(rs.getInt("b_num"));
+					ob.setD_address(rs.getString("d_address"));
+					ob.setD_address2(rs.getString("d_address2"));
+					ob.setD_cost(rs.getInt("d_cost"));
+					ob.setD_message(rs.getString("d_message"));
+					ob.setD_name(rs.getString("d_name"));
+					ob.setD_phone(rs.getString("d_phone"));
+					ob.setId(rs.getString("id"));
+					ob.setO_email(rs.getString("o_email"));
+					ob.setO_name(rs.getString("o_name"));
+					ob.setO_phone(rs.getString("o_phone"));
+					ob.setP_num(rs.getInt("p_num"));
+					ob.setPayment(rs.getInt("payment"));
+					ob.setPoint(rs.getInt("point"));
+					ob.setD_result(rs.getInt("d_result"));
+					pb.setCategory(rs.getInt("category"));
+					pb.setP_count(rs.getInt("p_count"));
+					pb.setImg_content(rs.getString("img_content"));
+					pb.setImg_main(rs.getString("img_main"));
+					pb.setP_name(rs.getString("p_name"));
+					pb.setP_num(rs.getInt("p_num"));
+					pb.setP_price(rs.getInt("p_price"));
+					pb.setP_saleprice(rs.getInt("p_saleprice"));
+					pb.setPrice_count(rs.getInt("price_count"));
+					list.add(ob);
+					list.add(pb);
+				}
+
+				System.out.println("DAO-orderdetail");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			return list;
+		}
+		
+		
+	
 }

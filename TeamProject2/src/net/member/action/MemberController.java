@@ -200,6 +200,20 @@ public class MemberController extends HttpServlet {
 	    }
 	    
 	    
+		else if (command.equals("/MemberOrderDetail.me")) {
+
+			System.out.println("컨트롤러-detail");
+
+			action = new MemberOrderDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	    
+	    
+	    
 		// 이동할 주소정보가 있는경우
 		if(forward != null) {
 			// 페이지 이동
