@@ -141,7 +141,11 @@ int totalPrice = 0; //장바구니 총 합계금액
                                 <ul>
                                     <li class="cart-total">합계금액 <span><script type="text/javascript">numberWithComma(<%=totalPrice %>)</script></span></li>
                                 </ul>
+                                <% if (totalPrice==0) { %>
+                                <a href="javascript:alert('장바구니가 비었습니다');" class="proceed-btn">결제하기</a>
+                                <%}else{%>
                                 <a href="./OrderStar.or" class="proceed-btn">결제하기</a>
+                                <%} %>
                             </div>
                         </div>
                     </div>

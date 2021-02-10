@@ -118,7 +118,10 @@ MemberBean mb = (MemberBean)request.getAttribute("memberBean");
 									   		CartBean cb = (CartBean) cartList.get(i);
 									   		ProductBean pb = cb.getProducts();
 									   		totalPrice = totalPrice + (pb.getP_saleprice() * cb.getP_count());
-								   	%>
+								   			if(cb.getIs_direct()) { //바로구매이면 %>
+								   	<input type="hidden" name="p_num" value="<%=cb.getP_num()%>">
+								   	<input type="hidden" name="p_count" value="<%=cb.getP_count()%>">
+								   	<% }  %>
                                     <li class="fw-normal"><%=pb.getP_name()%> * <%=cb.getP_count() %>개 <span><script type="text/javascript">numberWithComma(<%=pb.getP_saleprice()*cb.getP_count()%>)</script></span></li>
                                     <%} %>
                                     <li class="total-price">합계금액 <span><script type="text/javascript">numberWithComma(<%=totalPrice %>)</script></span></li>

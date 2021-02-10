@@ -33,7 +33,7 @@ public class OrderDAO {
 	}//end of getCon()
 	
 	//주문등록하기
-	public void addOrder(OrderBean ob) {
+	public void addOrder(OrderBean ob, ArrayList<CartBean> cartList) {
 		int b_num = 0; //일련번호
 		int trade_num = 0; //주문번호
 
@@ -45,7 +45,6 @@ public class OrderDAO {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		
 		CartDAO cdao = new CartDAO();
-		ArrayList<CartBean> cartList = cdao.getCartList(ob.getId());
 
 		try{
 			getCon();

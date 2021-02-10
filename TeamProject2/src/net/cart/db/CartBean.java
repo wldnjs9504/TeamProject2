@@ -8,6 +8,7 @@ public class CartBean {
 	private String id;
 	private int p_num;
 	private int p_count;
+	private boolean is_direct;  // 바로 구매 여부
 	
 	private ProductBean products;
 
@@ -61,10 +62,20 @@ public class CartBean {
 	}
 
 
+	public boolean getIs_direct() {
+		return is_direct;
+	}
+
+
+	public void setIs_direct(boolean is_direct) {
+		this.is_direct = is_direct;
+	}
+
+
 	@Override
 	public String toString() {
-		return "OrderBean [c_num=" + c_num + ", id =" + id + ", p_num=" + p_num + 
-				", p_count =" + p_count + "]";
+		return "CartBean [c_num=" + c_num + ", id =" + id + ", p_num=" + p_num + 
+				", p_count =" + p_count + ",is_direct=" + is_direct + "]";
 	}
 	
 }

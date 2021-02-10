@@ -11,6 +11,7 @@ import net.cart.db.CartBean;
 import net.cart.db.CartDAO;
 import net.order.db.OrderDAO;
 import net.order.db.OrderBean;
+import net.product.db.ProductBean;
 import net.product.db.ProductDAO;
 
 public class OrderAddAction implements Action {
@@ -47,14 +48,32 @@ public class OrderAddAction implements Action {
 		ob.setPayment(Integer.parseInt((String)request.getParameter(("payment"))));
 		
 		CartDAO cdao = new CartDAO();
-		ArrayList<CartBean> cartList = cdao.getCartList(id);
+		ArrayList<CartBean> cartList = null;
 		
 		// 결재 모듈(카카오,아임포트,U+) 추가영역
 		System.out.println("M : 결제모듈 성공");
+		int p_num = Integer.parseInt(request.getParameter("p_num")==null ? "0":request.getParameter("p_num"));
+		int c_p_count = Integer.parseInt(request.getParameter("p_count")==null ? "0": request.getParameter("p_count"));
+		
+		if(p_num > 0) { //바로구매 상품
+			cartList = new ArrayList<CartBean>();
+			CartBean cb = new CartBean();
+			cb.setP_num(p_num);
+			cb.setP_count(c_p_count);
+			cb.setIs_direct(true);
+			ProductDAO dao = new ProductDAO();
+			ProductBean directPb = dao.getProduct(p_num);
+			directPb.setP_num(p_num);
+			directPb.setP_count(c_p_count);
+			cb.setProducts(directPb);
+			cartList.add(cb);			
+		} else {
+			cartList = cdao.getCartList(id);
+		}
 		
 		// OrderDAO 객체 생성 - addOrder(주문정보,장바구니정보,상품정보)
 		OrderDAO odao = new OrderDAO();
-		odao.addOrder(ob);
+		odao.addOrder(ob, cartList);
 		System.out.println("M : team1_order 테이블에 저장완료");
 		
 		//구매확정 메일이나 문자 , 카톡메세지 등을 유저에게 보내는 추가영역
@@ -68,8 +87,10 @@ public class OrderAddAction implements Action {
 			pdao.updateProductCnt(cb.getP_num(), cb.getP_count());
 		}
 		
+		if(p_num == 0) { //장바구니 상품
 		//장바구니 비우기(삭제)
-		cdao.deleteCart(id);
+			cdao.deleteCart(id);
+		}
 		
 		//페이지이동
 		forward.setPath("./MemberOrderList.me"); //개인 정보의 주문내역 페이지로 이동
