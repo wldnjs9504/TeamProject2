@@ -5,6 +5,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -79,6 +80,7 @@
 	<c:set value="${requestScope.star_avg }" var="star_avg" />
 	<c:set value="${requestScope.review_count }" var="review_count"/>
 	<c:set value="${pb.p_num }" var="p_num"/>
+	<c:set value="${fn:split(pb.img_content,',')}" var="i_cont"/>
 	
 	
  <script type="text/javascript">
@@ -238,22 +240,22 @@
                     
                     	<!-- 사진이미지 -->
                         <div class="col-lg-6">
-                            <div class="product-pic-zoom">
-                                <img class="product-big-img" src="img/product-single/product-1.jpg" alt="">
+                                <img class="product-big-img" src="img/${pb.img_main}" alt="" width="555" height="556">
+                            <!-- <div class="product-pic-zoom">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="product-thumbs">     <!--사진 넣은 후 img/${pb.img_main} 이렇게 바꾸기  -->
                                 <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <div class="pt active" data-imgbigurl="img/product-single/product-1.jpg"><img
-                                            src="img/product-single/product-1.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-2.jpg"><img
-                                            src="img/product-single/product-2.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                            src="img/product-single/product-3.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                            src="img/product-single/product-3.jpg" alt=""></div>
+                                    <div class="pt active" data-imgbigurl="img/${i_cont[0] }"><img
+                                            src="img/${i_cont[0] }" alt=""></div>
+                                    <div class="pt" data-imgbigurl="img/${i_cont[1] }"><img
+                                            src="img/${i_cont[1] }" alt=""></div>
+                                    <div class="pt" data-imgbigurl="img/${i_cont[2] }"><img
+                                            src="img/${i_cont[2] }" alt=""></div>
+                                    <div class="pt" data-imgbigurl="img/${i_cont[3] }"><img
+                                            src="img/${i_cont[3] }" alt=""></div>
                                 </div>
                             </div>
                         </div>

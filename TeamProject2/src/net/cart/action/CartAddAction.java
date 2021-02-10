@@ -18,8 +18,8 @@ public class CartAddAction implements Action {
 		String id = (String) session.getAttribute("id");
 		ActionForward forward = new ActionForward();
 		if(id == null){
-			forward.setPath("./MemberLogin.me");
-			forward.setRedirect(false);
+			forward.setPath("./Login.me");
+			forward.setRedirect(true);
 			return forward;
 		}
 		
