@@ -127,6 +127,9 @@
  
  
 	function goCart(){
+		
+		return idcheck();
+		
 	//var p_num = document.getElementById("p_num").value;
 	var p_num = ${pb.p_num};
 	var c_p_count = document.getElementById("c_p_count").value;
@@ -144,6 +147,9 @@
 	}
 	
 	function goBuy(){
+		
+		return idcheck();
+		
 		//var p_num = document.getElementById("p_num").value;
 		var p_num = ${pb.p_num};
 		var c_p_count = document.getElementById("c_p_count").value;
@@ -298,8 +304,8 @@
                                     </div>
                                     
                                     <br>
-                                   	<button class="primary-btn pd-cart" onclick="goCart();">장바구니</button>
-                                   	<button class="primary-btn pd-cart" onclick="goBuy();">바로구매</button>
+                                   	<button class="primary-btn pd-cart" onclick="return goCart();">장바구니</button>
+                                   	<button class="primary-btn pd-cart" onclick="return goBuy();">바로구매</button>
                                    <!--  <a href="#" class="primary-btn pd-cart" onclick="goCart();">Add To Cart</a> -->
 
                                    	<!-- <button class="primary-btn pd-cart" onclick="goCart();">Add To Cart</button> -->
