@@ -119,7 +119,7 @@ MemberBean mb = (MemberBean)request.getAttribute("memberBean");
 									   		ProductBean pb = cb.getProducts();
 									   		totalPrice = totalPrice + (pb.getP_saleprice() * cb.getP_count());
 								   	%>
-                                    <li class="fw-normal"><%=pb.getP_name()%> x <%=pb.getP_count() %> <span><script type="text/javascript">numberWithComma(<%=pb.getP_saleprice()*cb.getP_count()%>)</script></span></li>
+                                    <li class="fw-normal"><%=pb.getP_name()%> * <%=cb.getP_count() %>개 <span><script type="text/javascript">numberWithComma(<%=pb.getP_saleprice()*cb.getP_count()%>)</script></span></li>
                                     <%} %>
                                     <li class="total-price">합계금액 <span><script type="text/javascript">numberWithComma(<%=totalPrice %>)</script></span></li>
                                 </ul>
