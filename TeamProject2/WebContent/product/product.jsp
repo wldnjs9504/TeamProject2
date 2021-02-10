@@ -240,7 +240,7 @@
                     
                     	<!-- 사진이미지 -->
                         <div class="col-lg-6">
-                                <img class="product-big-img" src="img/${pb.img_main}" alt="" width="555" height="556">
+                                <img class="product-big-img" src="img/${pb.img_main}" alt="" height="520">
                             <!-- <div class="product-pic-zoom">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
@@ -248,14 +248,10 @@
                             </div> -->
                             <div class="product-thumbs">     <!--사진 넣은 후 img/${pb.img_main} 이렇게 바꾸기  -->
                                 <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <div class="pt active" data-imgbigurl="img/${i_cont[0] }"><img
-                                            src="img/${i_cont[0] }" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/${i_cont[1] }"><img
-                                            src="img/${i_cont[1] }" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/${i_cont[2] }"><img
-                                            src="img/${i_cont[2] }" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/${i_cont[3] }"><img
-                                            src="img/${i_cont[3] }" alt=""></div>
+                                	<c:forEach items="${i_cont }" var="cont">
+                                	<div class="pt active" data-imgbigurl="img/${cont}"><img
+                                            src="img/${cont}" alt="" height="153"></div>
+                                	</c:forEach>
                                 </div>
                             </div>
                         </div>
