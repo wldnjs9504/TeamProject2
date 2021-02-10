@@ -269,7 +269,7 @@
                                 <div class="pd-title">
                               	<!-- 카테고리 -->
                                     <h3>${pb.p_name }</h3> 
-                                    <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
+                                    <!-- <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a> -->
                                 </div>
                                 <!-- 평균 별점  -->
                                 <div class="pd-rating">
@@ -632,9 +632,9 @@
                         <div class="pi-pic">
                             <img src="img/${rec.img_main }" alt="">
                             <div class="sale">Sale</div>
-                            <div class="icon">
+                            <!-- <div class="icon">
                                 <i class="icon_heart_alt"></i>
-                            </div>
+                            </div> -->
                             <ul>
                                 <!--  <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li> -->
                                  <li class="quick-view"><a href="./Product.p?p_num=${rec.p_num }">+ 상세보기</a></li>

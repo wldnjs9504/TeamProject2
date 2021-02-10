@@ -257,9 +257,9 @@
                                         <img src="./img/products/${pi.img_main}" alt="" width="">
                                         <!--270 * 330  -->
                                         <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
+                                       <!--  <div class="icon">
                                             <i class="icon_heart_alt"></i>
-                                        </div>
+                                        </div> -->
                                         <ul>
                                            <!--  <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li> -->
                                             <li class="quick-view"><a href="./Product.p?p_num=${p_num }">+ 상세보기</a></li>
