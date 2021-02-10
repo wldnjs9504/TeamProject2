@@ -247,7 +247,7 @@
                         	<div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="./img/products/${pi.img_main}" alt="" width="">
+                                        <img class="main_img" src="./upload/${pi.img_main}" alt="">
                                         <!--270 * 330  -->
                                         <div class="sale pp-sale">Sale</div>
                                        <!--  <div class="icon">

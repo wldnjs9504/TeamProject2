@@ -29,7 +29,13 @@
 <body>
 	<!-- 헤더 -->
     <%@include file="../inc/header.jsp" %>
-
+<%if(id!=null){%>
+	<script type="text/javascript">
+	alert('로그아웃 후 이용해주세요');
+	history.back();
+	window.location = document.referrer;
+	</script>
+<% }%>
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
         <div class="container">

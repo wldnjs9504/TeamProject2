@@ -11,6 +11,7 @@
 			  <ul>
 			<%if(id == null || id.isEmpty()) { %>
 				<li><a href="./Login.me" class="login-panel"><i class="fa fa-user"></i>Login</a></li>
+				<li><a href="./Logout.me" class="login-panel"><i class="fa fa-user"></i>Logout</a></li>
 				<li><a href="./Join.me" class="login-panel"><i class="fa fa-user"></i>Join</a></li>
 			<%}else if(id.equals("admin")){	%>
 				<!-- id 클릭시 관리자 페이지로 이동. jsp 페이지명 변경될 수 있음 -->

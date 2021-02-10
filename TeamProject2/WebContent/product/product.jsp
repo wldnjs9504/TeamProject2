@@ -252,7 +252,7 @@
                     
                     	<!-- 사진이미지 -->
                         <div class="col-lg-6">
-                                <img class="product-big-img" src="img/${pb.img_main}" alt="" height="520">
+                                <img class="product-big-img" src="./upload/${pb.img_main}" alt="" height="520">
                             <!-- <div class="product-pic-zoom">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
@@ -404,10 +404,20 @@
                                             	<img src="img/${pb.img_main}" alt="">
                                                 <img src="img/product-single/tab-desc.jpg" alt=""> -->
                                                 
+                                                <%-- 
                                                 <c:forEach items="${i_cont }" var="cont">
 				                                	<div class="pt active"  >
-				                                         <img src="img/${cont}" alt="" width="1100" height="1300"></div><br>
+				                                		<!-- width, height 지웠을때 이미지 나오는지?? -->
+				                                        <img src="./upload/${cont}" alt="" width="1100" height="1300"></div><br>
 			                                	</c:forEach>
+			                                	 --%>
+			                                	<c:forTokens var="cont" items="${pb.img_content }" delims=",">
+			                                	  <c:if test="${cont != 'null' }">
+			                                	  	<div class="pt active" >
+				                                      <img src="./upload/${cont }" alt="">
+				                                    </div><br>
+			                                	  </c:if>
+			                                	</c:forTokens>
                                             </div>
                                         </div>
                                     </div>

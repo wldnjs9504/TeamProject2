@@ -1,6 +1,3 @@
-<%-- <%@page import="net.order.db.orderBean"%> --%>
-<%-- <%@page import="net.product.db.ProductBean"%> --%>
-<%-- <%@page import="net.product.db.ReviewBean"%> --%>
 <%@page import="net.member.db.MemberDAO"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.ArrayList"%>
@@ -70,7 +67,6 @@
                     		<li> <a href="#"> 내 포인트 현황</a></li>
                     		<li class="check-menu"> <a href="./MemberReviewList.me"> 나의 리뷰</a></li>
                     		<li> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
-                    		<li> <a href="#"> 고객센터</a></li>
                     		<li> <a href="./MemberDelete.me"> 회원탈퇴</a></li> 
                         </ul>                    	
                     </div>
@@ -109,8 +105,7 @@
                                         <%=m.get("b_date")%>
                                     </td>
                                     <td class="result">
-                                    	<button class="site-btn review" onclick="window.open('./MemberReviewWrite.me?p_num=<%=m.get("p_num")%>&b_num=<%=m.get("b_num")%>',
-                                    	'window_name','top=100,left=100,width=700,height=300,location=no,status=no');">리뷰 작성</button>
+                                    	<button class="site-btn review" onclick="location.href='./MemberReviewWrite.me?p_num=<%=m.get("p_num")%>&b_num=<%=m.get("b_num")%>'">리뷰 작성</button>
                                     </td>
     							</tr>	   
     							<%
@@ -124,11 +119,6 @@
         </div>
     </section>
     <!-- Shopping Cart Section End -->
-<script type="text/javascript">
-function review(){
-	
-}
-</script>    
     
     <!-- 푸터 -->
     <%@include file="../inc/footer.jsp" %>

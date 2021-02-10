@@ -23,7 +23,7 @@ public class MemberLogoutAction implements Action{
 		PrintWriter out = response.getWriter();
 		
 		out.println("<script>");
-		out.println(" alert('로그아웃되었습니다!'); ");
+		out.println(" alert('정상적으로 로그아웃 되었습니다'); ");
 		out.println(" location.href='./Main.me'");
 		out.println("</script>");
 		

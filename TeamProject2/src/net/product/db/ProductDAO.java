@@ -82,7 +82,7 @@ public class ProductDAO {
 				} else if (odb.equals("star_avg")) { // ***** search 구문 완성하기 -> 여기 안되는중 문의예정
 					sql = "select *,  avg(r.r_star) 'star_avg' "
 							+ "from review r  right outer join (select * from product where p_name like ?) p  "
-							+ "on r.p_num = p.p_num group by p.p_num " + "order by avg(r.r_star) desc, p_num desc limit ?,?";
+							+ "on r.p_num = p.p_num group by p.p_num " + "order by avg(r.r_star) desc, p.p_num desc limit ?,?";
 				} else if (odb.equals("readcount")) {
 					sql = "select * from product " + "where p_name like ? " + "order by readcount desc, p_num desc limit ?,?";
 				}
@@ -112,7 +112,7 @@ public class ProductDAO {
 				} else if (odb.equals("star_avg")) {
 					sql = "select *,  avg(r.r_star) 'star_avg' " + "from review r right outer join "
 							+ "(select * from product where category=? and p_name like ?) p " + "on r.p_num = p.p_num "
-							+ "group by p.p_num " + "order by avg(r.r_star) desc, p_num desc " + "limit ?,?";
+							+ "group by p.p_num " + "order by avg(r.r_star) desc, p.p_num desc " + "limit ?,?";
 				} else if (odb.equals("readcount")) {
 					sql = "select * from product " + "where category = ?  and p_name like ? "
 							+ "order by readcount desc, p_num desc " + "limit ?,?";

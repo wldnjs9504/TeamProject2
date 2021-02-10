@@ -82,8 +82,6 @@
             </div>
             <div class="single-hero-items set-bg" data-setbg="img/banner05.png">
             </div>
-<!--             <div class="single-hero-items set-bg" data-setbg="img/banner07.png"> -->
-<!--             </div> -->
         </div>
     </section>
     <!-- Hero Section End -->

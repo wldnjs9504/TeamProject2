@@ -1,5 +1,7 @@
 package net.member.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +22,17 @@ public class MemberReviewWriteAction implements Action {
 		rb.setR_content(request.getParameter("r_content"));
 		rb.setR_star(Double.parseDouble(request.getParameter("r_star")));
 		
+		if(Double.parseDouble(request.getParameter("r_star"))==0){
+		    response.setContentType("text/html; charset=UTF-8");
+		    PrintWriter out = response.getWriter();
+	    	out.println("<script>");
+	    	out.println(" alert('별점을 입력해 주세요');");
+	    	out.println(" history.go(-2); ");
+	    	out.println("</script>");
+	    	out.close();
+	    	return null;
+		}
+
 		MemberDAO mdao = new MemberDAO();
 		mdao.insertReview(rb);
 		

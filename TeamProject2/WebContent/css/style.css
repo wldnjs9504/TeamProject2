@@ -1196,6 +1196,12 @@ ol {
 	min-width: 100%;
 }
 
+.product-item .pi-pic .main_img {
+	min-width: 290px;
+	min-height: 290px;
+	object-fit: contain;
+}
+
 .product-item .pi-pic .sale {
 	color: #ffffff;
 	font-size: 10px;
@@ -1516,6 +1522,10 @@ ol {
 .owl-carousel .owl-item img {
 	display: block;
 	width: auto;
+}
+
+.owl-carousel {
+	padding: 0 65px;
 }
 
 /*---------------------
@@ -2513,7 +2523,9 @@ ol {
 }
 
 .product-content img {
-	min-width: 100%;
+/* 	min-width: 100%; */
+	width: 100%;
+	height: auto;
 }
 
 .specification-table {
@@ -3000,38 +3012,43 @@ ol {
 	border-radius: 8px;
 }
 
-.review-table {
-	width: 100%;
-	margin: 30px auto 0;
-}
-
 .review-table table {
+	float: right;
 	width: 100%;
 	min-width: 300px;
+	margin-bottom: 40px;
 }
 
 .review-table table tr{
 	border: 1px solid #ebebeb;
 }
 
+.review-table tr:nth-child(2n) {
+	background-color: #fbf8f2;
+}
+
 .review-table th {
 	text-align: center;
-	width: 100px;
+	width: 200px;
 	padding: 20px 5px;
 }
 
 .review-table td {
-	padding: 20px 5px;
+	padding: 20px;
 	text-align: center;
 }
 
 .review-table select {
+	padding: 5px 20px;
 	width: 100%;
+	font-size: 20px;
+	color: red;
 }
 
 .review-table textarea {
+	padding: 20px;
 	width: 100%;
-	height: 90px;
+	height: 150px;
 	resize: none;
 }
 
