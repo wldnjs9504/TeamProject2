@@ -68,12 +68,23 @@ public class MemberLoginAction implements Action {
 	    
 	    // 메인 페이지로 이동
 	    // 페이지 이동 - ActionForward 객체 
-	    ActionForward forward = new ActionForward();
-	    forward.setPath("./Main.me");
-	    forward.setRedirect(true);
+//	    ActionForward forward = new ActionForward();
+//	    forward.setPath("./Main.me");
+//	    forward.setRedirect(true);
 
+    	out.println("<script>");
+    	out.println("alert('로그인 성공');");
+    	out.println(" history.go(-2); ");
+//    	out.println(" location.href=document.referrer; ");
+    	out.println("location.reload();");
+
+    	out.println("</script>");
+    	
+    	out.close();
+    		
+    	return null; // 메서드 종료 -> 컨트롤러 이동X
+	    
 	    // 이동정보를 리턴(컨트롤러에서 이동)
-		return forward;
 	}
 
 }
