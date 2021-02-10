@@ -206,17 +206,10 @@
 	                function getSelectValue(){
 	                	var selectedValue = document.getElementById("orderBy").value;
 	                	
-	                	/*  $.ajax("./ProductList.p?odb="+selectedValue,{
-	            			//url: "ajaxString1.jsp",
-	            			success: function(result){
-	            				
-	            			}
-	            			
-	            		});  */
-	                	
-	                    //alert(selectedValue);
-	                	console.log(selectedValue);
+	                	console.log("V: selectedValue : "+selectedValue);
 	            		<%
+	            		request.setCharacterEncoding("UTF-8");
+	            		
 	            		if(search == null || search.equals("")){
 	            			%>
 	            			location.href="./ProductList.p?category="+<%=category%>+"&odb="+selectedValue;

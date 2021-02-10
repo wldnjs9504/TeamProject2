@@ -128,27 +128,33 @@
  
 	function goCart(){
 		
-		return idcheck();
+		idcheck();
+		
 		
 	//var p_num = document.getElementById("p_num").value;
 	var p_num = ${pb.p_num};
 	var c_p_count = document.getElementById("c_p_count").value;
-	
-	
-		/* 장바구니로  */
-		var gocart = confirm("장바구니로 바로 가시겠습니까?");
-		if(gocart == true){//카트추가 주소로 보내기
-		//location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;
-		location.href="./CartAdd.ba?c_p_count="+c_p_count+"&p_num="+p_num+"&back=0";
-		}else{
-		location.href="./CartAdd.ba?c_p_count="+c_p_count+"&p_num="+p_num+"&back=1";
+	var id =document.getElementById("idcheck").value;	
+		if(id != 'null'){
 			
+			/* 장바구니로  */
+			var gocart = confirm("장바구니로 바로 가시겠습니까?");
+			if(gocart == true){//카트추가 주소로 보내기
+			//location.href="./ProductCartTest.p?c_p_count="+c_p_count+"&p_num="+p_num;
+			location.href="./CartAdd.ba?c_p_count="+c_p_count+"&p_num="+p_num+"&back=0";
+			}else{
+			location.href="./CartAdd.ba?c_p_count="+c_p_count+"&p_num="+p_num+"&back=1";
+				
+			}
 		}
+	
+		
 	}
 	
 	function goBuy(){
 		
-		return idcheck();
+		
+		idcheck();
 		
 		//var p_num = document.getElementById("p_num").value;
 		var p_num = ${pb.p_num};
@@ -202,8 +208,8 @@
 	
 	function idcheck(){
 		
-		var id = <%=id%>;
-		if(id == null){
+		var id =document.getElementById("idcheck").value;
+		if(id == 'null'){
 			alert("로그인이 필요합니다");
 			return false;
 		}
@@ -214,7 +220,7 @@
 
 
 
-	
+	<input type="hidden" value="<%=id %>" id="idcheck">
     <!-- 카테고리 분류 -->
     <div class="breacrumb-section">
         <div class="container">
@@ -252,14 +258,14 @@
                                     <i class="fa fa-search-plus"></i>
                                 </div>
                             </div> -->
-                            <div class="product-thumbs">     <!--사진 넣은 후 img/${pb.img_main} 이렇게 바꾸기  -->
+                            <%-- <div class="product-thumbs">     <!--사진 넣은 후 img/${pb.img_main} 이렇게 바꾸기  -->
                                 <div class="product-thumbs-track ps-slider owl-carousel">
                                 	<c:forEach items="${i_cont }" var="cont">
                                 	<div class="pt active" data-imgbigurl="img/${cont}"><img
                                             src="img/${cont}" alt="" height="153"></div>
                                 	</c:forEach>
                                 </div>
-                            </div>
+                            </div> --%>
                         </div>
                         <!-- 사진이미지 -->
                         
@@ -304,7 +310,7 @@
                                     </div>
                                     
                                     <br>
-                                   	<button class="primary-btn pd-cart" onclick="return goCart();">장바구니</button>
+                                   	<button class="primary-btn pd-cart" onclick="return goCart();   ">장바구니</button>
                                    	<button class="primary-btn pd-cart" onclick="return goBuy();">바로구매</button>
                                    <!--  <a href="#" class="primary-btn pd-cart" onclick="goCart();">Add To Cart</a> -->
 
@@ -328,12 +334,6 @@
                                 <span id="totalPriceTxt"><fmt:formatNumber pattern="#,###" >${pb.p_saleprice }</fmt:formatNumber></span> 원
                                 </span>
                                 </div> 
-                                
-                                
-                                
-                                
-                                
-                                
                                 
                                 <ul class="pd-tags">
                                     <li><span>CATEGORIES</span>
@@ -386,10 +386,10 @@
                                 <div class="tab-pane fade-in active" id="Tab-1" role="tabpanel">
                                     <div class="product-content">
                                         <div class="row">
-                                            <div class="col-lg-7">
+                                            <div class="col-lg-12">
                                             
                                             <!--<img src="img/${pb.img_content}" alt=""> -->
-                                                <h5>Introduction</h5>
+                                               <!--  <h5>Introduction</h5>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                                                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
                                                     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -398,11 +398,16 @@
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                                                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
                                                     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
-                                            </div>
+                                                    aliquip ex ea commodo consequat. Duis aute irure dolor in </p> -->
+                                           <!--  </div>
                                             <div class="col-lg-5">
-                                            	<!-- <img src="img/${pb.img_main}" alt=""> -->
-                                                <img src="img/product-single/tab-desc.jpg" alt="">
+                                            	<img src="img/${pb.img_main}" alt="">
+                                                <img src="img/product-single/tab-desc.jpg" alt=""> -->
+                                                
+                                                <c:forEach items="${i_cont }" var="cont">
+				                                	<div class="pt active"  >
+				                                         <img src="img/${cont}" alt="" width="1100" height="1300"></div><br>
+			                                	</c:forEach>
                                             </div>
                                         </div>
                                     </div>
