@@ -308,6 +308,13 @@ public class ProductDAO {
 		
 			try {
 				con = getCon();
+				
+				//조회수 1증가
+				sql = "update product set readcount = readcount + 1 where p_num = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, p_num);
+				pstmt.executeUpdate();
+				
 				sql = "select * from review where p_num = ? order by r_num desc";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, p_num);
