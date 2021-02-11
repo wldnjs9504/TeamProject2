@@ -1,10 +1,19 @@
+<%@page import="net.cart.db.CartDAO"%>
+<%@page import="net.cart.db.CartBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = (String)session.getAttribute("id");
 %>
 <header class="header-section">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 	<div class="header-top">
 		<div class="container">
 			<div class="ht-right">
@@ -53,52 +62,62 @@
 								<span>1</span>
 							</a>
 						</li> -->
+					
+						<%
+							ArrayList<CartBean> HcartList = null;
+							CartDAO Hcdao = null;
+							if(id != null){
+								Hcdao = new CartDAO();
+								HcartList = Hcdao.getCartList(id);
+								pageContext.setAttribute("HcartList", HcartList);		
+							}
+							%>
+						
 						<li class="cart-icon">
-							<a href="#">
+							<a href="./CartList.ba" style="font-size: 18px; font-weight: 700; color: #252525;">My Cart</a>
+							<a href="./CartList.ba">
 								<i class="icon_bag_alt"></i>
-								<span>3</span>
+								<c:if test="${sessionScope.id == null || HcartList.size() == 0 }"><span>0</span></c:if>
+								<c:if test="${HcartList.size() > 0 }"><span>${HcartList.size()}</span></c:if>
 							</a>
 							<div class="cart-hover">
 								<div class="select-items">
 									<table>
-										<tbody>
+										<tbody><!--장바구니 제품  -->
+											<c:set value="0" var="Htotal"/>
+											<c:forEach items="${pageScope.HcartList}" var="hcb">
+											<c:set value="${hcb.products }" var="hpb"/>
+											<c:set value="${hcb }" var="hcbDelete"/>
+											<c:set value="${hcb.c_num}" var="deleteNum"/>
 											<tr>
-												<td class="si-pic"><img src="<%=request.getContextPath() %>/img/select-product-1.jpg" alt=""></td>
+												<td class="si-pic"><img src="./upload/${hpb.img_main }" alt="" width="70" height="70"></td>
 												<td class="si-text">
 													<div class="product-selected">
-														<p>$60.00 x 1</p>
-														<h6>Kabino Bedside Table</h6>
+														<h6>${hpb.p_name }</h6>
+														<p><fmt:formatNumber value="${hpb.p_price}" pattern="#,###" />원 x ${hcb.p_count }개</p>
 													</div>
 												</td>
-												<td class="si-close">
-													<i class="ti-close"></i>
-												</td>
+											<!-- <td class="si-close">
+													<i onclick="Hdelete()" class="ti-close"></i>
+												</td> -->
 											</tr>
-											<tr>
-												<td class="si-pic"><img src="<%=request.getContextPath() %>/img/select-product-2.jpg" alt=""></td>
-												<td class="si-text">
-													<div class="product-selected">
-														<p>$60.00 x 1</p>
-														<h6>Kabino Bedside Table</h6>
-													</div>
-												</td>
-												<td class="si-close">
-													<i class="ti-close"></i>
-												</td>
-											</tr>
+											<c:set var="Htotal" value="${hpb.p_saleprice*hcb.p_count + Htotal }"/>
+											</c:forEach>
+											
 										</tbody>
 									</table>
 								</div>
 								<div class="select-total">
 									<span>total:</span>
-									<h5>$120.00</h5>
+									<h5><fmt:formatNumber value="${Htotal}" pattern="#,###"/>원</h5>
 								</div>
 								<div class="select-button">
-									<a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+									<a href="./CartList.ba" class="primary-btn checkout-btn">장바구니로</a>
 								</div>
 							</div>
 						</li>
-						<li class="cart-price">$150.00</li>
+						<%-- <li class="cart-price"><fmt:formatNumber value="${Htotal}" pattern="#,###"/>원</li> --%>
+						<!-- <li class="cart-price">My Cart</li> -->
 					</ul>
 				</div>
 			</div>
@@ -120,4 +139,24 @@
 			<div id="mobile-menu-wrap"></div>
 		</div>
 	</div>
+	
+	<%-- <script type="text/javascript">
+
+	function Hdelete(){
+		
+		<%
+		if(id != null && HcartList.size() != 0){
+			CartBean Hcb = new CartBean();
+			Hcb = (CartBean)pageContext.getAttribute("hcbDelete");
+			
+			int Hc_num = (int)pageContext.getAttribute("deleteNum");
+			
+			Hcdao.deleteCartPart(Hcb);
+			System.out.println("Header : " +Hc_num +"번제품 카트삭제 완료!" );
+		}
+		%>
+		alert("클릭!");
+	}
+
+	</script> --%>
 </header>

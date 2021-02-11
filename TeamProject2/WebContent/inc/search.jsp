@@ -9,8 +9,6 @@
     	search = "";
     }
     String sorting = request.getParameter("sorting");
-    System.out.println("sorting : " + sorting);
-    System.out.println("@@@@@@@@@@@@"+search);
     %>
 <div class="advanced-search">
 	<form action="./ProductList.p" method="get" name="searF"> 
