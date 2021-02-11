@@ -310,9 +310,9 @@
 		//이전
 		if(startBlock > pageBlock){
 			%>
-			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=1 %>&odb=<%=odb%>"> << </a>
+			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=1 %>&odb=<%=odb%>&search=${param.search}"> << </a>
 			&nbsp;&nbsp;
-			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=startBlock - 1 %>&odb=<%=odb%>"> < </a>
+			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=startBlock - 1 %>&odb=<%=odb%>&search=${param.search}"> < </a>
 			&nbsp;
 			<%
 		}
@@ -320,17 +320,17 @@
 		//페이지숫자
 		for(int i=startBlock;i<= endBlock; i++){
 			if(pageNum.equals(i+"")){%>
-			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=i%>&odb=<%=odb%>" >[<%=i %>]</a> <!--수정 : 선택된 블럭 색변경 요청  -->
+			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=i%>&odb=<%=odb%>&search=${param.search}" >[<u><%=i %></u>]</a> <!--수정 : 선택된 블럭 색변경 요청  -->
 			  <%}else{%>
-			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=i%>&odb=<%=odb%>">[<%=i %>]</a>
+			<a href="./ProductList.p?category=<%=category %>&pageNum=<%=i%>&odb=<%=odb%>&search=${param.search}">[<%=i %>]</a>
 			<%}			
 		}
 		//다음
 		if(endBlock < pageCount){
 		%>&nbsp;
-		<a href="./ProductList.p?category=<%=category %>&pageNum=<%= startBlock + pageBlock%>&odb=<%=odb%>"> > </a>
+		<a href="./ProductList.p?category=<%=category %>&pageNum=<%= startBlock + pageBlock%>&odb=<%=odb%>&search=${param.search}"> > </a>
 		&nbsp;&nbsp;
-		<a href="./ProductList.p?category=<%=category %>&pageNum=<%= pageCount%>&odb=<%=odb%>"> >> </a>
+		<a href="./ProductList.p?category=<%=category %>&pageNum=<%= pageCount%>&odb=<%=odb%>&search=${param.search}"> >> </a>
 		<%
 		}
 		
