@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
 	<title>uR</title>
     <meta charset="UTF-8">
@@ -140,6 +141,10 @@
                                     	/* String odb = request.getParameter("odb"); */
 	
                                     	String odb = (String)request.getAttribute("odb");
+                                    	
+                                    	if(odb == null){%>
+                                    	<option value="num_desc" selected="selected">최근등록순</option>
+                                		<%}
                                     	if(odb.equals("num_desc")){%>
                                         	<option value="num_desc" selected="selected">최근등록순</option>
                                     	<%}else{
@@ -200,11 +205,12 @@
                         </div>
                     </div>
                     
-                    
+                    <input type= "hidden" value="${param.search }" id="search">
                 <script type="text/javascript">
                 
 	                function getSelectValue(){
 	                	var selectedValue = document.getElementById("orderBy").value;
+	                	var search = document.getElementById("search").value;
 	                	
 	                	console.log("V: selectedValue : "+selectedValue);
 	            		<%
@@ -212,10 +218,10 @@
 	            		
 	            		if(search == null || search.equals("")){
 	            			%>
-	            			location.href="./ProductList.p?category="+<%=category%>+"&odb="+selectedValue;
+	            			location.href="./ProductList.p?category="+${param.category}+"&odb="+selectedValue;
            				<%}else{
 	            			%>
-	            			location.href="./ProductList.p?category="+<%=category%>+"&search="+<%=search%>+"&odb="+selectedValue;
+	            			location.href="./ProductList.p?category="+${param.category}+"&odb="+selectedValue+"&search="+search;
             			<%}
 	            		%>
 	                	
@@ -247,7 +253,7 @@
                         	<div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img class="main_img" src="./upload/${pi.img_main}" alt="">
+                                        <img src="./img/products/${pi.img_main}" alt="" width="">
                                         <!--270 * 330  -->
                                         <div class="sale pp-sale">Sale</div>
                                        <!--  <div class="icon">

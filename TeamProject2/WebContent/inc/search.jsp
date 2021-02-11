@@ -13,16 +13,15 @@
     System.out.println("@@@@@@@@@@@@"+search);
     %>
 <div class="advanced-search">
-	<form action="./ProductList.p?" method="get" name="searF"> 
+	<form action="./ProductList.p" method="get" name="searF"> 
 		<input type="hidden" name="category" value="0">
 		<div class="input-group">
-		
 		<%
 		if(search.equals("") || search == null){
-			%><input type="text" placeholder="What do you need?" name="search">
+			%><input type="text" placeholder="What do you need?" name="search" id="p_search">
 		<%
 		}else{
-			%><input type="text" placeholder="What do you need?" value="<%=search%>" name="search">
+			%><input type="text" placeholder="What do you need?" value="${param.search }" name="search" id="p_search">
 		<%
 		}
 		%>
