@@ -175,19 +175,24 @@ public class ProductDAO {
 	// getProductList()
 
 	// getProductListCount()
-	public int getProductListCount(int category) {
+	public int getProductListCount(int category, String search) {
 		int result = 0;
 
 		try {
 			con = getCon();
 			if(category == 0) {
-				sql = "select count(*) from product";
+				sql = "select count(*) from product where p_name like ? ";
 			}else {
-				sql = "select count(*) from product where category = ?";
+				sql = "select count(*) from product where p_name like ? and category = ?";
 			}
 			pstmt = con.prepareStatement(sql);
+			if(search.equals("")) {
+				pstmt.setString(1, "%%");
+			}else {
+				pstmt.setString(1, "%"+search+"%");
+			}
 			if(category != 0) {
-				pstmt.setInt(1, category);
+				pstmt.setInt(2, category);
 			}
 			rs = pstmt.executeQuery();
 			if (rs.next()) {

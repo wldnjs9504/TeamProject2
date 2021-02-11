@@ -40,7 +40,7 @@ public class ProductListAction implements Action{
 		ProductDAO pdao = new ProductDAO();
 		
 		//총 제품 수량
-		int count = pdao.getProductListCount(category);
+		int count = pdao.getProductListCount(category, search);
 		System.out.println("M : 총 " + count +"개");
 		
 		
