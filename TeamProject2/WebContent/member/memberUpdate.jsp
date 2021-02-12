@@ -118,6 +118,8 @@ function execDaumPostcode() {
 
 						<%
                           MemberBean mb = (MemberBean) request.getAttribute("mb");
+						String idc = (String) session.getAttribute("id");
+						if (idc == null){response.sendRedirect("./Login.me");} 
    						 %>
    						 
    						 

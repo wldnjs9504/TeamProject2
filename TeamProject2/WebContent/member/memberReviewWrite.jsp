@@ -51,6 +51,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	int p_num = (Integer)request.getAttribute("p_num");
+	String idc = (String) session.getAttribute("id");
+	if (idc == null){response.sendRedirect("./Login.me");} 
     %>
  	
     <!-- Shopping Cart Section Begin -->

@@ -68,12 +68,10 @@
 						<h2>회원탈퇴</h2>
 						<%
 					    String idc = (String) session.getAttribute("id");
-					    
 					  	if (idc == null){
-						  response.sendRedirect("./Main.me");  
+						  response.sendRedirect("./Login.me");  
 					  	}  
 					    %>
-
 
 						<form action="./MemberDeleteAction.me" method="post"
 							onsubmit="return checkForm();">

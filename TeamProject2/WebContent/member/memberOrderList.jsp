@@ -49,8 +49,10 @@
     <!-- Breadcrumb Section Begin -->
     
 <%
-    	int count = (Integer)request.getAttribute("count");
-    %>
+int count = (Integer)request.getAttribute("count");
+String idc = (String) session.getAttribute("id");
+if (idc == null){response.sendRedirect("./Login.me");} 
+%>
  	
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
@@ -73,10 +75,6 @@
 
                 <div class="col-lg-10 order-1 order-lg-2">
                     <div class="cart-table">
-					<!-- 주문 내역이 없을 경우 -->
-					<%if(count==0){	%>
-						<h2>주문 내역이 없습니다</h2>
-					<%}	%>
                         <table>
                             <thead>
                                 <tr>
@@ -87,6 +85,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+								<!-- 주문 내역이 없을 경우 -->
+								<%if(count==0){	%>
+								<tr>
+									<td colspan="5"><h2>주문 내역이 없습니다</h2></td>
+								</tr>
+								<%}	%>
                                <%
 								MemberDAO mdao = new MemberDAO();
 								ArrayList<Map<String, Object>> list = mdao.getMemberOrderDetail(id);

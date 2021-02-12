@@ -59,7 +59,8 @@ int totalPrice = 0; //장바구니 총 합계금액
 // request.setAttribute("productList", totalList.get(1));
 List orderList = (List)request.getAttribute("orderList");
 List productList = (List)request.getAttribute("productList");
-
+String idc = (String) session.getAttribute("id");
+if (idc == null){response.sendRedirect("./Login.me");}  
 %>
     <!-- Shopping Cart Section Begin -->
     <section class="checkout-section spad">

@@ -50,8 +50,10 @@
     <!-- Breadcrumb Section Begin -->
     
 <%
-    int count = (Integer)request.getAttribute("count");
-    %>
+int count = (Integer)request.getAttribute("count");
+String idc = (String) session.getAttribute("id");
+if (idc == null){response.sendRedirect("./Login.me");} 
+%>
  	
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">

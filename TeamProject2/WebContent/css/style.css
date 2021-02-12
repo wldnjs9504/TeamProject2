@@ -2831,6 +2831,10 @@ ol {
 	text-transform: uppercase;
 }
 
+.cart-table table tr h2 {
+	font-weight: bold;
+}
+
 .cart-table table .id {
 	width: 120px;
 }

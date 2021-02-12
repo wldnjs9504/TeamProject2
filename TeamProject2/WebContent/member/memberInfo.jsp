@@ -71,14 +71,9 @@
                         <%
 						  // 로그인 체크 
 						  String idc = (String)session.getAttribute("id");
-						 
-						  if(idc == null){
-							  response.sendRedirect("./Login.me");
-						  }
-						  
+						  if(idc == null){response.sendRedirect("./Login.me");}
 						 
 						  MemberBean mb = (MemberBean) request.getAttribute("MemberBean");
-						  
 						  
 						  if(mb != null){ // 회원정보가 있을때만 표시
 						%>

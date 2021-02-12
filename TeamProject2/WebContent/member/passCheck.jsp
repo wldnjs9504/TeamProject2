@@ -72,7 +72,6 @@
 						<!--정보 업데이트 시 한번더 패스체크  -->
 						<%
 						String idc = (String) session.getAttribute("id");
-				
 						if(idc == null) {
 						%>
 						<script>
