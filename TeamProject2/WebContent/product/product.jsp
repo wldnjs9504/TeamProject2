@@ -31,28 +31,7 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <!-- <style type="text/css">
-    #qnaTable tr:HOVER{background-color: #FFFFD2; }
-    #qnaTable td{text-overflow: :ellipsis; overflow: hidden;}
-    #qnaTable {width:100%; border-spacing: 0; border-collapse: collapse; position:relative;}
-    #qnaTable tr,td {border-top: 1px solid #D5D5D5;
-    		border-bottom: 1px solid #D5D5D5;
-    		background: white; border-top: 0; text-align: center; width: 50%;}
-    #qnaTable th{border-top: 1px solid #D5D5D5;}
-    #qnaTable tr{background: #EAEAEA; display:none;}
-	#qnaTable tr.q_sub {display:table-row;}
-	#qnaTable .q_sub a{
-		position:absolute;
-		width:100%;
-		text-indent: -9999px;
-		left:0;
-		opacity:0;
-		/* -ms-filter:alpha(opacity=0);
-		filter:alpha(opacity=0); */
-	}    
-    
-    </style> -->
-    
+
     
 </head>
 
@@ -84,39 +63,7 @@
 	
 	
  <script type="text/javascript">
- 
- //qna댓글작성 commentBtn  pb.p_num, ql.q_num, ql.id, #reply  필요
- /*  $(document).ready(function(){
-	  $("#commentBtn").click(function(){
-		  
-		  var p_num = ${pb.p_num};
-		  var q_num = $(ql.q_num);
-		  var id = ${ql.id};
-		  var reply = $("#reply").val();
-		  
-		  $.ajax({
-			  type : "post",
-			  url : "productQnaReviewAction.java",
-			  data : {
-				  "p_num" : p_num,
-				  "q_num" : q_num,
-				  "id" : id,
-				  "reply" : reply
-			  },
-			  dateType : "json",
-			  success : function(result){
-				  $("#reply").val("");
-			  },
-			  error: function(){
-				  alert("답글 입력 실패");
-			  }
-		  });}); }); */
- 
- 
- 
- 
- 
- 
+  
  //qns 제목 토글적용
  $(document).ready(function(){
 	 $(".q_sub a").click(function(){
@@ -253,19 +200,6 @@
                     	<!-- 사진이미지 -->
                         <div class="col-lg-6">
                                 <img class="product-big-img" src="./upload/${pb.img_main}" alt="" height="520">
-                            <!-- <div class="product-pic-zoom">
-                                <div class="zoom-icon">
-                                    <i class="fa fa-search-plus"></i>
-                                </div>
-                            </div> -->
-                            <%-- <div class="product-thumbs">     <!--사진 넣은 후 img/${pb.img_main} 이렇게 바꾸기  -->
-                                <div class="product-thumbs-track ps-slider owl-carousel">
-                                	<c:forEach items="${i_cont }" var="cont">
-                                	<div class="pt active" data-imgbigurl="img/${cont}"><img
-                                            src="img/${cont}" alt="" height="153"></div>
-                                	</c:forEach>
-                                </div>
-                            </div> --%>
                         </div>
                         <!-- 사진이미지 -->
                         
@@ -275,7 +209,6 @@
                                 <div class="pd-title">
                               	<!-- 카테고리 -->
                                     <h3>${pb.p_name }</h3> 
-                                    <!-- <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a> -->
                                 </div>
                                 <!-- 평균 별점  -->
                                 <div class="pd-rating">
@@ -293,14 +226,6 @@
                                     <span><fmt:formatNumber value="${pb.p_price}" pattern="#,###" />원</span></h4>
                                 </div>
                                 
-                                <!-- 
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="135">
-                                    </div>
-                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
-                                </div>                               
-                                 -->
                                 
                                 <div class="quantity">
                                     <div class="qty">  
@@ -312,19 +237,11 @@
                                     <br>
                                    	<button class="primary-btn pd-cart" onclick="return goCart();   ">장바구니</button>
                                    	<button class="primary-btn pd-cart" onclick="return goBuy();">바로구매</button>
-                                   <!--  <a href="#" class="primary-btn pd-cart" onclick="goCart();">Add To Cart</a> -->
 
-                                   	<!-- <button class="primary-btn pd-cart" onclick="goCart();">Add To Cart</button> -->
                                 </div>
                                 
                                 <!-- 총 금액 계산하기  -->
                                 <br>
-                                <!--  제품 기존가격(할인전)  -->
-                              	<!-- <input type="hidden" id="p_price" value="${pb.p_price }"> --> 
-                                <!-- 재고량 -->
-                                <!--<input type="hidden" id="p_count" value="${pb.p_count }">  -->
-                                <!-- <input type="hidden" id="p_saleprice" value="${pb.p_saleprice }"> -->
-                                <!-- 제품 개당판매 가격 -->
                                 
                                 <!--제품 총 금액 수량따라 변경될 것-->
                                 <input type="hidden" id="totalPrice" value="${pb.p_saleprice} }">
@@ -387,30 +304,7 @@
                                     <div class="product-content">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                            
-                                            <!--<img src="img/${pb.img_content}" alt=""> -->
-                                               <!--  <h5>Introduction</h5>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
-                                                <h5>Features</h5>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat. Duis aute irure dolor in </p> -->
-                                           <!--  </div>
-                                            <div class="col-lg-5">
-                                            	<img src="img/${pb.img_main}" alt="">
-                                                <img src="img/product-single/tab-desc.jpg" alt=""> -->
-                                                
-                                                <%-- 
-                                                <c:forEach items="${i_cont }" var="cont">
-				                                	<div class="pt active"  >
-				                                		<!-- width, height 지웠을때 이미지 나오는지?? -->
-				                                        <img src="./upload/${cont}" alt="" width="1100" height="1300"></div><br>
-			                                	</c:forEach>
-			                                	 --%>
+                                          
 			                                	<c:forTokens var="cont" items="${pb.img_content }" delims=",">
 			                                	  <c:if test="${cont != 'null' }">
 			                                	  	<div class="pt active" >
@@ -439,9 +333,6 @@
 
 	                                        <div class="comment-option">
 	                                            <div class="co-item">
-	                                                <!-- <div class="avatar-pic">
-	                                                    <img src="img/product-single/avatar-1.png" alt="">
-	                                                </div> -->
 	                                                <div class="avatar-text personal-rating">
 						                                <div class="rating">
 	                                                		<%@include file="./star.jsp" %>
@@ -497,21 +388,7 @@
                                 <div class="tab-pane fade" id="Tab-3" role="tabpanel">
                                     <div class="customer-review-option">
                                     <!-- QnA 작성하기 -->
-                                    <%-- 
-                                    	<form action="./ProductQnaWriteAction.p?p_num=${pb.p_num}"  method="post" onsubmit="return idcheck()">
-                                          <table class="p-catagory">
-											<tr>
-												<th>제목</th>
-												<td><input type="text" name="subject" placeholder="제목을 입력하세요"></td>
-											</tr>
-											<tr>
-												<th>문의사항</th>
-												<td><textarea rows="" cols=""name="content" placeholder="내용을 입력하세요."></textarea></td>
-											</tr>
-                                          </table>
-										  <input type="submit" value="문의하기">
-                                        </form>
-                                         --%>
+                                 
                                         <div class="leave-comment">
                                         	<h4>Q & A</h4>
                                             <form action="./ProductQnaWriteAction.p?p_num=${pb.p_num}" method="post" class="comment-form" onsubmit="return idcheck()">
@@ -574,41 +451,11 @@
 											    <td colspan="2" class="content"><img src="./product/re.gif">&nbsp; ${ql.reply }</td>
 											  </tr>
 											</c:if>
-											<%-- 
-											<!-- 관리자일경우 -> 답글달기 칸보이게 -->
-											<%if(id.equals("admin")){%>
-											<tr>	
-											  <c:if test="${ql.re_result==0 }">
-												<td colspan="2">
-												  <form action="./ProductQnaReview.p?p_num=${pb.p_num }" method="post">
-													<input type="hidden" name="q_num" value="${ql.q_num }">
-													<input type="hidden" name="id" value="${ql.id}">
-													<input type="text" name="reply" id="reply" placeholder="답변을 입력하세요">
-													<input type="submit" class="site-btn reply" value="답글작성">
-												  </form>
-												</td>
-					                              <!-- <div>
-					                                <textarea rows="5" cols="20" id="reply"></textarea>
-					                                <button >답글작성</button>
-					                              </div> -->
-											  </c:if>
-											</tr>
-											<%} %>
-											 --%>
+											
 										  </c:forEach>
 		                                </table>
 		                                <%} %>
-		                                <!-- <script type="text/css"> -->
-										<!-- $(document).ready(function(){
-										$(".none").css("display","none");
-										});		 -->
-										<!-- </script> -->
-		                                
-			                            <!-- <script type="text/javascript">
-			                            	document.getElementsByClassName("none")[0].style.display = "none";
-			                            	document.getElementsByClassName("none")[1].style.display = "none";
-                               			 </script>	 -->	
-                                	<!-- QnA 불러오기 -->
+		                             
                                     </div>
                                 </div>
                                 

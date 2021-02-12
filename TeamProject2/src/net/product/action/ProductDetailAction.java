@@ -70,8 +70,6 @@ public class ProductDetailAction implements Action{
 			//QnA 갯수
 			ProductQnaDAO pqdao = new ProductQnaDAO();
 			int count = pqdao.getQnaCount(p_num, id); //QnA총 갯수
-			//int pageCount = 5; //보여줄 QnA갯수
-			//QnaList 저장 (QnA리스트, 리스트 전체수, ) 
 			
 			if(id != null) {
 			if(count != 0 || id.equals("admin")) {
@@ -79,12 +77,6 @@ public class ProductDetailAction implements Action{
 				request.setAttribute("qnaList", qnaList);
 			}}
 			request.setAttribute("count", count);
-			//request.setAttribute("pageCount", pageCount);
-			
-		
-		
-		
-		
 		
 		
 		ActionForward forward = new ActionForward();

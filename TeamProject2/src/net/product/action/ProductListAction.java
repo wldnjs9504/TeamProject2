@@ -13,10 +13,6 @@ public class ProductListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		/* 709 pg
-		 * ArrayList<String> ImageList = new ArrayList<String>(); Cookie[] cookieArray =
-		 * request.getCookies();
-		 */
 		
 		//정렬
 		request.setCharacterEncoding("UTF-8");
@@ -63,7 +59,6 @@ public class ProductListAction implements Action{
 					startPage = 0;
 				}
 				//끝행 계산
-				//int endPage = currentPage*pageSize;
 				
 		
 		

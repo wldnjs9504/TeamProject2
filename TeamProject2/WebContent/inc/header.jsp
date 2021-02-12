@@ -56,12 +56,7 @@
 				
 				<div class="col-lg-3 text-right col-md-3">
 					<ul class="nav-right">
-						<!-- <li class="heart-icon">
-							<a href="#">
-								<i class="icon_heart_alt"></i>
-								<span>1</span>
-							</a>
-						</li> -->
+					
 					
 						<%
 							ArrayList<CartBean> HcartList = null;
@@ -97,9 +92,9 @@
 														<p><fmt:formatNumber value="${hpb.p_price}" pattern="#,###" />원 x ${hcb.p_count }개</p>
 													</div>
 												</td>
-											<!-- <td class="si-close">
-													<i onclick="Hdelete()" class="ti-close"></i>
-												</td> -->
+												<!-- <td class="si-close">
+													<i class="ti-close" ></i>
+												</td>  -->
 											</tr>
 											<c:set var="Htotal" value="${hpb.p_saleprice*hcb.p_count + Htotal }"/>
 											</c:forEach>
@@ -116,8 +111,6 @@
 								</div>
 							</div>
 						</li>
-						<%-- <li class="cart-price"><fmt:formatNumber value="${Htotal}" pattern="#,###"/>원</li> --%>
-						<!-- <li class="cart-price">My Cart</li> -->
 					</ul>
 				</div>
 			</div>
@@ -140,23 +133,6 @@
 		</div>
 	</div>
 	
-	<%-- <script type="text/javascript">
+	
 
-	function Hdelete(){
-		
-		<%
-		if(id != null && HcartList.size() != 0){
-			CartBean Hcb = new CartBean();
-			Hcb = (CartBean)pageContext.getAttribute("hcbDelete");
-			
-			int Hc_num = (int)pageContext.getAttribute("deleteNum");
-			
-			Hcdao.deleteCartPart(Hcb);
-			System.out.println("Header : " +Hc_num +"번제품 카트삭제 완료!" );
-		}
-		%>
-		alert("클릭!");
-	}
-
-	</script> --%>
 </header>

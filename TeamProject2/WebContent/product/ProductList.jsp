@@ -85,24 +85,9 @@
             <div class="row">
                 
                 
-                
-                
-                
-                
-                
                 <%
-					// 로그인 제어 : 로그인이 되어있는 상태, 관리자만 볼 수 있음
-			
-				//if (id == null || !id.equals("admin")) {
-				//	response.sendRedirect("./Main.me");
-				//}
-				
-				// DAO 객체 생성
-				// getMemberList() 메서드 호출 
-				// -> 가변길이 배열 ArrayList (컬렉션)
 				ArrayList productList = (ArrayList)request.getAttribute("productList");
 				
-				// getStarAvg(int num)
 				
 				
 				System.out.println("@"+productList);
@@ -180,21 +165,6 @@
 	                               	
 	                               	
                                    %>
-                                   
-                                   <!--  <div id="table_search">-> get은 맞음 . 버튼클릭시 뭐로가는지 확인
-									  <form action="./ProductList.p?category= < %= category %> " method="get" name="searFr">
-										<input type="text" name="search" class="input_box" value="< %=search%>">
-										<input type="submit" value="검색"	class="btn">
-									  </form>
-									</div>  -->
-									 <!-- search  -->	
-									
-                                  <!--  <  class="p-show">
-                                    </select> 
-                                    
-                                     -->
-                                    
-                                    
                                     
                                 </div>
                             </div>
