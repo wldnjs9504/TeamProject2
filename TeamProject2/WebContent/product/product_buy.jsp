@@ -129,7 +129,7 @@ MemberBean mb = (MemberBean)request.getAttribute("memberBean");
                                 <div class="payment-check">
                                     <div class="pc-item">
                                         <label for="pc-check">
-                                            	무통장입금(한국은행 : 12-345-3456 Team1)
+                                            	무통장입금(한국은행 : 12-345-3456 유알)
                                             <input type="checkbox" id="pc-check" name="payment" value="1" checked>
                                             <span class="checkmark"></span>
                                         </label>

@@ -72,19 +72,19 @@ public class ProductDAO {
 			if (category == 0) { // 전체일때
 				// search 널일경우 처리필요 -> "" 으로
 				if (odb == null || odb == "" || odb.equals("all")) {// 정렬옵션클릭전
-					sql = "select * from product " + "where p_name like ? " + "order by p_num desc limit ?,? ";
+					sql = "select * from product " + "where p_name like ? and action=0 " + "order by p_num desc limit ?,? ";
 				} else if (odb.equals("num_desc")) {
-					sql = "select * from product " + "where p_name like ? " + "order by p_num desc limit ?,?";
+					sql = "select * from product " + "where p_name like ? and action=0 " + "order by p_num desc limit ?,?";
 				} else if (odb.equals("price_high")) {
-					sql = "select * from product " + "where p_name like ? " + "order by p_saleprice desc, p_num desc limit ?,?";
+					sql = "select * from product " + "where p_name like ? and action=0 " + "order by p_saleprice desc, p_num desc limit ?,?";
 				} else if (odb.equals("price_low")) {
-					sql = "select * from product " + "where p_name like ? " + "order by p_saleprice asc, p_num desc limit ?,?";
+					sql = "select * from product " + "where p_name like ? and action=0 " + "order by p_saleprice asc, p_num desc limit ?,?";
 				} else if (odb.equals("star_avg")) { // ***** search 구문 완성하기 -> 여기 안되는중 문의예정
 					sql = "select *,  avg(r.r_star) 'star_avg' "
-							+ "from review r  right outer join (select * from product where p_name like ?) p  "
+							+ "from review r  right outer join (select * from product where p_name like ? and action=0) p  "
 							+ "on r.p_num = p.p_num group by p.p_num " + "order by avg(r.r_star) desc, p.p_num desc limit ?,?";
 				} else if (odb.equals("readcount")) {
-					sql = "select * from product " + "where p_name like ? " + "order by readcount desc, p_num desc limit ?,?";
+					sql = "select * from product " + "where p_name like ? and action=0 " + "order by readcount desc, p_num desc limit ?,?";
 				}
 				pstmt = con.prepareStatement(sql);
 				if (search.equals("")) {
@@ -99,22 +99,22 @@ public class ProductDAO {
 
 			} else {// 다른 카테고리일 경우
 				if (odb == null || odb == "" || odb.equals("all")) {
-					sql = "select * from product " + "where category = ? and p_name like ? " + "order by p_num desc limit ?,? ";
+					sql = "select * from product " + "where category = ? and p_name like ? and action=0 " + "order by p_num desc limit ?,? ";
 				} else if (odb.equals("num_desc")) {
-					sql = "select * from product " + "where category = ?  and p_name like ? " + "order by p_num desc "
+					sql = "select * from product " + "where category = ?  and p_name like ? and action=0 " + "order by p_num desc "
 							+ "limit ?,?";
 				} else if (odb.equals("price_high")) {
-					sql = "select * from product " + "where category = ?  and p_name like ? "
+					sql = "select * from product " + "where category = ?  and p_name like ? and action=0 "
 							+ "order by p_saleprice desc, p_num desc " + "limit ?,?";
 				} else if (odb.equals("price_low")) {
-					sql = "select * from product " + "where category = ?  and p_name like ? "
+					sql = "select * from product " + "where category = ?  and p_name like ? and action=0 "
 							+ "order by p_saleprice asc, p_num desc " + "limit ?,?";
 				} else if (odb.equals("star_avg")) {
 					sql = "select *,  avg(r.r_star) 'star_avg' " + "from review r right outer join "
-							+ "(select * from product where category=? and p_name like ?) p " + "on r.p_num = p.p_num "
+							+ "(select * from product where category=? and p_name like ? and action=0) p " + "on r.p_num = p.p_num "
 							+ "group by p.p_num " + "order by avg(r.r_star) desc, p.p_num desc " + "limit ?,?";
 				} else if (odb.equals("readcount")) {
-					sql = "select * from product " + "where category = ?  and p_name like ? "
+					sql = "select * from product " + "where category = ?  and p_name like ? and action=0 "
 							+ "order by readcount desc, p_num desc " + "limit ?,?";
 				}
 				pstmt = con.prepareStatement(sql);
@@ -181,9 +181,9 @@ public class ProductDAO {
 		try {
 			con = getCon();
 			if(category == 0) {
-				sql = "select count(*) from product where p_name like ? ";
+				sql = "select count(*) from product where p_name like ? and action=0";
 			}else {
-				sql = "select count(*) from product where p_name like ? and category = ?";
+				sql = "select count(*) from product where p_name like ? and category = ? and action=0";
 			}
 			pstmt = con.prepareStatement(sql);
 			if(search.equals("")) {
@@ -276,7 +276,7 @@ public class ProductDAO {
 		
 		try {
 			con = getCon();
-			sql = "select * from product where p_num = ?";
+			sql = "select * from product where p_num = ? and action=0";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, p_num);
 			rs = pstmt.executeQuery();
@@ -463,4 +463,39 @@ public class ProductDAO {
 		}
 		return result;
 	}//end of updateProductCnt()
+	
+	
+	// getProductList(startRow, pageSize) -조회수 높은 순으로 메인 페이지에 띄워주는 메서드
+	public ArrayList<ProductBean> getProductList(int startRow, int pageSize) {
+		ArrayList<ProductBean> productList = new ArrayList<ProductBean>();
+		try {
+			con = getCon();
+			sql = "select * from product where action=0 order by readcount desc limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ProductBean pb = new ProductBean();
+				pb.setCategory(rs.getInt("category"));
+				pb.setImg_content(rs.getString("img_content"));
+				pb.setImg_main(rs.getString("img_main"));
+				pb.setP_count(rs.getInt("p_count"));
+				pb.setP_name(rs.getString("p_name"));
+				pb.setP_num(rs.getInt("p_num"));
+				pb.setP_price(rs.getInt("p_price"));
+				pb.setP_saleprice(rs.getInt("p_saleprice"));
+				pb.setPrice_count(rs.getInt("price_count"));
+				pb.setReadcount(rs.getInt("readcount"));
+				productList.add(pb);
+			}
+			System.out.println("DAO : ProductList저장 완료!");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return productList;
+	}
+	// getProductList(startRow, pageSize)	
 }

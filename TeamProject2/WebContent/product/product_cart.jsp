@@ -70,13 +70,13 @@ int totalPrice = 0; //장바구니 총 합계금액
                     <div class="cart-table">
                         <table>
                         	<colgroup>
-								<col width="10%" />
+								<col width="5%" />
 								<col width="10%" />
 								<col width="*" />
+								<col width="5%" />
 								<col width="10%" />
-								<col width="15%" />
-								<col width="15%" />
-								<col width="20%" />
+								<col width="10%" />
+								<col width="5%" />
 							</colgroup>
                         <!-- 장바구니 번호, 사진(대표이미지), 상품명, 사이즈,색상,수량,가격, 삭제 -->
                             <thead>
@@ -107,12 +107,12 @@ int totalPrice = 0; //장바구니 총 합계금액
 								   %>
 								      	
                                 <tr>
-                                	<td class="qua-col first-row"><%=i+1%></td><!-- 순차 넘버링  -->
-                                    <td class="cart-pic first-row"><img src="./upload/<%=pb.getImg_main().split(",")[0] %>" height="100px"></td>
+                                	<td class="first-row"><%=i+1%></td><!-- 순차 넘버링  -->
+                                    <td class="cart-pic first-row"><img class="main_img" src="./upload/<%=pb.getImg_main().split(",")[0] %>" height="100px"></td>
                                     <td class="cart-title first-row">
                                         <h5><%=pb.getP_name() %></h5>
                                     </td>
-                                    <td class="qua-col first-row">
+                                    <td class="first-row">
                                         <!-- div class="quantity">
                                             <div class="pro-qty">
                                                 <input type="text" value="1">
@@ -120,8 +120,8 @@ int totalPrice = 0; //장바구니 총 합계금액
                                         </div-->
                                         <%=cb.getP_count() %>
                                     </td>
-                                    <td class="p-price first-row"><script type="text/javascript">numberWithComma(<%=pb.getP_saleprice() %>)</script></td>
-                                    <td class="total-price first-row"><script type="text/javascript">numberWithComma(<%=pb.getP_saleprice()*cb.getP_count()%>)</script></td>
+                                    <td class="first-row"><script type="text/javascript">numberWithComma(<%=pb.getP_saleprice() %>)</script></td>
+                                    <td class="first-row"><script type="text/javascript">numberWithComma(<%=pb.getP_saleprice()*cb.getP_count()%>)</script></td>
                                     <td class="close-td first-row" style="padding-left:20px;padding-right:20px"><a href="./CartDeletePart.ba?c_num=<%=cb.getC_num()%>"><i class="ti-close"></i></a></td>
                                 </tr>
                                 <%} 
@@ -154,8 +154,10 @@ int totalPrice = 0; //장바구니 총 합계금액
         </div>
     </section>
     <!-- Shopping Cart Section End -->
+<!-- 
 <input type="button" class="btn" value="[구매하기]" onclick="location.href='./OrderStar.or'">
 <input type="button" class="btn" value="[계속 쇼핑하기]" onclick="location.href='./ProductList.go'">
+ -->
     <!-- 푸터 -->
     <%@include file="../inc/footer.jsp" %>
     

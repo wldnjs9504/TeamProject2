@@ -253,16 +253,11 @@
                         	<div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="./img/products/${pi.img_main}" alt="" width="">
+                                        <img class="main_img" src="./upload/${pi.img_main}" alt="">
                                         <!--270 * 330  -->
                                         <div class="sale pp-sale">Sale</div>
-                                       <!--  <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div> -->
                                         <ul>
-                                           <!--  <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li> -->
-                                            <li class="quick-view"><a href="./Product.p?p_num=${p_num }">+ 상세보기</a></li>
-                                           <!--  <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li> -->
+                                          <li class="quick-view"><a href="./Product.p?p_num=${p_num }">+ 상세보기</a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">

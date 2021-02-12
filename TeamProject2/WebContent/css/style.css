@@ -1197,7 +1197,7 @@ ol {
 }
 
 .product-item .pi-pic .main_img {
-	min-width: 290px;
+	min-width: 170px;
 	min-height: 290px;
 	object-fit: contain;
 }
@@ -2973,6 +2973,23 @@ ol {
 
 .cart-table table tr td.close-td i {
 	cursor: pointer;
+}
+
+.cart-table {
+	overflow: hidden;
+	position: relative;
+}
+
+.cart-table img {
+	min-width: 100%;
+	min-height: 100%;
+	padding-right: 20px;
+}
+
+.cart-table .main_img {
+	min-width: 170px;
+	min-height: 100px;
+	object-fit: contain;
 }
 
 .cart-table .add {

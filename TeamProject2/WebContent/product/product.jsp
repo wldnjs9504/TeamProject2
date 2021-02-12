@@ -645,7 +645,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="img/${rec.img_main }" alt="">
+                            <img class="main_img" src="./upload/${rec.img_main }" alt="">
                             <div class="sale">Sale</div>
                             <!-- <div class="icon">
                                 <i class="icon_heart_alt"></i>

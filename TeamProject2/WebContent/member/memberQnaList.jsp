@@ -63,7 +63,6 @@
                     		<li> <a href="#"> 내 포인트 현황</a></li>
                     		<li> <a href="./MemberReviewList.me"> 나의 리뷰</a></li>
                     		<li class="check-menu"> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
-                    		<li> <a href="#"> 고객센터</a></li>
                     		<li> <a href="./MemberDelete.me"> 회원탈퇴</a></li> 
                         </ul>                    	
                     </div>

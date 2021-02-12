@@ -55,10 +55,13 @@ public class MemberController extends HttpServlet {
 			}
 	    }
 	    else if(command.equals("/Main.me")) {
-	    	
-	    	forward = new ActionForward();
-	    	forward.setPath("./index.jsp");
-	    	forward.setRedirect(false);
+	    	action = new MainAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	    }
 	    else if(command.equals("/Logout.me")) {
 	    	
@@ -222,10 +225,6 @@ public class MemberController extends HttpServlet {
 				dis.forward(request, response);				
 			}		
 		}		
-		
-		
-		
-
 	}
 
 	@Override

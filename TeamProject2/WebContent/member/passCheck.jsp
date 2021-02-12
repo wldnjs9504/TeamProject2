@@ -60,7 +60,6 @@
 							<li> <a href="#"> 내 포인트 현황</a></li>
 							<li> <a href="./MemberReviewList.me"> 나의 리뷰</a></li>
 							<li> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
-							<li> <a href="#"> 고객센터</a></li>
 							<li> <a href="./MemberDelete.me"> 회원탈퇴</a></li>
 						</ul>
 					</div>
@@ -101,10 +100,6 @@
 									<input class="site-btn" type="submit" value="확인">
 		                 			<input class="site-btn" type="reset" value="취소" onclick="history.back();">
 								</div>
-								<!-- 
-								<input type="submit" value="확인">
-								<input type="reset" value="취소">
-								 -->
 							</div>
 						</form>
 						

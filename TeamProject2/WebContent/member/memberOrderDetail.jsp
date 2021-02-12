@@ -115,7 +115,7 @@ List productList = (List)request.getAttribute("productList");
                                 <ul class="order-table">
                                     <li>주문상품 <span>합계</span></li>
                                    	<% totalPrice = totalPrice + (pb.getP_saleprice() * ob.getB_count());%>
-                                    <li class="fw-normal"><%=pb.getP_name()%> x <%=pb.getP_count() %> <span><script type="text/javascript">numberWithComma(<%=pb.getP_saleprice()*ob.getB_count()%>)</script></span></li>
+                                    <li class="fw-normal"><%=pb.getP_name()%> x <%=ob.getB_count() %> <span><script type="text/javascript">numberWithComma(<%=pb.getP_saleprice()*ob.getB_count()%>)</script></span></li>
                 <%} %>
                                     <li class="total-price">합계금액 <span><script type="text/javascript">numberWithComma(<%=totalPrice %>)</script></span></li>
                                 </ul>
