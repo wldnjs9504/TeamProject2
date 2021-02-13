@@ -156,11 +156,26 @@
 	function idcheck(){
 		
 		var id =document.getElementById("idcheck").value;
+		var Qsubject = document.QnA.Qsubject.value;
+		var Qcontent = document.QnA.Qcontent.value;
+		
 		if(id == 'null'){
 			alert("로그인이 필요합니다");
 			return false;
 		}
+		
+		if(Qsubject == 'null' || Qsubject == ""){
+			alert("문의제목을 입력해주세요");
+			document.QnA.Qsubject.focus();
+			return false;
+		}
+		if(Qcontent == 'null' || Qcontent == ""){
+			alert("문의내용을 입력해주세요");
+			document.QnA.Qcontent.focus();
+			return false;
+		}
 	}
+	
 	
 
 </script>
@@ -391,14 +406,14 @@
                                  
                                         <div class="leave-comment">
                                         	<h4>Q & A</h4>
-                                            <form action="./ProductQnaWriteAction.p?p_num=${pb.p_num}" method="post" class="comment-form" onsubmit="return idcheck()">
+                                            <form action="./ProductQnaWriteAction.p?p_num=${pb.p_num}" method="post" class="comment-form" name="QnA" onsubmit="return idcheck();">
                                                 <div class="row">
                                                     <div class="col-lg-12">
-                                                        <input type="text" name="subject" placeholder="제목을 입력하세요">
+                                                        <input type="text" name="Qsubject" id="Qsubject" placeholder="제목을 입력하세요" >
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        <textarea name="content" placeholder="내용을 입력하세요"></textarea>
-	                                                    <button type="submit" class="site-btn">문의하기</button>
+                                                        <textarea name="Qcontent" id="Qcontent" placeholder="내용을 입력하세요" ></textarea>
+	                                                    <button type="submit" class="site-btn" >문의하기</button>
                                                     </div>
                                                 </div>
                                             </form>
