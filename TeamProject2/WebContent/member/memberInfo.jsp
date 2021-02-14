@@ -98,14 +98,8 @@
 								</td>
                         	  </tr>
                         	  <tr>
-                        	    <th>포인트</th>
-                        	    <!-- 링크 클릭시 포인트 조회 페이지로 이동 -->
-                        	    <td><a href="#"> <%=mb.getPoint() %>포인트</a></td>
-                        	  </tr>
-                        	 
-                        	  <tr>
-                        	    <th>총금액</th>
-                        	    <td><input type="text" name="totalprice" id="totalprice" value="<%=mb.getTotalprice()%>" readonly></td>
+                        	    <th>총 결제 금액</th>
+                        	    <td><input type="text" name="totalprice" id="totalprice" value="<%=mb.getTotalprice()%>원" readonly></td>
                         	  </tr>
                         	</table>
                         	<%} %>
