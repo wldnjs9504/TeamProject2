@@ -176,7 +176,7 @@ function removeCheck() {
                                     </td>
                                     <td>
                                     	<input type="button" class="site-btn update" value="변경" onclick="location.href='./ProductModify.ap?p_num=<%=pb.getP_num()%>';"><br>
-                                    	<input type="button" class="site-btn update" value="삭제" onclick="removeCheck()">
+                                    	<input type="button" class="site-btn update" value="삭제" onclick="location.href='./ProductDeleteAction.ap?p_num=<%=pb.getP_num()%>';">
     								</td>
     							</tr>	   
                                 <%
