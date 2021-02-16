@@ -56,7 +56,6 @@
 							<li> <a href="./MemberInfo.me">내 정보 보기</a></li>
 							<li> <a href="./passCheck.me">내 정보 변경</a></li>
 							<li> <a href="./MemberOrderList.me"> 주문 이력</a></li>
-							<li> <a href="#"> 내 포인트 현황</a></li>
 							<li> <a href="./MemberReviewList.me"> 나의 리뷰</a></li>
 							<li> <a href="./MemberQnaList.me"> 상품 QnA</a></li>
 							<li class="check-menu"> <a href="./MemberDelete.me"> 회원탈퇴</a></li>
