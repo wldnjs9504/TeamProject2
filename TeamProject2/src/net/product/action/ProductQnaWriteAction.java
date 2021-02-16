@@ -28,8 +28,8 @@ public class ProductQnaWriteAction implements Action{
 		//id null일경우 설정필요
 		pqb.setId(id);
 		pqb.setP_num(p_num);
-		pqb.setSubject(request.getParameter("subject"));
-		pqb.setContent(request.getParameter("content"));
+		pqb.setSubject(request.getParameter("Qsubject"));
+		pqb.setContent(request.getParameter("Qcontent"));
 		
 		ProductQnaDAO pqdao = new ProductQnaDAO();
 		pqdao.insertQna(pqb);

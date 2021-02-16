@@ -375,29 +375,6 @@
 
 
 
-									
-                                          <!-- 내별점>>>  -->  
-                                        <div class="personal-rating">
-                                        <%
-                                        ReviewBean myReview = null;
-                                        myReview = (ReviewBean)request.getAttribute("myReview");
-                                        if(myReview != null){
-                                        	System.out.println("V : myReview : " + myReview.toString());
-                                        %>
-                                          	  <h6>나의 별점  <fmt:formatDate value="${ri.r_date }" dateStyle="short"/></h6> 
-                                            	<c:set var="my_star" value="${myReview.r_star }"/>
-	                                           		 <div class="rating">
-		                                            	<%@include file="./my_star.jsp" %>
-		                       							 <span>(${my_star})</span>
-	                                           		 </div>
-	                                           	${myReview.r_content} 
-	                                           	
-                                          <%}%>
-                                            
-                                            
-                                        </div>
-
-                                        <!--<<< 내별점  -->  
                                      
                                     </div>
                                 </div>
