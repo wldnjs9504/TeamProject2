@@ -138,7 +138,7 @@
 					StringBuffer sb3 = new StringBuffer(point);
 					String cost = Integer.toString(ob.getD_cost());
 					StringBuffer sb4 = new StringBuffer(cost);
-					String result = Integer.toString((ob.getB_count()*pb.getP_saleprice())-ob.getD_cost()-ob.getPoint());
+					String result = Integer.toString((ob.getB_count()*pb.getP_saleprice()));
 					StringBuffer sb5 = new StringBuffer(result);
 					
 					String arr1[] = {price, count, price2, point, cost, result};
@@ -175,8 +175,6 @@
                                     <li class="fw-normal">가격 <span><%= sb2 %></span></li>
                                     <li class="fw-normal">할인된 가격 <span><%= sb %></span></li>
                                     <li class="fw-normal">수량 <span><%= sb1 %></span></li>
-                                    <li class="fw-normal">사용된 포인트 <span>-<%= sb3 %>원</span></li>
-                                    <li class="fw-normal">배송비 <span>-<%= sb4 %>원</span></li>
                                     <li class="total-price">최종금액 <span><%= sb5%>원</span></li>
                                 </ul>
                                 <div class="order-btn">
