@@ -25,7 +25,7 @@ public class ProductDAO {
 		private Connection getCon() throws Exception {
 
 			Context init = new InitialContext();
-			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/team1");
+			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/itwillbs14");
 			con = ds.getConnection();
 
 			return con;

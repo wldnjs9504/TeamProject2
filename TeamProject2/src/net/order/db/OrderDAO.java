@@ -27,7 +27,7 @@ public class OrderDAO {
 		// 커넥션 풀
 		//context.xml추가
 		Context init = new InitialContext();
-		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/team1");
+		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/itwillbs14");
 		con = ds.getConnection();
 		System.out.println("DAO : 디비연결 완료 "+con);
 	}//end of getCon()
