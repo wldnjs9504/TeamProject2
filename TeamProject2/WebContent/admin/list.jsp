@@ -50,16 +50,7 @@
 	List productList = (List)request.getAttribute("productList");
 	ProductBean pb = (ProductBean)productList.get(0);
 	%>
-<script type="text/javascript">
-function removeCheck() {
 
-	 if (confirm("정말 삭제하시겠습니까?") == true){    //확인
-		 location.href="./ProductDeleteAction.ap?p_num=<%=pb.getP_num()%>";
-	 }else{   //취소
-	     return false;
-	 }
-}
-</script>
 
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
@@ -203,7 +194,6 @@ function removeCheck() {
         </div>
     </section>
     <!-- Shopping Cart Section End -->
-
 	<!-- 푸터 -->
     <%@include file="/inc/footer.jsp" %>
 </body>

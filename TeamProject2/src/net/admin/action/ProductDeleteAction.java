@@ -22,16 +22,10 @@ public class ProductDeleteAction implements Action {
 		
 		if(p_num > 0) {
 			out.print("<script>");
-			out.print("  if (confirm('정말 삭제하시겠습니까?') == true){ ");
-			ProductDAO pdao = new ProductDAO();
-			pdao.deleteProduct(p_num);
+			out.print("  alert('삭제 되었습니다'); ");
 			out.print("  location.href=\'./ProductList.ap'; ");
-			out.print("  }else{  ");
-			out.print("  history.back(); ");
-			out.print("  }  ");
 			out.print("</script>");
 			out.close();
-			return null;
 		}
 		
 		System.out.println(p_num);
