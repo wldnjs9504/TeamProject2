@@ -162,7 +162,7 @@ function removeCheck() {
                                     <img src="./upload/1.jfif" alt="">
                                     <%}else{ %>
                                     
-                                    <img class="main_img" src="./upload/<%=pb.getImg_main() %>" alt="">
+                                    <img class="main_img" src="./upload/<%=pb.getImg_main() %>" alt="" width="180" height="125">
                                     <%} %>
                                     </td>
                                     

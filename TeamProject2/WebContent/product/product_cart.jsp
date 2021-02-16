@@ -108,7 +108,7 @@ int totalPrice = 0; //장바구니 총 합계금액
 								      	
                                 <tr>
                                 	<td class="first-row"><%=i+1%></td><!-- 순차 넘버링  -->
-                                    <td class="cart-pic first-row"><img class="main_img" src="./upload/<%=pb.getImg_main().split(",")[0] %>" height="100px"></td>
+                                    <td class="cart-pic first-row"><img class="main_img" src="./upload/<%=pb.getImg_main().split(",")[0] %>" height="100" width="170"></td>
                                     <td class="cart-title first-row">
                                         <h5><%=pb.getP_name() %></h5>
                                     </td>

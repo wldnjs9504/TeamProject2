@@ -214,7 +214,7 @@
                     
                     	<!-- 사진이미지 -->
                         <div class="col-lg-6">
-                                <img class="product-big-img" src="./upload/${pb.img_main}" alt="" height="520">
+                                <img class="product-big-img" src="./upload/${pb.img_main}" alt="" height="520" width="480">
                         </div>
                         <!-- 사진이미지 -->
                         
@@ -323,7 +323,7 @@
 			                                	<c:forTokens var="cont" items="${pb.img_content }" delims=",">
 			                                	  <c:if test="${cont != 'null' }">
 			                                	  	<div class="pt active" >
-				                                      <img src="./upload/${cont }" alt="">
+				                                      <img src="./upload/${cont }" alt="" width="1140">
 				                                    </div><br>
 			                                	  </c:if>
 			                                	</c:forTokens>
@@ -507,7 +507,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img class="main_img" src="./upload/${rec.img_main }" alt="">
+                            <img class="main_img" src="./upload/${rec.img_main }" alt="" width="260" height="290">
                             <div class="sale">Sale</div>
                             <!-- <div class="icon">
                                 <i class="icon_heart_alt"></i>
