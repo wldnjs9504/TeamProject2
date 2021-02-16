@@ -156,6 +156,17 @@
 	function idcheck(){
 		
 		var id =document.getElementById("idcheck").value;
+		
+		if(id == 'null'){
+			alert("로그인이 필요합니다");
+			return false;
+		}
+		
+	}
+	
+	function faqCheck(){
+		
+		var id =document.getElementById("idcheck").value;
 		var Qsubject = document.QnA.Qsubject.value;
 		var Qcontent = document.QnA.Qcontent.value;
 		
@@ -406,7 +417,7 @@
                                  
                                         <div class="leave-comment">
                                         	<h4>Q & A</h4>
-                                            <form action="./ProductQnaWriteAction.p?p_num=${pb.p_num}" method="post" class="comment-form" name="QnA" onsubmit="return idcheck();">
+                                            <form action="./ProductQnaWriteAction.p?p_num=${pb.p_num}" method="post" class="comment-form" name="QnA" onsubmit="return faqCheck();">
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <input type="text" name="Qsubject" id="Qsubject" placeholder="제목을 입력하세요" >
