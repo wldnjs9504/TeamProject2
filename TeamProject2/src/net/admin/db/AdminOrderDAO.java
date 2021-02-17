@@ -199,7 +199,7 @@ public class AdminOrderDAO {
 		
 		try {
 			con = getCon();
-			sql = "select m.action,m.id, p.o_name as pass, m.email, m.address1, m.address2, grade, count(coalesce(b_num,0)) as postcode, sum(coalesce(p.point,0)) as point, sum(coalesce(p1.p_saleprice,0)*coalesce(p.b_count,0)-coalesce(p.d_cost,0)-coalesce(p.point,0)) as totalprice from member m left join p_order p on m.id = p.id left join product p1 on p.p_num = p1.p_num group by m.id";
+			sql = "select m.action,m.id, p.o_name as pass, m.email, m.address1, m.address2, grade, count(coalesce(b_num,0)) as postcode, sum(coalesce(p.point,0)) as point, sum(coalesce(p1.p_saleprice,0)*coalesce(p.b_count,0)) as totalprice from member m left join p_order p on m.id = p.id left join product p1 on p.p_num = p1.p_num group by m.id";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
