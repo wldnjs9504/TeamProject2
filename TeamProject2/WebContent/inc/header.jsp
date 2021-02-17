@@ -89,7 +89,7 @@
 												<td class="si-text">
 													<div class="product-selected">
 														<h6>${hpb.p_name }</h6>
-														<p><fmt:formatNumber value="${hpb.p_price}" pattern="#,###" />원 x ${hcb.p_count }개</p>
+														<p><fmt:formatNumber value="${hpb.p_saleprice}" pattern="#,###" />원 x ${hcb.p_count }개</p>
 													</div>
 												</td>
 												<!-- <td class="si-close">
