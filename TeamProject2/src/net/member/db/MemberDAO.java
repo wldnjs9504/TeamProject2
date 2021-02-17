@@ -692,6 +692,54 @@ public class MemberDAO {
 		}
 		return totalList;
 	}//getOrderDetail(b_num)
-
 	
+	
+	// checkID(id)	
+	public boolean checkID(String id) {
+		boolean check = false;
+		System.out.println("DAO : checkID() 호출");
+		try {
+			con = getCon();
+			sql = "select id from member where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				check = true;
+			}else {
+				check = false;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return check;
+	}// checkID(id)	
+	
+	
+	// checkEmail(email)
+	public boolean checkEmail(String email) {
+		boolean check = false;
+		System.out.println("DAO : checkEmail() 호출");
+		try {
+			con = getCon();
+			sql = "select email from member where email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				check = true;
+			}else {
+				check = false;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return check;
+	}// checkEmail(email)
 }
