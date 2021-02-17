@@ -30,7 +30,7 @@ public class MemberJoinAction implements Action{
         mdao.insertMember(mb);        
               
         ActionForward forward = new ActionForward();
-        forward.setPath("./Login.me");
+        forward.setPath("./Main.me");
         forward.setRedirect(true);	
 		
         return forward;
